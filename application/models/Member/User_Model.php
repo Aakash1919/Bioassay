@@ -1,7 +1,7 @@
 <?php
 class User_Model extends Members_Model{
 
-	protected $_table_name = "yongfu";
+	protected $_table_name = "users";
 
 	public function __construct(){
 		parent::__construct();
@@ -103,15 +103,15 @@ class User_Model extends Members_Model{
 	}
 	public function GetAllUserDetailsByID($personID)
 	{
-		$this->db->where('yongfu.person_id',$personID);
+		$this->db->where('users.person_id',$personID);
 		$this->db->select()->from($this->_table_name);
-		$this->db->join('zhanghao','yongfu.person_id=zhanghao.person_id');
+		$this->db->join('user_meta','users.person_id=user_meta.person_id');
 		$rows= $this->db->get()->num_rows();
 		if($rows==1)
 		{
-		$this->db->where('yongfu.person_id',$personID);
+		$this->db->where('users.person_id',$personID);
 		$this->db->select()->from($this->_table_name);
-		$this->db->join('zhanghao','yongfu.person_id=zhanghao.person_id');
+		$this->db->join('user_meta','users.person_id=user_meta.person_id');
 		return $this->db->get()->result();
 		}else{
 			return false;
@@ -171,7 +171,7 @@ class User_Model extends Members_Model{
 	}
 	public function DeleteUserInactiveTwo($id){
 		$this->db->where("person_id",$id);
-        $this->db->delete('zhanghao');
+        $this->db->delete('user_meta');
         return true;
 	}
 	public function EmailCheck($email,$personID){

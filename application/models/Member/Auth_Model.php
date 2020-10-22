@@ -477,7 +477,7 @@ class Auth_Model extends CI_Model{
 }
  public function SaveData($id,$data){
     $this->db->where('person_id',$id);
-    $this->db->update('yongfu',$data);
+    $this->db->update('users',$data);
     $result = $id;
     return $result;
     }

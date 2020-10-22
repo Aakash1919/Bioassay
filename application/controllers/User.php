@@ -122,7 +122,7 @@ class User extends Public_Controller{
 
 		if($_POST){
 		
-			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[yongfu.email]', 
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]', 
 				array(
 					'required' => 'You must provide a %s.',
 					'valid_email'=>'You must provide valid %s',
@@ -410,7 +410,7 @@ class User extends Public_Controller{
 			$personID = $this->input->post('personID');
 			$emailCheck = $this->User_Model->EmailCheck($emailCh,$personID);
 			if($emailCheck==false){
-				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[yongfu.email]', 
+				$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]', 
 			array(
 				'required' => 'You must provide a %s.',
 				'valid_email'=>'You must provide valid %s',
