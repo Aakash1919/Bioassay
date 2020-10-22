@@ -195,3 +195,15 @@ ERROR - 2020-10-22 12:13:55 --> 404 Page Not Found: Products/manifest.json
 ERROR - 2020-10-22 12:13:58 --> 404 Page Not Found: Products/manifest.json
 ERROR - 2020-10-22 12:18:01 --> 404 Page Not Found: Checkout/manifest.json
 ERROR - 2020-10-22 12:18:03 --> 404 Page Not Found: Checkout/manifest.json
+ERROR - 2020-10-22 12:56:31 --> 404 Page Not Found: Checkout/manifest.json
+ERROR - 2020-10-22 12:56:36 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 12:56:40 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 12:56:44 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 12:56:50 --> Severity: Warning --> mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() E:\xampp\htdocs\application\controllers\User.php 40
+ERROR - 2020-10-22 12:58:00 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 12:58:15 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 12:58:27 --> 404 Page Not Found: Checkout/manifest.json
+ERROR - 2020-10-22 12:58:29 --> 404 Page Not Found: Checkout/manifest.json
+ERROR - 2020-10-22 13:06:46 --> 404 Page Not Found: Checkout/manifest.json
+ERROR - 2020-10-22 13:06:52 --> 404 Page Not Found: User/manifest.json
+ERROR - 2020-10-22 13:06:55 --> 404 Page Not Found: Checkout/manifest.json

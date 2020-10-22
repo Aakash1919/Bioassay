@@ -305,16 +305,15 @@ class Checkout extends Public_Controller{
 
 		public function getDiscount()
 		{
-  	//For checking the discount
 			$discountPost=$this->input->post('discountcod');
 			$cart = $this->cart->contents();
 			if(!empty($discountPost))
 			{
 				$discountcod=$discountPost;
 				$response = $this->Products_Model->GetDiscountedPrice($discountcod,$cart);
-				if(empty($response)){
+				if(empty($response)) {
 					echo "Invalid Code";
-				}else{
+				} else {
 					$this->session->set_userdata('discount_data', $response);
 					$this->session->set_userdata('PromotionStatus',true);
 					$this->session->set_userdata('PromotionCode',$discountcod);
@@ -324,7 +323,6 @@ class Checkout extends Public_Controller{
 					}else{
 						redirect('/checkout/guestcheckout');
 					}
-					//echo "true";
 				}
 			}
 		}
@@ -455,20 +453,7 @@ class Checkout extends Public_Controller{
 		    $taxrate = 0.0;
 
 		    $Alameda_zip_arr = array("94501", "94502", "94536", "94538", "94539", "94541", "94542", "94544", "94545", "94546", "94550", "94551", "94552", "94555", "94560", "94566", "94568", "94577", "94578", "94579", "94580", "94586", "94587", "94588", "94601", "94602", "94603", "94605", "94606", "94607", "94608", "94609", "94610", "94611", "94612", "94615", "94617", "94618", "94619", "94621", "94702", "94703", "94704", "94705", "94706", "94707", "94708", "94709", "94710");
-			 
-			 //  if (in_array($this->input->post('szip'), $Alameda_zip_arr)) {
-				// 	$taxrate =  0.0975;
-			 // } 
-			 // if (strtoupper($this->input->post('sstate'))=="CA" || strtoupper($this->input->post('sstate'))=="CALIFORNIA") {
-			 // 	if(!empty($this->input->post('sales_tax_exempt_num'))){
-				//  		$taxrate =  0;
-				//  	}else{
-				//  		$taxrate = 0.0725;
-				//  	}
-			 // }else{
-				// $taxrate = 0.0;
-			 // }
-					//start
+			
 					if (in_array($this->input->post('szip'), $Alameda_zip_arr)) {
 					
 						$taxrate =  0.0975;
@@ -947,10 +932,8 @@ $authnet_values = array
 if($this->input->post('payment_type')=="Credit Card"){
 	$profileid = $this->User_Model->checkAuthProfileID($personID);
 	$paymentprofileid = $this->User_Model->checkAuthProfilePaymentID($personID);
-	// print_r($profileid);
-	// print_r($paymentprofileid);
 	//If already profile is created else the other method Aakash
-	//If person has not selected the credit card checkbox then the form will not pass else form will pass bexcause those feilds are required fields
+	//If person has not selected the credit card checkbox then the form will not pass else form will pass because those feilds are required fields
 	//One more condition is whether the last card is checked or not
 	$lastcardcheck = $this->input->post('cccheck');
 	if(!empty($profileid) && !empty($paymentprofileid) && $lastcardcheck!=0){

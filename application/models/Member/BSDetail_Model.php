@@ -1,7 +1,7 @@
 <?php
 class BSDetail_Model extends Members_Model{
 
-	protected $_table_name = "zhanghao";
+	protected $_table_name = "user_meta";
 
 	public function __construct(){
 		parent::__construct();
