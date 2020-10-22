@@ -1,0 +1,234 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2020-09-27 00:02:44 --> 404 Page Not Found: File_dir/DLDH.pdf
+ERROR - 2020-09-27 00:07:55 --> 404 Page Not Found: File_dir/DICL.pdf
+ERROR - 2020-09-27 00:09:51 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 00:18:28 --> 404 Page Not Found: File_dir/ECET.pdf
+ERROR - 2020-09-27 01:17:53 --> 404 Page Not Found: Datasheet/ENOS.pdf
+ERROR - 2020-09-27 01:26:52 --> 404 Page Not Found: View/images
+ERROR - 2020-09-27 01:31:44 --> Severity: Warning --> mysqli::real_connect(): (HY000/2002): No such file or directory /var/www/webadmin/data/www/bioassaysys.com/system/database/drivers/mysqli/mysqli_driver.php 203
+ERROR - 2020-09-27 01:31:44 --> Unable to connect to the database
+ERROR - 2020-09-27 01:53:40 --> 404 Page Not Found: Equipment/view
+ERROR - 2020-09-27 01:57:08 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 02:12:49 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 02:15:39 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 03:03:35 --> 404 Page Not Found: File_dir/DGLDH.pdf
+ERROR - 2020-09-27 03:03:39 --> 404 Page Not Found: File_dir/DGLO.pdf
+ERROR - 2020-09-27 03:08:45 --> 404 Page Not Found: Datasheet/D2DH.pdf
+ERROR - 2020-09-27 03:52:29 --> 404 Page Not Found: File_dir/DBGD.pdf
+ERROR - 2020-09-27 04:09:20 --> 404 Page Not Found: Servicesphp/contact
+ERROR - 2020-09-27 04:14:07 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 04:14:18 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 04:32:22 --> 404 Page Not Found: Datasheet/D2DH.pdf
+ERROR - 2020-09-27 04:43:13 --> 404 Page Not Found: Blog/rss
+ERROR - 2020-09-27 04:43:13 --> 404 Page Not Found: Blog/rss
+ERROR - 2020-09-27 04:43:13 --> 404 Page Not Found: Blog/feed
+ERROR - 2020-09-27 04:43:13 --> 404 Page Not Found: Blog/feed
+ERROR - 2020-09-27 05:08:53 --> 404 Page Not Found: Datasheet/Permeability.Service.PAMPA.pdf
+ERROR - 2020-09-27 05:28:32 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 07:03:38 --> 404 Page Not Found: View/Fumarate_Assay_Kit
+ERROR - 2020-09-27 07:32:59 --> 404 Page Not Found: Owa/auth
+ERROR - 2020-09-27 07:49:59 --> 404 Page Not Found: Equipment/index.php
+ERROR - 2020-09-27 08:11:07 --> 404 Page Not Found: Statics/css
+ERROR - 2020-09-27 08:11:11 --> 404 Page Not Found: E/data
+ERROR - 2020-09-27 08:12:54 --> 404 Page Not Found: Services/cat_detail.php
+ERROR - 2020-09-27 08:12:58 --> 404 Page Not Found: View/product_details.php
+ERROR - 2020-09-27 08:15:26 --> 404 Page Not Found: Services/cat_detail.php
+ERROR - 2020-09-27 08:19:18 --> 404 Page Not Found: Js/index.js
+ERROR - 2020-09-27 08:20:44 --> 404 Page Not Found: Public/simpleboot
+ERROR - 2020-09-27 08:32:45 --> 404 Page Not Found: Vendor/phpunit
+ERROR - 2020-09-27 08:33:10 --> 404 Page Not Found: View/PCR_Tubes_(50)
+ERROR - 2020-09-27 08:33:11 --> 404 Page Not Found: Css/album.css
+ERROR - 2020-09-27 08:46:37 --> 404 Page Not Found: Utility/convert
+ERROR - 2020-09-27 08:57:46 --> 404 Page Not Found: Services/apple_touch_icon.png
+ERROR - 2020-09-27 08:57:47 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 08:57:47 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 08:57:48 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 09:16:27 --> 404 Page Not Found: Equipment/cellanalyzer.php
+ERROR - 2020-09-27 09:18:50 --> 404 Page Not Found: Careers/apple_touch_icon.png
+ERROR - 2020-09-27 09:18:51 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 09:18:51 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 09:18:52 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 09:26:31 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'REPLACE(category,' ','')) >0' at line 3 - Invalid query: SELECT *
+FROM `products`
+WHERE FIND_IN_SET(,REPLACE(category,' ','')) >0
+ERROR - 2020-09-27 09:37:26 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 09:39:49 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 09:42:42 --> 404 Page Not Found: Datasheet/DIBR.pdf
+ERROR - 2020-09-27 09:42:48 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 09:46:22 --> 404 Page Not Found: Owa/auth
+ERROR - 2020-09-27 09:46:22 --> 404 Page Not Found: Owa/auth
+ERROR - 2020-09-27 09:59:51 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 10:06:09 --> 404 Page Not Found: Services/apple_touch_icon.png
+ERROR - 2020-09-27 10:06:10 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 10:06:10 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 10:06:10 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 10:09:06 --> 404 Page Not Found: Services/apple_touch_icon.png
+ERROR - 2020-09-27 10:10:37 --> 404 Page Not Found: Images/Product_pics
+ERROR - 2020-09-27 10:12:03 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'REPLACE(category,' ','')) >0' at line 3 - Invalid query: SELECT *
+FROM `products`
+WHERE FIND_IN_SET(,REPLACE(category,' ','')) >0
+ERROR - 2020-09-27 10:47:36 --> 404 Page Not Found: Wp_includes/wlwmanifest.xml
+ERROR - 2020-09-27 10:47:36 --> 404 Page Not Found: Blog/wp_includes
+ERROR - 2020-09-27 10:47:36 --> 404 Page Not Found: Web/wp_includes
+ERROR - 2020-09-27 10:47:36 --> 404 Page Not Found: Wordpress/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Website/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wp/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: News/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wp_includes/wlwmanifest.xml
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: 2018/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: 2019/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Shop/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wp1/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Test/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Media/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Blog/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wp2/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Web/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Site/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wordpress/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Cms/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Website/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Sito/wp_includes
+ERROR - 2020-09-27 10:47:37 --> 404 Page Not Found: Wp/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: News/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: 2018/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: 2019/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Shop/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Wp1/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Test/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Media/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Wp2/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Site/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Cms/wp_includes
+ERROR - 2020-09-27 10:47:38 --> 404 Page Not Found: Sito/wp_includes
+ERROR - 2020-09-27 10:55:05 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 11:01:19 --> 404 Page Not Found: Careers/apple_touch_icon.png
+ERROR - 2020-09-27 11:03:04 --> 404 Page Not Found: Images/plrdr01.jpg
+ERROR - 2020-09-27 11:03:04 --> 404 Page Not Found: Images/baskit.jpg
+ERROR - 2020-09-27 11:03:33 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 11:16:02 --> 404 Page Not Found: Datasheet/EERK_MSDS.pdf
+ERROR - 2020-09-27 12:03:58 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 12:11:00 --> 404 Page Not Found: Careers/distributor
+ERROR - 2020-09-27 12:12:19 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'REPLACE(category,' ','')) >0' at line 3 - Invalid query: SELECT *
+FROM `products`
+WHERE FIND_IN_SET(,REPLACE(category,' ','')) >0
+ERROR - 2020-09-27 12:14:08 --> 404 Page Not Found: Careersphp/Lead_Discovery_Services.php
+ERROR - 2020-09-27 12:40:11 --> 404 Page Not Found: Administrator/index.php
+ERROR - 2020-09-27 12:41:19 --> 404 Page Not Found: Data/admin
+ERROR - 2020-09-27 12:54:01 --> 404 Page Not Found: Uploads/datasheet
+ERROR - 2020-09-27 12:55:11 --> 404 Page Not Found: Statics/css
+ERROR - 2020-09-27 12:55:11 --> 404 Page Not Found: Public/simpleboot
+ERROR - 2020-09-27 12:57:16 --> 404 Page Not Found: E/data
+ERROR - 2020-09-27 13:12:20 --> 404 Page Not Found: Js/index.js
+ERROR - 2020-09-27 13:29:28 --> 404 Page Not Found: Datasheet/DAGD.pdf
+ERROR - 2020-09-27 13:49:07 --> 404 Page Not Found: Utility/convert
+ERROR - 2020-09-27 14:05:57 --> 404 Page Not Found: View/Formaldehyde_Assay_Kit
+ERROR - 2020-09-27 14:34:10 --> 404 Page Not Found: Datasheet/EIVT.pdf
+ERROR - 2020-09-27 14:50:06 --> 404 Page Not Found: Support/distributor
+ERROR - 2020-09-27 14:56:23 --> 404 Page Not Found: Datasheet/EFLLC_MSDS.pdf
+ERROR - 2020-09-27 14:59:16 --> 404 Page Not Found: Datasheet/DGLO_MSDS.pdf
+ERROR - 2020-09-27 15:07:29 --> 404 Page Not Found: Datasheet/ECLC_MSDS.pdf
+ERROR - 2020-09-27 15:12:19 --> 404 Page Not Found: Datasheet/DIFE_MSDS.pdf
+ERROR - 2020-09-27 15:14:39 --> 404 Page Not Found: Datasheet/EIVT_MSDS.pdf
+ERROR - 2020-09-27 15:15:17 --> 404 Page Not Found: Data/admin
+ERROR - 2020-09-27 15:22:53 --> 404 Page Not Found: Data/admin
+ERROR - 2020-09-27 15:23:36 --> 404 Page Not Found: Datasheet/hreader_MSDS.pdf
+ERROR - 2020-09-27 15:35:22 --> 404 Page Not Found: Datasheet/CTTX_MSDS.pdf
+ERROR - 2020-09-27 15:37:04 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 15:40:36 --> 404 Page Not Found: Datasheet/EGTT_MSDS.pdf
+ERROR - 2020-09-27 15:41:17 --> 404 Page Not Found: Css/album.css
+ERROR - 2020-09-27 15:42:15 --> 404 Page Not Found: Datasheet/EKBD_MSDS.pdf
+ERROR - 2020-09-27 15:43:53 --> 404 Page Not Found: Datasheet/DIZN_MSDS.pdf
+ERROR - 2020-09-27 15:45:20 --> 404 Page Not Found: Datasheet/E2HL_MSDS.pdf
+ERROR - 2020-09-27 15:46:39 --> 404 Page Not Found: Datasheet/EPHE_MSDS.pdf
+ERROR - 2020-09-27 15:59:18 --> 404 Page Not Found: Datasheet/QFDN_MSDS.pdf
+ERROR - 2020-09-27 16:02:05 --> 404 Page Not Found: Index/torch
+ERROR - 2020-09-27 16:06:18 --> 404 Page Not Found: Datasheet/DSDH_MSDS.pdf
+ERROR - 2020-09-27 16:08:25 --> 404 Page Not Found: Datasheet/EXAN_MSDS.pdf
+ERROR - 2020-09-27 16:16:17 --> 404 Page Not Found: Datasheet/EFBA_MSDS.pdf
+ERROR - 2020-09-27 16:26:14 --> 404 Page Not Found: Datasheet/POMG.pdf
+ERROR - 2020-09-27 16:29:10 --> 404 Page Not Found: Datasheet/E2ST_MSDS.pdf
+ERROR - 2020-09-27 16:34:13 --> 404 Page Not Found: Servicesphp/contact
+ERROR - 2020-09-27 16:43:52 --> 404 Page Not Found: Datasheet/DACE_MSDS.pdf
+ERROR - 2020-09-27 17:15:45 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 17:26:06 --> 404 Page Not Found: Products/Malic_Acid_Quick_Test_Strips
+ERROR - 2020-09-27 18:16:13 --> 404 Page Not Found: Support/manifest.json
+ERROR - 2020-09-27 18:25:24 --> 404 Page Not Found: Servicesphp/contact
+ERROR - 2020-09-27 18:35:28 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 18:40:32 --> 404 Page Not Found: File_dir/DALP.pdf
+ERROR - 2020-09-27 18:46:57 --> 404 Page Not Found: Products/favicons
+ERROR - 2020-09-27 18:47:06 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 18:47:08 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 18:47:15 --> 404 Page Not Found: Support/favicons
+ERROR - 2020-09-27 18:47:18 --> 404 Page Not Found: Services/favicons
+ERROR - 2020-09-27 18:47:25 --> 404 Page Not Found: Products/favicons
+ERROR - 2020-09-27 18:56:30 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 18:59:13 --> 404 Page Not Found: File_dir/EAPL.pdf
+ERROR - 2020-09-27 19:50:43 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 20:01:10 --> 404 Page Not Found: Datasheet/ECNP_MSDS.pdf
+ERROR - 2020-09-27 20:09:28 --> 404 Page Not Found: File_dir/view
+ERROR - 2020-09-27 20:27:31 --> 404 Page Not Found: Datasheet/D2NO.pdf
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/css
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:49:46 --> 404 Page Not Found: Theme/images
+ERROR - 2020-09-27 20:51:23 --> 404 Page Not Found: Public/simpleboot
+ERROR - 2020-09-27 20:51:24 --> 404 Page Not Found: E/data
+ERROR - 2020-09-27 20:51:26 --> 404 Page Not Found: Js/index.js
+ERROR - 2020-09-27 20:53:30 --> 404 Page Not Found: Utility/convert
+ERROR - 2020-09-27 20:54:40 --> 404 Page Not Found: File_dir/EAPL.pdf
+ERROR - 2020-09-27 20:54:53 --> 404 Page Not Found: Servicesphp/contact
+ERROR - 2020-09-27 21:01:13 --> 404 Page Not Found: Statics/css
+ERROR - 2020-09-27 21:01:35 --> 404 Page Not Found: Careers/distributor
+ERROR - 2020-09-27 21:01:58 --> 404 Page Not Found: Vendor/phpunit
+ERROR - 2020-09-27 21:06:29 --> 404 Page Not Found: Careers/favicons
+ERROR - 2020-09-27 21:18:29 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:23:37 --> 404 Page Not Found: Careers/distributor
+ERROR - 2020-09-27 21:29:46 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:30:47 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:32:12 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:34:38 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:38:32 --> 404 Page Not Found: View/L_Glutamate_Quick_Test_Strips
+ERROR - 2020-09-27 21:48:21 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 21:55:14 --> 404 Page Not Found: Servicesphp/contact
+ERROR - 2020-09-27 22:07:27 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 22:23:31 --> 404 Page Not Found: Support/distributor
+ERROR - 2020-09-27 22:51:35 --> 404 Page Not Found: Uploads/datasheet
+ERROR - 2020-09-27 22:57:43 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:20:32 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:20:47 --> Query error: Table 'production.product_meta' doesn't exist - Invalid query: SELECT *
+FROM `products`
+JOIN `product_meta` ON `product_meta`.`product_id`=`products`.`product_id`
+JOIN `product_Extra` ON `product_Extra`.`product_id`=`products`.`product_id`
+ORDER BY `name_display` ASC
+ LIMIT 20
+ERROR - 2020-09-27 23:20:51 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:21:25 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:24:41 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:31:56 --> 404 Page Not Found: View/images
+ERROR - 2020-09-27 23:36:43 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:36:46 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:44:28 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:44:35 --> 404 Page Not Found: Products/manifest.json
+ERROR - 2020-09-27 23:48:42 --> 404 Page Not Found: Js/showHide.js
+ERROR - 2020-09-27 23:56:06 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'REPLACE(category,' ','')) >0' at line 3 - Invalid query: SELECT *
+FROM `products`
+WHERE FIND_IN_SET(,REPLACE(category,' ','')) >0

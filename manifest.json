@@ -1,0 +1,13 @@
+{
+  "name": "BioAssay Systems",
+  "short_name": "BioAssay Systems",
+  "description": "BioAssay Systems develops and markets innovative and high-throughput assay solutions to satisfy the ever increasing demands of the life sciences industry. BioAssay Systems offers assay kits that are simple and convenient to use, which are superior in performance and require little to no time for assay optimization. We focus on safe, non-radioactive formats such as absorbance, fluorescence and luminescence detection techniques.        ",
+  "start_url": "https://www.bioassaysys.com/",
+  "background_color": "#ffffff",
+  "theme_color": "#0072bb",
+  "icons": [{
+    "src": "favicons/favicon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

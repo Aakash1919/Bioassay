@@ -1,0 +1,393 @@
+
+/* container for slides */
+.images {
+    position:relative;
+	width:970px;
+	height:330px;
+	background-color:#FFF;
+	float:right;
+}
+
+/* single slide */
+.images div {
+    position:absolute;
+    height:415px;
+}
+
+/* header */
+.images h3 {
+    font-size:22px;
+    font-weight:normal;
+    margin:0 0 20px 0;
+    color:#456;
+}
+
+/* tabs (those little circles below slides) */
+.slidetabs {
+    clear:both;
+    margin-left:450px;
+	margin-top:10px;
+	position:absolute;
+}
+
+/* single tab */
+.slidetabs a {
+	width:13px;
+	height:13px;
+	display:inline-block;
+	font-size:1px;
+	background-image: url(../images/pagination.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align:center;
+	margin-top:10px;
+}
+
+/* mouseover state */
+.slidetabs a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs a.current {
+    background-position:0 -13px;
+}
+
+
+/* prev and next buttons */
+
+/* prev and next buttons */
+.forward{
+	float:right;
+	display:block;
+	width:57px;
+	height:89px;
+	margin-top:160px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/ongoing_slider_right.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	position:absolute;
+	z-index:10;
+	right:0px;
+}
+ .backward {
+	float:left;
+	margin-top:160px;
+	display:block;
+	width:57px;
+	height:89px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/ongoing_sliderleft.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	position:absolute;
+	z-index:11;
+}
+
+/* next */
+.forward {  }
+.forward:hover {  }
+.forward:active	{  }
+
+
+/* prev */
+.backward:hover	{ }
+.backward:active {  }
+
+
+
+
+
+/* prev and next buttons */
+
+/* prev and next buttons */
+.forward1{
+	float:right;
+	display:block;
+	width:57px;
+	height:89px;
+	margin-top:90px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/plans_navright.jpg);
+	background-repeat: no-repeat;
+	background-position: right center;
+	position:absolute;
+	z-index:10;
+	right:0px;
+}
+ .backward1 {
+	float:left;
+	margin-top:90px;
+	display:block;
+	width:57px;
+	height:89px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/plans_navleft.jpg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	position:absolute;
+	z-index:11;
+}
+
+/* next */
+.forward1 {  }
+.forward1:hover {  }
+.forward1:active	{  }
+
+
+/* prev */
+.backward1:hover	{ }
+.backward1:active {  }
+
+/* disabled navigational button. is not needed when tabs are
+   configured with rotate: true */
+.disabled {
+    visibility:hidden !important;
+}
+
+
+
+
+
+.images1 {
+    position:relative;
+	width:280px;
+	height:196px;
+	background-color:#FFF;
+	float:right;
+}
+
+/* single slide */
+.images1 div {
+    position:absolute;
+    height:415px;
+}
+
+.slidetabs1 {
+    clear:both;
+    margin-left:100px;
+	margin-top:10px;
+	position:absolute;
+}
+
+/* single tab */
+.slidetabs1 a {
+	width:13px;
+	height:13px;
+	display:inline-block;
+	font-size:1px;
+	background-image: url(../images/pagination.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align:center;
+	margin-top:10px;
+}
+
+/* mouseover state */
+.slidetabs1 a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs1 a.current {
+    background-position:0 -13px;
+}
+
+
+
+.images2 {
+    position:relative;
+	width:866px;
+	height:449px;
+	background-color:#FFF;
+	float:right;
+	position:relative;
+	z-index:9;
+}
+
+/* single slide */
+.images2 div {
+    position:absolute;
+    height:449px;
+}
+.slidetabs2 {
+   
+}
+
+/* single tab */
+.slidetabs2 a {
+	
+}
+
+/* mouseover state */
+.slidetabs2 a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs2 a.current {
+    background-position:0 -13px;
+}
+
+.images3 {
+	position:relative;
+	width:464px;
+	height:263px;
+	background-color:#FFF;
+	float:right;
+	position:relative;
+	z-index:8;
+	border: 3px solid #999;
+}
+
+/* single slide */
+.images3 div {
+    position:absolute;
+    height:263px;
+}
+.slidetabs3 {
+   
+}
+
+/* single tab */
+.slidetabs3 a {
+	
+}
+
+/* mouseover state */
+.slidetabs3 a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs3 a.current {
+    background-position:0 -13px;
+}
+
+
+.forward3{
+	float:right;
+	display:block;
+	width:57px;
+	height:89px;
+	margin-top:160px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/ongoing_slider_right.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	position:absolute;
+	z-index:44;
+	right:0px;
+}
+ .backward3{
+	float:left;
+	margin-top:160px;
+	display:block;
+	width:57px;
+	height:89px;
+	cursor:pointer;
+	font-size:1px;
+	text-indent:-9999em;
+	background-image: url(../images/ongoing_sliderleft.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	position:absolute;
+	z-index:33;
+}
+
+/* next */
+.forward3 {  }
+.forward3:hover {  }
+.forward3:active	{  }
+
+
+/* prev */
+.backward3:hover	{ }
+.backward3:active {  }
+
+
+
+
+
+
+/*----------------------------------Work Progress-----------------------------------*/
+
+
+
+.images4 {
+    position:relative;
+	width:866px;
+	height:449px;
+	background-color:#FFF;
+	float:right;
+	position:relative;
+	z-index:9;
+}
+
+/* single slide */
+.images4 div {
+    position:absolute;
+    height:449px;
+}
+.slidetabs4 {
+   
+}
+
+/* single tab */
+.slidetabs4 a {
+	
+}
+
+/* mouseover state */
+.slidetabs4 a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs4 a.current {
+    background-position:0 -13px;
+}
+
+
+
+/*----------------brochure-------------------*/
+
+
+}
+.slidetabs_br {
+   
+}
+
+/* single tab */
+.slidetabs_br a {
+	
+}
+
+/* mouseover state */
+.slidetabs_br a:hover {
+   background-position: center -13px;
+}
+
+/* active state (current page state) */
+.slidetabs_br a.current {
+    background-position:0 -13px;
+}
+.broch_nav{
+	padding-top:22px;
+	margin-right:14px;
+}
+.broch_nav1{
+	padding-top:22px;
+}
+

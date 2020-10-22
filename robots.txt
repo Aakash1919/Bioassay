@@ -1,0 +1,14 @@
+Sitemap: http://www.bioassaysys.com/sitemap.xml
+User-Agent: *
+Disallow: /user
+Disallow: /checkout
+Disallow: /checkout.html
+Disallow: /search?q=*
+Disallow: /cat_detail.php?id=*
+Disallow: /product-citations?*
+Disallow: /details
+Disallow: /uploads
+Disallow: /index?caturl=*
+Disallow: /controller
+Disallow: /CC-Test-Kit-(I1000CC).html
+Disallow: /DD-Test-Kit-(I1000CC).html

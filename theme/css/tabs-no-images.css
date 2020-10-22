@@ -1,0 +1,276 @@
+/* root element for tabs  */
+ul.css-tabs {
+    margin:0 !important;
+    padding:0;
+}
+
+/* single tab */
+ul.css-tabs li {
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+	padding-right:10px;
+}
+
+/* link inside the tab. uses a background image */
+ul.css-tabs a {
+	float:left;
+	font-size:18px;
+	display:block;
+	padding:15px;
+	text-decoration:none;
+	height:18px;
+	background-color:#d0ebc6;
+	color:#427c2c;
+	margin-right:2px;
+	position:relative;
+	top:1px;
+	outline:0;
+	-moz-border-radius:4px 4px 0 0;
+	font-style: italic;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+
+ul.css-tabs a:hover {
+    background-color:#fff;
+    color:#3b5f7d;
+}
+
+/* selected tab */
+ul.css-tabs a.current {
+    background-color:#fff;
+    color:#3b5f7d;
+    cursor:default;
+box-shadow:0px -3px 5px #D9D9D9;
+}
+
+
+/* tab pane */
+
+.css-panes div.tabbox {
+    display:none;
+    background-color:#fff;
+	margin-top:49px;
+	width:918px;
+	box-shadow:0px 2px 8px #D9D9D9;
+
+}
+.bs_css-panes div.tabbox {
+	display:none;
+	background-color:#fff;
+	/*margin-top:39px;*/
+	/*width:586px; */
+	padding:20px;
+	border: 1px solid #d9d5d0;
+}
+.css-panes div.tabbox div{
+	display:block;
+	border:none;
+	margin:0px;
+	padding:0px;
+}
+.tab_left{
+	float:left;
+	width:324px;
+	height:232px;
+}
+.tab_left h2{
+	font-size: 24px;
+	font-weight: normal;
+	text-transform: capitalize;
+	color: #305471;
+	text-decoration: none;
+	padding-left:20px;
+	margin:0px;
+	padding-top:13px;
+}
+.tab_right{
+	float:right;
+	width:200px;
+	height:215px;
+	margin-top:40px;
+}
+.tab_right p{
+	padding-top:40px;
+}
+.learnmore{
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: #232323;
+	text-decoration: none;
+	background-image: url(../images/tab_readmore_bg.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	display:block;
+	width:120px;
+	height:33px;
+	text-align:center;
+	line-height:28px;
+	margin-top:28px;
+}
+ul.bs_css-tabs {
+    margin:0 !important;
+    padding:0;
+}
+
+/* single tab */
+ul.bs_css-tabs li {
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+
+}
+
+ul.bs_css-tabs a {
+	font-family: TahomaRegular, sans-serif;
+	float:left;
+	font-size:14px;
+	display:block;
+	padding:10px;
+	text-decoration:none;
+	/*height:18px;*/
+	background-color:#0066BB;
+	color:#fff;
+	position:relative;
+	top:1px;
+	outline:0;
+	-moz-border-radius:4px 4px 0 0;
+	text-transform: capitalize;
+	/*background-image: url(../images/tabs_bg.jpg);*/
+	background-repeat: repeat-x;
+	background-position: center top;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #005399;
+	line-height:18px;
+	border-top-left-radius: 10px;
+
+<!--added by Frank-->
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+<!--added by Frank-->
+}
+
+ul.bs_css-tabs a:hover {
+    background-color:#fff;
+    color:#f00;
+}
+
+/* selected tab */
+ul.bs_css-tabs a.current {
+    background-color:#DADADA;
+    color:#f00;
+    cursor:default;
+box-shadow:0px -3px 5px #D9D9D9;
+}
+
+
+
+.bs_pc_tab {
+    float: left;
+    padding-left: 5px;
+    <!--frank padding-left: 30px;-->
+    /*padding-top: 40px;*/ /* Top padding was too high, removed WC200214*/
+	padding-right:10px;
+}
+.bs_tab_cont{
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+	
+}
+.bs_tab_cont1{
+	width:842px;
+	height:462px;
+	border: 2px solid #CCC;
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+.bs_tab_cont2{
+	width:866px;
+	height:449px;
+	border: 2px solid #CCC;
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+	position:relative;
+}
+.plans_navleft{
+	float:left;
+	padding-right:5px;
+}
+.plans_navright{
+	float:right;
+}
+.plansnav_wrap{
+	float:right;
+}
+.tab_contact{
+	width:567px;
+	height:147px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	background-image: url(../images/contact_bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.tab_contact p{
+	font-family: TahomaRegular, sans-serif;
+	font-size:20px;
+	color:#000;
+	line-height:35px;
+	padding-top:20px;
+}
+
+/*----------------------tab-------------------------------*/
+
+.bs_tab_inside
+{
+	margin-bottom:10px;
+}
+
+.bs_tab_inside h1
+{
+    color: #2A2B96;
+    font-family: TahomaRegular, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 26px;
+	/*float:left; */
+	padding-right:10px;
+}
+.bs_tab_inside h2
+{
+    color: #2A2B96;
+    font-family: TahomaRegular,sans-serif;
+    font-size: 15px;
+    font-weight:bold;
+    line-height: 26px;
+	width:340px;
+}
+.bs_tab_inside h3
+{
+    color: #2A2B96;
+    font-family: TahomaRegular,sans-serif;
+    font-size: 13px;
+    font-weight:bold;
+    line-height: 26px;
+	float:left;
+	padding-left:10px;
+	padding-right:10px;
+}
+.bs_tab_inside p
+{
+    color: #000000;
+    font-family: TahomaRegular,sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 26px;
+	width:auto;
+}

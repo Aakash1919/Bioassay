@@ -1,0 +1,2 @@
+[17-Oct-2020 04:33:39 America/Chicago] PHP Parse error:  syntax error, unexpected ''value'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/views/public/Cart/carttable.php on line 39
+[17-Oct-2020 05:12:22 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/views/public/footer.php on line 156
