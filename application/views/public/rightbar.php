@@ -1,6 +1,6 @@
 <?php
 foreach ($item as $i) {
-	$id = $i->id;
+	$id = $i->product_id;
 	$name = $i->name;
 	//$description = $i->description;
 	//$faq = $i->faq;
@@ -35,21 +35,9 @@ foreach ($item as $i) {
 					<span class="buynow_black"><i>For orders of 10 or more kits, please call <a href="tel:+15107829988,1">+1-510-782-9988x1</a> or <a href="javascript:location='mailto:\u0069\u006e\u0066\u006f\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003d<?php echo ucfirst($name);?> Bulk Order ';void 0"> email us</a> for best pricing and/or bulk order</i>. </span><br><br>
 
 					<span class="buynow_black">Shipping:</span> <?php echo stripslashes($shipping_method);?><br>
-
-					<?php
-					if ($shipping_method =="Free Shipping") { ?>
-					   <span class="buynow_black">Shipment:</span> USPS<br />
-					   <span class="buynow_black">Delivery:</span> 2-5 days (Continental US only)
+					<span class="buynow_black">Shipment:</span><?php echo ($shipping_method=='Free Shipping')?'USPS':'Fedex Service';?> <br />
+					<span class="buynow_black">Delivery:</span><?php echo ($shipping_method=='Free Shipping')?' 2-5 days (Continental US only)':' 1-2 days (US), 3-6 days (Intl)';?>
 						<br />
-					<?php } else { ?>
-					   <span class="buynow_black">Shipment:</span> Fedex Service <br />
-					   <span class="buynow_black">Delivery:</span> 1-2 days (US), 3-6 days (Intl)
-					   <br />
-					<? } ?>
-
-
-
-
 					<span class="buynow_black">Storage:</span> <?php echo stripslashes($storage);?><br>
 							<img src="/images/Product_pics/<?php echo $product_figure;?>" alt="<?php echo $display_name;?>" width="230" height="166" >
 			  

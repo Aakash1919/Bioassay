@@ -8,11 +8,11 @@ class Public_Controller extends CI_Controller{
 		$this->load->model('Member/BSDetail_Model');
 		$this->load->library('encrypt');
 		// development site keys
-		//$this->data['capcha_site_id'] = "6LcMer0UAAAAAMXX3qBYUgFlwn69hySCJrmW5FFo";
-		//$this->data['capcha_site_key'] = "6LcMer0UAAAAABpwN6LSp9SbTAOYcZh6olknmyG2";
+		$this->data['capcha_site_id'] = "6LdjPqUUAAAAAIRHkdsWonAKkwISiJrGwokC1hYM";
+		$this->data['capcha_site_key'] = "6LdjPqUUAAAAAM5hvSRscbKt-Q2_ULy-esvBQl-M";
 		// production site keys
-		 $this->data['capcha_site_id'] = "6LfZd7IUAAAAAP3ZUjOODyzOVbLo05kTtSSl9jpM";
-		 $this->data['capcha_site_key'] = "6LfZd7IUAAAAAFbESekhA3Ub-TQIZtmxZeY68qOA";
+		//  $this->data['capcha_site_id'] = "6LfZd7IUAAAAAP3ZUjOODyzOVbLo05kTtSSl9jpM";
+		//  $this->data['capcha_site_key'] = "6LfZd7IUAAAAAFbESekhA3Ub-TQIZtmxZeY68qOA";
 		
 		//require_once(APPPATH.'libraries/authorize_sdk/vendor/autoload.php'); 
 		//use net\authorize\api\contract\v1 as AnetAPI;

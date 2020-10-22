@@ -65,16 +65,9 @@ class User extends Public_Controller{
 		}
 		
 	}
-	// public function test(){
-	// 	$response = $this->Auth_Model->createCustomerProfile('anequi.developer@gmail.com');
-	// 	echo "<pre>"; 
-	// 	print_r($response);
-	// 	echo "</pre>";
-	// }
 	public function register(){
 		$this->data['active'] = "Register";
 		$vals = array(
-			        //'word'          => 'Random word',
 			'img_path'      => './theme/captcha/',
 			'img_url'       => base_url().'theme/captcha/',
 			'font_path'     => './theme/fonts/tahoma_2.ttf',
@@ -85,8 +78,6 @@ class User extends Public_Controller{
 			'font_size'     => 20,
 			'img_id'        => 'Imageid',
 			'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-
-			        // White background and border, black text and red grid
 			'colors'        => array(
 				'background' => array(255, 255, 255),
 				'border' => array(255, 255, 255),
@@ -94,11 +85,6 @@ class User extends Public_Controller{
 				'grid' => array(255, 40, 40)
 			)
 		);
-
-		//NOTE: this code was flagging a php error when trying to access the page /user/register.php, commenting out resolved the issue - WC200615
-		//$cap = create_captcha($vals);
-		//$this->data['captchaimage'] = $cap['image'];
-
 
 		$this->data['countryvalue']=array("US","AL","DZ","AS","AO","AI","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT",
 			"BO","BL","BA","BW","BR","VG","BN","BG","BF","BI","KH","CM","CA","CV","KY","TD","CL","CN","CO","CG","CK","CR","HR","CB","CY","CZ","DK",
@@ -148,10 +134,6 @@ class User extends Public_Controller{
 					'required' => 'You must provide a %s.',
 					'matches'=>'%s should match exactly Password')
 			);
-			// $this->form_validation->set_rules('title', 'Title', 'required', 
-			// 	array(
-			// 		'required' => '%s is required.')
-			// );
 			$this->form_validation->set_rules('fname', 'First Name', 'required', 
 				array(
 					'required' => '%s is required.')
@@ -164,10 +146,6 @@ class User extends Public_Controller{
 				array(
 					'required' => '%s is required.')
 			);
-			// $this->form_validation->set_rules('fax', 'Fax Number', 'numeric', 
-			// 	array(
-			// 		'numeric' => '%s shoul be numeric.')
-			// );
 			$this->form_validation->set_rules('bcompany', 'Company Name', 'required', 
 				array(
 					'required' => '%s is required.')
@@ -218,6 +196,7 @@ class User extends Public_Controller{
 					'country'=>$this->input->post('bcountry'),
 					'passwd'=>base64_encode($this->input->post('password')),
 					'on_email_list'=>$this->input->post('inlist'),
+					'tax_exempt'=>$this->input->post('tax_exempt'),
 					'AuthorizeProfileID'=>null,
 					'AuthorizeProfilePaymentID'=>null,
 					'mod_date'=>date('Y-m-d',time()),
@@ -234,14 +213,6 @@ class User extends Public_Controller{
 					}
 					$dataExtra = array(
 						'person_id'=>$personID,
-						//'passwd'=>base64_encode($this->input->post('password')),
-						//'cc_type'=>$this->input->post('cc_cardtype'),
-						//'cc_numb'=>base64_encode($this->input->post('cccardno')),
-						//'cc_numb'=> "",
-						//'cc_name'=>$this->input->post('cchname'),
-						//'exp_mo'=>$this->input->post('exmonth'),
-						//'exp_yr'=>$this->input->post('expyear'),
-						//'cc_scv_numb'=>$this->input->post('cvv'),
 						'billing_name'=>$this->input->post('battn'),
 						'billing_co_name'=>$this->input->post('bcompany'),
 						'billing_address_1'=>$this->input->post('baddr1'),
@@ -299,7 +270,6 @@ class User extends Public_Controller{
 						$AuthorizePaymentID = $responseData['paymentprofileID'];
 						$this->data['response']=$responseData['response'];
 						$msg = "Response: ".json_encode($responseData);
-						//mail("programmer.ck@gmail.com","Authorize Response",$msg);
 						$UpdateData = array('AuthorizeProfilePaymentID'=>$AuthorizePaymentID,'AuthorizeProfileID'=>$AuthorizeprofileID);
 						$this->User_Model->save($personID,$UpdateData);
 						}else{
@@ -420,9 +390,9 @@ class User extends Public_Controller{
 
 	public function profile(){
 		$this->data['active'] = "Profile";
-		if($this->input->get()){
-			$personID = $this->session->userdata('person_id');
-			$this->data['personIDA']=$personID;
+		$personID = $this->session->userdata('person_id');
+		if(isset($personID)) {
+			$this->data['personIDA'] = $personID;
 			$this->data['GetAllUserDetails'] = $this->User_Model->GetAllUserDetailsByID($personID);
 		}
 		$this->data['subview'] = "members/User/profile";
@@ -430,9 +400,9 @@ class User extends Public_Controller{
 	}
 	public function profileEdit(){
 		$this->data['active'] = "Profile-Edit";
-		if($this->input->get()){
-			$personID = $this->session->userdata('person_id');
-			$this->data['personIDA']=$personID;
+		$personID = $this->session->userdata('person_id');
+		if(isset($personID)) {
+			$this->data['personIDA'] = $personID;
 			$this->data['GetAllUserDetails'] = $this->User_Model->GetAllUserDetailsByID($personID);
 		}
 		if($this->input->post()){
@@ -509,6 +479,7 @@ class User extends Public_Controller{
 				'zip'=>$this->input->post('bzip'),
 				'country'=>$this->input->post('bcountry'),
 				'on_email_list'=>$this->input->post('inlist'),
+				'tax_exempt'=>$this->input->post('tax_exempt') ?? '',
 				'mod_date'=>date('Y-m-d',time()),
 				'status'=>'Inactive'
 			);
@@ -517,13 +488,6 @@ class User extends Public_Controller{
 			{
 				$dataExtra = array(
 					'person_id'=>$personID,
-					//'cc_type'=>$this->input->post('cc_cardtype'),
-					//'cc_numb'=>base64_encode($this->input->post('cccardno')),
-					// 'cc_numb'=> $this->ccMasking($this->input->post('cccardno')),
-					// 'cc_name'=>$this->input->post('cchname'),
-					// 'exp_mo'=>$this->input->post('exmonth'),
-					// 'exp_yr'=>$this->input->post('expyear'),
-					// 'cc_scv_numb'=>$this->input->post('cvv'),
 					'billing_name'=>$this->input->post('battn'),
 					'billing_co_name'=>$this->input->post('bcompany'),
 					'billing_address_1'=>$this->input->post('baddr1'),
@@ -603,8 +567,9 @@ class User extends Public_Controller{
 	}
 	public function changepassword(){
 		$this->data['active'] = "forgot";
-		if($this->input->get()){
-			$this->data['personID']=$this->session->userdata('person_id');
+		$personID = $this->session->userdata('person_id');
+		if(isset($personID)) {
+			$this->data['personID']=$personID;
 		}
 		if($this->input->post())
 		{

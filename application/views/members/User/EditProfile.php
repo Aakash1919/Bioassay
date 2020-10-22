@@ -1,9 +1,5 @@
      
 <?php
-// echo "<pre>";
-// print_r($GetAllUserDetails);
-// echo "</pre>";
-
 $countryvalue=array("US","AL","DZ","AS","AO","AI","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT",
 "BO","BL","BA","BW","BR","VG","BN","BG","BF","BI","KH","CM","CA","CV","KY","TD","CL","CN","CO","CG","CK","CR","HR","CB","CY","CZ","DK",
 "DJ","DM","DO","EC","EG","SV","EE","ET","FJ","FI","FR","GF","PF","GA","GM","GE","DE","GH","GI","GR","GD","GP","GU","GT","GN","GW","GY",
@@ -54,12 +50,7 @@ foreach ($GetAllUserDetails as $g) {
 	$zip=$g->zip;
 	$country=$g->country;
 	$Onmaillist=$g->on_email_list;
-	// $cctype = $g->cc_type;
-	// $ccname=$g->cc_name;
- //    $expMonth=$g->exp_mo;
- //    $expYear = $g->exp_yr;
- //    $cc_scv=$g->cc_scv_numb;
- //    $cc_numb = $g->cc_numb;
+	$tax_exempt = $g->tax_exempt;
 	$billingname=$g->billing_name;
 	$billin_co_name = $g->billing_co_name;
 	$bill_address=$g->billing_address_1;
@@ -133,7 +124,7 @@ foreach ($GetAllUserDetails as $g) {
 							</p>
 						</div>
 						<div class="reg_b">
-							<a href="/user/changepassword?personID=<?php echo isset($personIDA)?$this->encrypt->encode($personIDA):'';?>">
+							<a href="/user/changepassword">
 								Change Password
 							</a>
 						</div>
@@ -176,70 +167,6 @@ foreach ($GetAllUserDetails as $g) {
 					</div>
 					<div class="clear">
 					</div>
-					<!--
-
-					<div class="reg_left">
-					<div class="reg_a"><p>Tel <span>*</span></p></div><div class="reg_b"><input name="phone"  value="<?php echo isset($tel)?$tel:'';?>" id="phone" type="text" ></div>
-					</div>
-					<div class="clear"> </div>
-					<input type="hidden" name="acountid" value="" > 
-					<div class="reg_left">
-					<div class="reg_a"><p>Fax <span>*</span></p></div><div class="reg_b"><input name="fax" id="fax" type="text" value="<?php echo isset($fax)?$fax:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>Company Name <span>*</span></p></div><div class="reg_b"><input name="company" id="company" type="text"  value="<?php echo isset($company1)?$company1:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>Address 1 <span>*</span></p></div><div class="reg_b"><input name="addr1" id="addr1" type="text"  value="<?php echo isset($address1)?$address1:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>Address 2</p></div><div class="reg_b"><input name="addr2" id="addr2" type="text"  value="<?php echo isset($address2)?$address2:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>City <span>*</span></p></div><div class="reg_b"><input name="city" id="city" type="text"  value="<?php echo isset($city)?$city:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>State <span>*</span></p></div><div class="reg_b"><input name="state" id="state" type="text" value="<?php echo isset($state)?$state:'';?>"></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>Zip <span>*</span></p></div><div class="reg_b"><input name="zip_personal" id="zip" type="text" value="<?php echo isset($zip)?$zip:'';?>" ></div>
-					</div>
-					<div class="clear"> </div>
-					<div class="reg_left">
-					<div class="reg_a"><p>Country <span>*</span></p></div>
-					<div class="reg_b">
-
-						<select name="country_personal" id="country" class="reg_b_jump">
-						  <option value="0"> --- Choose country --- </option>
-						 <?php
-						 $countryName= isset($country)?$country:'';
-						  for ($i=0;$i<count($countryname);$i++)
-						  {
-					   
-							  if($countryName == $countryname[$i])
-							  {
-								echo "<option selected='selected' value=\"".$countryname[$i]."\">".$countryname[$i];
-							  }
-							  else
-							  {
-								echo "<option value=\"".$countryname[$i]."\">".$countryname[$i];
-							  }
-						  }
-						?>
-						</select>
-					  
-					</div>
-					<div id="cnt" class="errcls"></div>
-					</div>
-					<div class="clear"> </div>
-					 -->
-
 					<div class="reg_left_center">
 						<div class="reg_a_center" >
 							<p>
@@ -650,6 +577,15 @@ foreach ($GetAllUserDetails as $g) {
 					</div>				
 					<div class="clear">
 					</div>
+					<div class="reg_left">
+						<div class="reg_a">
+							<p>Tax Exempt ID</p>
+						</div>
+						<div class="reg_b">
+							<input name="tax_exempt" id="tax_exempt" type="text" value="<?php echo isset($tax_exempt)?$tax_exempt:'';?>">
+						</div>
+					</div>				
+					<div class="clear"></div>
 					<div class="reg_left">
 						<div class="reg_a">
 							<p>

@@ -200,3 +200,8 @@
 	
 </header>
 <div class="clear"></div>
+<?php
+	$r = $this->session->flashdata('response');
+	if(isset($r)){?>
+			<div style="color: red;text-align: center;font-size: 40px;"><?php echo $r['Message']?></div>
+<?php } ?>

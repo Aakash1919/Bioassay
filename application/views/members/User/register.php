@@ -697,29 +697,28 @@
 						</div>
 						<div class="clear">
 						</div>
+						
 						<div class="reg_left">
 							<div class="reg_a">
-								<p>
-									Please fill out this field <span>*</span>
-								</p>
+								<p>Tax Exempt ID</p>
 							</div>
 							<div class="reg_b">
-								<!--
-								<?php 
-									echo isset($captchaimage)?$captchaimage:'';
-								?> 
-								-->
+								<input name="tax_exempt" id="tax_exempt" type="text" value="">
+							</div>
+						</div>
+						<div class="clear"></div>
+
+						<div class="reg_left">
+							<div class="reg_a">
+								<p>Please fill out this field <span>*</span></p>
+							</div>
+							<div class="reg_b">
 								<div class="g-recaptcha" data-size="compact" data-sitekey="<?php echo $capcha_site_id;?>">
-								</div>
-								<!--
-								<div class="g-recaptcha" data-sitekey="<?php echo $capcha_site_id;?>" data-badge="inline" data-size="invisible" data-callback="setResponse">
-								</div>
-								-->
+							</div>
 							</div>
 						</div>
 						<div class="clear">
 						</div>
-
 						<div class="reg_left_bottom">
 							<p>
 								Please check all your account information carefully, before you press Submit button.
