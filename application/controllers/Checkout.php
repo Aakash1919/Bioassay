@@ -24,9 +24,15 @@ class Checkout extends Public_Controller{
 	}
 	public function addtocart(){
 		
-		if($_POST){
+		if($this->input->post()){
+			$productId = $this->input->post('product_id');
+			if($this->Products_Model->checkInStock($productId)) {
+			$response = array('Response'=>0,'Message'=>"Product is Out Of Stock.");
+			$this->session->set_flashdata('response',$response);
+			redirect($_SERVER['HTTP_REFERER']);
+			}
 			$data = array(
-				'id' => $this->input->post('product_id'),
+				'id' => $productId,
 				'qty' => $this->input->post('quantity'),
 				'price' => $this->input->post('price'),
 				'catalog' => $this->input->post('catalog'),

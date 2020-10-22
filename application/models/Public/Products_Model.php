@@ -227,36 +227,23 @@ class Products_Model extends Public_Model{
 			return $discountamount;		
 		}
 		}else{
-			// $this->db->where('product_id',$productID);
-			// $this->db->select('product_id,price,discountpercent')->from($this->_table_name);
-			// $result = $this->db->get()->result_array();
-			// if(!empty($result)){
-			// 	$product_id = $result[0]['product_id'];
-			// 	$RealPrice = $result[0]['price']; 
-			// 	$discountPercent = $result[0]['discountpercent'];
-			// 	$newPrice = $RealPrice - ($RealPrice * ($discountPercent/100));
-			// 	return $newPrice;
-			//}	
 			return false;	
 		}
 		
 	}
 	public function Getctone()
 	{
-		//$sql = "select distinct(prod_cat_link.product_id),products.name_display,products.catalog_num,product_Extra.citations,products.name from prod_cat_link inner join products on products.product_id=prod_cat_link.product_id inner join product_Extra on products.product_id=product_Extra.product_id where (category_id='1' or category_id='2'  or category_id='3'  or category_id='4'  or category_id='5'  or category_id='6'  or category_id='7') and (name_display like 'A%' or name_display like 'B%' or name_display like 'C%')  order by name_display";
 		$sql = "SELECT * FROM products WHERE name_display LIKE 'A%' OR name_display LIKE 'B%' OR name_display LIKE 'C%' ORDER BY name_display";
 		$query = $this->db->query($sql);
 		return $query->result_array(); 
 	}
 	public function Getcttwo(){
-		//$sql = "select distinct(prod_cat_link.product_id),products.name_display,products.catalog_num,product_Extra.citations,products.name from prod_cat_link inner join products on products.product_id=prod_cat_link.product_id inner join product_Extra on products.product_id=product_Extra.product_id where (category_id='1' or category_id='2'  or category_id='3'  or category_id='4'  or category_id='5'  or category_id='6'  or category_id='7')and  (name_display like 'D%' or name_display like 'E%' or name_display like 'F%' or name_display like 'G%' or name_display like 'H%' or name_display like 'I%' or name_display like 'J%' or name_display like 'K%' or name_display like 'L%' or name_display like 'M%')  order by name_display";
 		$sql = "SELECT * FROM products WHERE name_display LIKE 'D%' OR name_display LIKE 'E%' OR name_display LIKE 'F%' OR name_display LIKE 'G%' OR name_display LIKE 'H%' OR name_display LIKE 'I%' OR name_display LIKE 'J%' OR name_display LIKE 'K%' OR name_display LIKE 'L%' OR name_display LIKE 'M%' ORDER BY name_display";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 	public function Getctthree()
 	{
-		//$sql = "select distinct(prod_cat_link.product_id),products.name_display,products.catalog_num,product_Extra.citations,products.name from prod_cat_link inner join products on products.product_id=prod_cat_link.product_id inner join product_Extra on products.product_id=product_Extra.product_id where (category_id='1' or category_id='2'  or category_id='3'  or category_id='4'  or category_id='5'  or category_id='6'  or category_id='7') and(name_display like 'N%' or name_display like 'O%' or name_display like 'P%' or name_display like 'Q%' or name_display like 'R%' or name_display like 'S%' or name_display like 'T%' or name_display like 'U%' or name_display like 'V%' or name_display like 'W%' or name_display like 'X%' or name_display like 'Y%' or name_display like 'Z%')  order by name_display";
 		$sql = "SELECT * FROM products WHERE name_display LIKE 'N%' OR name_display LIKE 'O%' OR name_display LIKE 'P%' OR name_display LIKE 'Q%' OR name_display LIKE 'R%' OR name_display LIKE 'S%' OR name_display LIKE 'T%' OR name_display LIKE 'U%' OR name_display LIKE 'V%' OR name_display LIKE 'W%' OR name_display LIKE 'X%' OR name_display LIKE 'Y%' OR name_display LIKE 'Z%' ORDER BY name_display";
 		$query = $this->db->query($sql);
 		return $query->result_array();
@@ -264,10 +251,18 @@ class Products_Model extends Public_Model{
 	public function select_citation_details($pid)
 	{
 		$this->db->where('products.product_id',$pid);
-		//$this->db->join('product_meta','product_meta.product_id=products.product_id');
-       	//$this->db->join('product_Extra','product_Extra.product_id=products.product_id');
 		$this->db->select()->from($this->_table_name);
 		return $this->db->get()->result_array();
 	} 
-
+	public function checkInStock($pid=null) {
+		$this->db->where('product_id',$pid);
+		$this->db->where('in_stock','n');
+		$this->db->select('id')->from($this->_table_name);
+		$rows = $this->db->get()->num_rows();
+		if($rows>0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

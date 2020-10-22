@@ -130,7 +130,6 @@ class Products extends Public_Controller{
                 
                 }else{
                 $config['total_rows'] = $this->Products_Model->Count();
-                
                 }
                 $config['per_page'] = 20;
                 $config["uri_segment"] = 3;
@@ -147,7 +146,7 @@ class Products extends Public_Controller{
                 $this->data['subview'] = "public/Products/index";
                 $this->load->view('public/_layout_main',$this->data);  
         }
-    public function details($url){
+    public function details($url) {
 	    $this->data['active'] = "Products";
         $this->data['item'] = $this->Products_Model->GetbyUrl1($url);
         $itm = $this->data['item'];
@@ -173,6 +172,6 @@ class Products extends Public_Controller{
             redirect('/products');
         }
         $this->data['subview'] = "public/Products/details";
-        $this->load->view('public/_layout_rightbar',$this->data);
+        $this->load->view('public/_layout_rightbar', $this->data);
      }
 }
