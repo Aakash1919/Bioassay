@@ -56,8 +56,6 @@ class Products_Model extends Public_Model{
 
  	public function Get($num,$start,$order,$format){
         $id = $this->session->userdata('id');
-        $this->db->join('product_meta','product_meta.product_id=products.product_id');
-       	$this->db->join('product_Extra','product_Extra.product_id=products.product_id');
         $this->db->select()->from($this->_table_name)->limit($num,$start)->order_by($order,$format);
         return $this->db->get()->result();
     }
@@ -76,8 +74,6 @@ class Products_Model extends Public_Model{
 		$rows = $this->db->get()->num_rows();
 		if($rows > 0 ){
 			$this->db->where('url',$url);
-			$this->db->join('product_meta','product_meta.product_id=products.product_id');
-       		$this->db->join('product_Extra','product_Extra.product_id=products.product_id');
 			$this->db->select()->from($this->_table_name);
 			return $this->db->get()->result();
 		}else{
@@ -142,14 +138,10 @@ class Products_Model extends Public_Model{
 	}
 	public function GetFAQ($id){
 		$this->db->where('products.product_id',$id);
-		$this->db->join('product_meta','product_meta.product_id=products.product_id');
-       	$this->db->join('product_Extra','product_Extra.product_id=products.product_id');
 		$this->db->select('products.product_id')->from($this->_table_name);
 		$rows = $this->db->get()->num_rows();
 		if($rows>0){
 		$this->db->where('products.product_id',$id);
-		$this->db->join('product_meta','product_meta.product_id=products.product_id');
-       	$this->db->join('product_Extra','product_Extra.product_id=products.product_id');
 		$this->db->select()->from($this->_table_name);
 		return $this->db->get()->result_array();
 		}else{

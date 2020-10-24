@@ -1073,6 +1073,8 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 					</div>
 					<div class="clear">
 					</div>
+					<input type="hidden" name="dataValue" id="dataValue" />
+  					<input type="hidden" name="dataDescriptor" id="dataDescriptor" />
 					<div class="reg_left">
 						<div class="reg_a">
 						</div>
@@ -1091,7 +1093,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 							&nbsp;
 							&nbsp;
 							&nbsp; 
-							<input name="bill_qtn" type="submit" value="Continue" class="button">
+							<input name="bill_qtn" onclick="sendPaymentDataToAnet()" type="button" value="Continue" class="button">
 						</div>
 					</div>
 					<br>
@@ -1345,10 +1347,6 @@ $(".tax_exempt").on("input",function(){
     return false;  
     }else{
     	location.reload();
-          //var discountcod=document.getElementById('discode').value;
-          //document.regform.action="/checkout/getDiscount?dis="+discountcod;
-          //document.regform.submit();
-     		//return true;	
          }
       }
    });
@@ -1408,4 +1406,51 @@ $('#copy_personnel').click(function() {
       $("#bzip").val(zip);
       $("#bphone").val(tel);
        }
+</script>
+<script type="text/javascript">
+function sendPaymentDataToAnet() {
+    	var authData = {};
+        authData.clientKey = "5a2QNfwB7hUE9aX9vg23x82jRcK3JQrChck6bhGw8x8bNnN92gb3Z3CNh5Uu28ZB";
+        authData.apiLoginID = "3vXhy9ctGU2t";
+
+	    var cardData = {};
+        cardData.cardNumber = document.getElementById("cardnumber").value;
+        cardData.month = document.getElementById("cmonth").value;
+        cardData.year = document.getElementById("cyear").value;
+        cardData.cardCode = document.getElementById("vcsc").value;
+		
+		var secureData = {};
+		secureData.authData = authData;
+		secureData.cardData = cardData;
+		Accept.dispatchData(secureData, responseHandler);
+
+    function responseHandler(response) {
+        if (response.messages.resultCode === "Error") {
+            var i = 0;
+            while (i < response.messages.message.length) {
+                swal(response.messages.message[i].text)
+                i = i + 1;
+            }
+        } else {
+			useOpaqueData(response.opaqueData)
+        }
+    }
+}
+function useOpaqueData(responseData) {
+
+	document.getElementById("trsform").submit();
+}
+function paymentFormUpdate(opaqueData) {
+    document.getElementById("dataDescriptor").value = opaqueData.dataDescriptor;
+    document.getElementById("dataValue").value = opaqueData.dataValue;
+
+    // If using your own form to collect the sensitive data from the customer,
+    // blank out the fields before submitting them to your server.
+    document.getElementById("carnNumber").value = "";
+    document.getElementById("cmonth").value = "";
+    document.getElementById("cyear").value = "";
+    document.getElementById("vcsc").value = "";
+
+    document.getElementById("trsform").submit();
+}
 </script>

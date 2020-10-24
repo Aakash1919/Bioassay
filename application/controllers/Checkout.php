@@ -132,6 +132,9 @@ class Checkout extends Public_Controller{
 	{
 	
 		$sitekey =  $this->data['capcha_site_id'];
+		if(!isset($_SESSION['PreviousInfo'])){
+			redirect('/checkout/checkout?fromCart=true');
+		}
 		if($this->input->post() || $_SESSION['PreviousInfo']){
 			$personID = $this->session->userdata('person_id');
 		if(isset($personID)){

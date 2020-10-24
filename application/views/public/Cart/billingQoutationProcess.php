@@ -927,7 +927,6 @@ if(!empty($personID)){
 		</div>
 	</form>
 </section>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
   $("form#regform").submit(function(event) {
    

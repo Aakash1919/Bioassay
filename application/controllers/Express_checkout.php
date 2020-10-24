@@ -226,11 +226,6 @@ class Express_checkout extends CI_Controller
 	 */
 	function GetExpressCheckoutDetails()
 	{
-		// echo "<pre>";
-		// print_r($this->session->userdata);
-		// echo "</pre>";
-		// Get cart data from session userdata
-		//$cart = $this->session->userdata('shopping_cart');
 		$cart = $this->cart->contents();
 		$taxrate = $this->session->userdata('taxrate');
 		$shippingfee = $this->session->userdata('shippingfee');
@@ -342,6 +337,21 @@ class Express_checkout extends CI_Controller
 		}
 	}
 
+	function setCheckoutItems($cart) {
+		$itemsArray = array();
+		foreach($cart as $item) {
+			$Item = array(
+				'name' => $item['name'], 								// Item name. 127 char max.
+				'desc' => $item['catalog'], 								// Item description. 127 char max.
+				'amt' => $item['price'],							// Item number.  127 char max.
+				'number' => $item['id'],
+				'qty' => $item['qty'], 								// Item qty on order.  Any positive integer.
+				);
+			array_push($itemsArray, $Item);
+		}
+		return $itemsArray;
+	}
+
 	/**
 	 * DoExpressCheckoutPayment
 	 */
@@ -404,7 +414,10 @@ class Express_checkout extends CI_Controller
 			'shiptophonenum' => $cart['phone_number'],  				            // Phone number for shipping address.  20 char max.
 			'paymentaction' => 'Sale', 					                                // How you want to obtain the payment.  When implementing parallel payments, this field is required and must be set to Order.
 		);
+		$PaymentOrderItems = array();
 
+
+		$Payment['order_items'] = self::setCheckoutItems($this->cart->contents());
 		/**
 		 * Here we push our single $Payment into our $Payments array.
 		 */
@@ -439,14 +452,14 @@ class Express_checkout extends CI_Controller
 			$errors = array('Errors'=>$PayPalResult['ERRORS']);
 
 			// Load errors to variable
-			$orderstatusUpdate = array(
-						'payment_method'=>'Paypal',
-						'orders_status'=>'Payment Not received'
-						);
-			$resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
-			$this->load->vars('errors', $errors);
-
-			$this->load->view('paypal/demos/express_checkout/paypal_error');
+			// $orderstatusUpdate = array(
+			// 			'payment_method'=>'Paypal',
+			// 			'orders_status'=>'Payment Not received'
+			// 			);
+			// $resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
+			$response = array('Response'=>0,'Message'=>$errors);
+			$this->session->set_flashdata('response',$response);
+			redirect('/checkout/checkout');
 		}
 		else
 		{
@@ -469,11 +482,11 @@ class Express_checkout extends CI_Controller
 			 *
 			 * https://developer.paypal.com/docs/classic/api/merchant/DoExpressCheckoutPayment_API_Operation_NVP/
 			 */
-			$orderstatusUpdate = array(
-						'payment_method'=>'Paypal',
-						'orders_status'=>'Payment received by Paypal'
-						);
-			$resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
+			// $orderstatusUpdate = array(
+			// 			'payment_method'=>'Paypal',
+			// 			'orders_status'=>'Payment received by Paypal'
+			// 			);
+			// $resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
 			foreach($PayPalResult['PAYMENTS'] as $payment)
 			{
 				$cart['paypal_transaction_id'] = isset($payment['TRANSACTIONID']) ? $payment['TRANSACTIONID'] : '';
@@ -485,8 +498,8 @@ class Express_checkout extends CI_Controller
 
 			// Successful Order
 			// WC changed redirect to thanks.html to simplify purchase conversion tracking
-			redirect('/checkout/thanks.html');
-			//redirect('/express_checkout/OrderComplete');
+			// redirect('/checkout/thanks');
+			redirect('/express_checkout/OrderComplete');
 		}
 	}
 
@@ -498,16 +511,16 @@ class Express_checkout extends CI_Controller
 		// Get cart from session userdata
 		$cart = $this->session->userdata('shopping_cart');
 		if(empty($cart)) redirect('/express_checkout');
-		$transactionResponse = array(
-							 'PayerID'=>$cart['paypal_payer_id'],
-							 'TransactionID'=>$this->session->userdata('Transactiondb'),
-							 'Paypal_TransactionID' =>$cart['paypal_transaction_id'],
-							 'log'=>json_encode($cart),
-							 'Date'=>date('Y-m-d h:i:s',time())
-							);
-		$check = $this->Paypal_transaction->checkpayer($cart['paypal_transaction_id']);
-		if(empty($check)){
-			  $this->Paypal_transaction->Save(null,$transactionResponse);
+		// $transactionResponse = array(
+		// 					 'PayerID'=>$cart['paypal_payer_id'],
+		// 					 'TransactionID'=>$this->session->userdata('Transactiondb'),
+		// 					 'Paypal_TransactionID' =>$cart['paypal_transaction_id'],
+		// 					 'log'=>json_encode($cart),
+		// 					 'Date'=>date('Y-m-d h:i:s',time())
+		// 					);
+		// $check = $this->Paypal_transaction->checkpayer($cart['paypal_transaction_id']);
+		// if(empty($check)){
+		// 	  $this->Paypal_transaction->Save(null,$transactionResponse);
 			  $emailbody1="";
 			  $emailbody1="Dear ".$cart['first_name']." ".$cart['last_name'].",<br ><br >";
 			  $orderID = $this->session->userdata('orderID');
@@ -563,7 +576,7 @@ class Express_checkout extends CI_Controller
 			   $header.= "Content-type: text/html; charset=utf-8\r\n";
 				mail($email,$emailtitle,$emailbody, $header);
 				unset($_SESSION['payEmail']);
-			}
+			// }
 			
 
      	// Set cart data into session userdata
@@ -589,15 +602,6 @@ class Express_checkout extends CI_Controller
 			
 		};
 		 
-		$this->session->set_flashdata('ecommerce',
-		"
-	   'transactionId': '".$orderID."',
-	   'transactionAffiliation': 'PayPal',
-	   'transactionTotal': ".number_format($total,2).",
-	   'transactionTax': ".number_format($cart['shopping_cart']['tax'],2).",
-	   'transactionShipping': ".number_format($cart['shopping_cart']['shipping'],2).",
-	   'transactionProducts': [".$prods."]"
-		 );
 		$this->cart->destroy();
 		$this->load->view('paypal/demos/express_checkout/payment_complete');
 
