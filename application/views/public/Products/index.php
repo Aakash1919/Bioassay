@@ -47,13 +47,12 @@
 </section>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		 console.log('Aakash')
 		loadCart();
 	});
 	function loadCart(){
 		var Message = '<p style="text-align:center;padding:10px;">loading.. Please wait</p>';
 		jQuery("#productData").html(Message);
-		var url = "/products/getTable";
+		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
 		jQuery.get( url, function( data ) {
 			jQuery("#productData").html(data);
 			});
@@ -62,16 +61,14 @@
 <script>
 jQuery(document).on('click','.asc',function(){	
 		var orderby = jQuery(this).attr('id');
-		console.log(orderby+' '+'asc')
-		var url = "/products/getTable";
-		jQuery.get( url,{'name':orderby,'order':'asc'}, function( data ) {
+		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+		jQuery.post( url,{'name':orderby,'order':'asc'}, function( data ) {
 		  jQuery("#productData").html(data);
 		});
 	});
 jQuery(document).on('click','.desc',function(){
 		var orderby = jQuery(this).attr('id');
-		console.log(orderby+' '+'desc')
-		var url = "/products/getTable";
+		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
 		jQuery.post( url,{'name':orderby,'order':'desc'}, function( data ) {
 		  jQuery("#productData").html(data);
 		});
