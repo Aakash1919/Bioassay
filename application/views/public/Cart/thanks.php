@@ -10,6 +10,7 @@
 					</h1>
 				</div>
 				<div class="new-products-list">
+					<?php echo "<pre>"; print_r($this->session->userdata());echo "</pre>";?>
 					<div style="padding: 15px;">
 						<div>
 							<h1>

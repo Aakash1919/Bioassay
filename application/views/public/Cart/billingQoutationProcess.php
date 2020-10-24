@@ -157,14 +157,6 @@ if(!empty($personID)){
 						  swal("<?php echo $r['Message']?>");
 						})
 						</script>
-						<!-- <span style="color:red; font-size:20px;">
-								<strong>
-									<?php 
-										echo $r['Message'];
-									?>
-								</strong>
-							</span> 
-						-->
 						<?php 
 							} 
 						?>
@@ -927,7 +919,6 @@ if(!empty($personID)){
 		</div>
 	</form>
 </section>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
   $("form#regform").submit(function(event) {
    

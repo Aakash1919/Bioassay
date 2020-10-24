@@ -226,11 +226,6 @@ class Express_checkout extends CI_Controller
 	 */
 	function GetExpressCheckoutDetails()
 	{
-		// echo "<pre>";
-		// print_r($this->session->userdata);
-		// echo "</pre>";
-		// Get cart data from session userdata
-		//$cart = $this->session->userdata('shopping_cart');
 		$cart = $this->cart->contents();
 		$taxrate = $this->session->userdata('taxrate');
 		$shippingfee = $this->session->userdata('shippingfee');

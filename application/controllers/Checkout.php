@@ -360,7 +360,6 @@ class Checkout extends Public_Controller{
 			if(isset($_SESSION['PreviousInfo'])){
 				unset($_SESSION['PreviousInfo']);
 			}
-
 			$postData = $this->input->post();
 			$sessionData = $this->session->userdata;
 			$cart = $this->cart->contents();
@@ -838,19 +837,25 @@ $emailbody=$emailbody1.$emailbody2.$emailbody3;
 }
 if($this->input->post('payment_type')=="Paypal"){
 	$countryCode = $this->returnCountryCode($this->input->post('scountry'));
-	
-	$this->session->set_userdata('orderID', $orderID);
-	$this->session->set_userdata('SHIPTONAME', $this->input->post('sattn'));
-	$this->session->set_userdata('SHIPTOSTREET', $this->input->post('saddr1').', '.$this->input->post('saddr2'));
-	$this->session->set_userdata('SHIPTOCITY', $this->input->post('scity'));
-	$this->session->set_userdata('SHIPTOSTATE', $this->input->post('sstate'));
-	$this->session->set_userdata('SHIPTOCOUNTRY', $countryCode);
-	$this->session->set_userdata('SHIPTOZIP', $this->input->post('szip'));
-	$this->session->set_userdata('SHIPTOPHONENUM', $this->input->post('sphone'));
-	$this->session->set_userdata('po_num', $this->input->post('po_num'));
-	$this->session->set_userdata('payEmail', $this->input->post('semail'));
-	
-	redirect('express_checkout/SetExpressCheckout');
+	// $this->session->set_userdata('orderID', $orderID);
+	// $this->session->set_userdata('SHIPTONAME', $this->input->post('sattn'));
+	// $this->session->set_userdata('SHIPTOSTREET', $this->input->post('saddr1').', '.$this->input->post('saddr2'));
+	// $this->session->set_userdata('SHIPTOCITY', $this->input->post('scity'));
+	// $this->session->set_userdata('SHIPTOSTATE', $this->input->post('sstate'));
+	// $this->session->set_userdata('SHIPTOCOUNTRY', $countryCode);
+	// $this->session->set_userdata('SHIPTOZIP', $this->input->post('szip'));
+	// $this->session->set_userdata('SHIPTOPHONENUM', $this->input->post('sphone'));
+	// $this->session->set_userdata('po_num', $this->input->post('po_num'));
+	// $this->session->set_userdata('payEmail', $this->input->post('semail'));
+	$response = $this->Auth_Model->payPalAuthorizeOnly($newTotal);
+	$responseArray = json_decode($response);
+	if($responseArray->status == 200) {
+		redirect($responseArray->url ?? '');
+	}else {
+		$response = array('Response'=>0,'Message'=>$responseArray->message);
+		$this->session->set_flashdata('response',$response);
+		redirect('/checkout/checkout?fromCart=true');
+	}
 }
 //Authorize Start
 
@@ -1232,4 +1237,5 @@ for($i=0;$i<sizeof($countryname); $i++){
 	}
 	return(array_search($countryNamePost, $newCountryArray));
 }
+
 }
