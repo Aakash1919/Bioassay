@@ -76,33 +76,26 @@
 
 </ul>
 
-
-<div id="b" style="display:block; float:left; width:324px;" >
-
-	<div class="search-block">
-		<a href="#mobile_navi" class="mobile-display nav-bar-toggle"> <span>&#x2630;</span></a>
-		<form method="get" action="/products/search">
+<form method="get" action="/products/search">
+	<div id="b" style="display:block; float:left; width:324px;" >
+		<div class="search-block">
+			<a href="#mobile_navi" class="mobile-display nav-bar-toggle"> <span>&#x2630;</span></a>
 			<div class="search">
-
 				<input name="q" id="q" type="text" placeholder="Search" class="searchii" value="<?php echo isset($_GET['q'])?$_GET['q']:'';?>">
 				<div class=" desktop-display" style="float:right; padding-top:10px;">
-					<input value="submit" type="image" src="/images/se.png" height="20" /></div>
-					<input type="submit" value="&#128269;" style="color: #fff;" class="mobile-display search-btn"/> 
+					<input value="submit" type="image" src="/images/se.png" height="20" />
 				</div>
-				<!-- <input type="hidden" name="cof" value="L:http://;AH:center;GL:0;BGC:#FFFFFF;BIMG:http://www.bioassaysys.com;T:#333333;GALT:#333333;LC:#0000FF;ALC:#CC6600;" />
-				<input type="hidden" name="domains" value="www.bioassaysys.com" />
-			 -->
-
+					<input type="submit" value="&#128269;" style="color: #fff;" class="mobile-display search-btn"/> 
+			</div>
 		</div>
 		<div class="radio-block" style="float:right; width:96px;">
 			<ul>
 				<li><input name="sitesearch" id="keyid1" value="www.bioassaysys.com" checked="checked" type="radio" class="radio" onclick="showm2('b')"> Keywords & Catalog #</li>
 				<li><input name="sitesearch" id="siteid1" value="www" type="radio" class="radio-a"> Site</li>
 			</ul>
-			</form>
 		</div>
 	</div>
-
+</form>
 
 	<div id="adop" style="display:none;" >
 

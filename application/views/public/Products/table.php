@@ -23,14 +23,17 @@
         } else {
             $rowclass = "productListing-odd";
         } ?>
-	<tr class="<?php echo $rowclass; ?>">
+		
 		<form action="/checkout/addtocart" method="post">
+		<tr class="<?php echo $rowclass; ?>">
     		<input type="hidden" name="product_id" value="<?php echo $i->product_id; ?>">
 			<input type="hidden" name="price" value="<?php echo $i->price; ?>">
 			<input type="hidden" name="name" value="<?php echo $i->name_display; ?>">
 			<input type="hidden" name="catalog" value="<?php echo $i->catalog_num; ?>">
 			<input type="hidden" name="ship" value="<?php echo $i->shipping_method; ?>">
-			<td><a href="/<?php echo mb_convert_encoding($i->url, "HTML-ENTITIES", "UTF-8"); ?>.html"><?php echo mb_convert_encoding($i->name_display, "HTML-ENTITIES", "UTF-8"); ?></a></td>
+			<td>
+				<a href="/<?php echo mb_convert_encoding($i->url, "HTML-ENTITIES", "UTF-8"); ?>.html"><?php echo mb_convert_encoding($i->name_display, "HTML-ENTITIES", "UTF-8"); ?></a>
+			</td>
 			<td class="catalog-column"><?php echo isset($i->catalog_num) ? $i->catalog_num : ""; ?></td>
 			<td class="protocol-column">
 			<?php if (!empty($protocol)) {
@@ -46,8 +49,8 @@
         	<td class="price-column"><?php echo isset($i->price) ? "$" . $i->price : '<a href="/support">inquire</a>'; ?></td>
     		<td class="qty-column"><input style="width: 30px; text-align: center;" type="number" value="1" name="quantity" min="1"></td>
 			<td><button class="cartbtn"><img src="/images/cart.png"></button></td>
-		</form>
 	</tr>
+	</form>
     <?php   $count++;
     }
 }?>
