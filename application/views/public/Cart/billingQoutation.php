@@ -1422,8 +1422,12 @@ function sendPaymentDataToAnet() {
 		var secureData = {};
 		secureData.authData = authData;
 		secureData.cardData = cardData;
-		Accept.dispatchData(secureData, responseHandler);
-
+		$("#paymenttype").change(function(e){
+      		var payment_type = $(this).val(); 
+			  if(payment_type == "Credit Card") {
+				Accept.dispatchData(secureData, responseHandler);
+			  }
+		}
     function responseHandler(response) {
         if (response.messages.resultCode === "Error") {
             var i = 0;
