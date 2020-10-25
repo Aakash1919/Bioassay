@@ -105,8 +105,8 @@ class Products extends Public_Controller{
                 set_cookie('order',$Getdata['name'],'3600');
                 set_cookie('format',$Getdata['order'],'3600');
             }
-                $order=get_cookie('order') ?? 'name_display';
-                $format =get_cookie('format') ?? 'ASC';
+                $order=get_cookie('order') ? 'name_display' : '';
+                $format =get_cookie('format') ? 'ASC' : '';
             //$config['full_tag_open'] = '<nav aria-label="Page navigation example"><ul class="pagination">';
             //$config['full_tag_close'] = '</ul></nav>';
             $config['full_tag_open'] = '<div class="pagination" style="align:center;float:right;"><span>';
