@@ -102,8 +102,9 @@ class Products extends Public_Controller{
                 set_cookie('order',$postData['name'],'3600');
                 set_cookie('format',$postData['order'],'3600');
             }
-            $order=get_cookie('order') ?? 'name_display';
-            $format =get_cookie('format') ?? 'ASC';
+
+            $order=get_cookie('order') ? 'name_display' : '';
+            $format =get_cookie('format') ? 'ASC' : '';
             $config['full_tag_open'] = '<div class="pagination" style="align:center;float:right;"><span>';
             $config['full_tag_close'] = '</span></div>';
             

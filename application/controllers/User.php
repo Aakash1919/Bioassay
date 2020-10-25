@@ -479,7 +479,7 @@ class User extends Public_Controller{
 				'zip'=>$this->input->post('bzip'),
 				'country'=>$this->input->post('bcountry'),
 				'on_email_list'=>$this->input->post('inlist'),
-				'tax_exempt'=>$this->input->post('tax_exempt') ?? '',
+				'tax_exempt'=>$this->input->post('tax_exempt'),
 				'mod_date'=>date('Y-m-d',time()),
 				'status'=>'Inactive'
 			);
