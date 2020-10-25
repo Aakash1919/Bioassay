@@ -95,7 +95,7 @@ class Products extends Public_Controller{
         }
     public function getTable() {
             $postData = $this->input->post();
-            $param= $this->input->get('q') ?? '';
+            $param= $this->input->get('q') ? $this->input->get('q') : '';
             if(isset($postData['name']) && isset($postData['order'])) {
                 delete_cookie('order');
                 delete_cookie('format');
