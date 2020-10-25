@@ -1093,7 +1093,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 							&nbsp;
 							&nbsp;
 							&nbsp; 
-							<input name="bill_qtn" onclick="sendPaymentDataToAnet()" type="button" value="Continue" class="button">
+							<input name="bill_qtn" onclick="checkAcceptJs()" type="button" value="Continue" class="button">
 						</div>
 					</div>
 					<br>
@@ -1408,6 +1408,16 @@ $('#copy_personnel').click(function() {
        }
 </script>
 <script type="text/javascript">
+function checkAcceptJs() {
+	$("#paymenttype").change(function(e){
+      		var payment_type = $(this).val(); 
+			  if(payment_type == "Credit Card") {
+				sendPaymentDataToAnet()
+			  } else {
+				document.getElementById("trsform").submit();
+			  }
+		}
+}
 function sendPaymentDataToAnet() {
     	var authData = {};
         authData.clientKey = "5a2QNfwB7hUE9aX9vg23x82jRcK3JQrChck6bhGw8x8bNnN92gb3Z3CNh5Uu28ZB";
@@ -1422,12 +1432,8 @@ function sendPaymentDataToAnet() {
 		var secureData = {};
 		secureData.authData = authData;
 		secureData.cardData = cardData;
-		$("#paymenttype").change(function(e){
-      		var payment_type = $(this).val(); 
-			  if(payment_type == "Credit Card") {
-				Accept.dispatchData(secureData, responseHandler);
-			  }
-		}
+		Accept.dispatchData(secureData, responseHandler);
+
     function responseHandler(response) {
         if (response.messages.resultCode === "Error") {
             var i = 0;
