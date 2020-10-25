@@ -24,16 +24,14 @@
             $rowclass = "productListing-odd";
         } ?>
 		
-		<form action="/checkout/addtocart" method="post">
+		<form id="<?php echo "form_".$i->product_id; ?>" action="/checkout/addtocart" method="post">
 		<tr class="<?php echo $rowclass; ?>">
-    		<input type="hidden" name="product_id" value="<?php echo $i->product_id; ?>">
-			<input type="hidden" name="price" value="<?php echo $i->price; ?>">
-			<input type="hidden" name="name" value="<?php echo $i->name_display; ?>">
-			<input type="hidden" name="catalog" value="<?php echo $i->catalog_num; ?>">
-			<input type="hidden" name="ship" value="<?php echo $i->shipping_method; ?>">
-			<td>
-				<a href="/<?php echo mb_convert_encoding($i->url, "HTML-ENTITIES", "UTF-8"); ?>.html"><?php echo mb_convert_encoding($i->name_display, "HTML-ENTITIES", "UTF-8"); ?></a>
-			</td>
+    		<input type="hidden" form= "<?php echo "form_".$i->product_id; ?>" name="product_id" value="<?php echo $i->product_id; ?>">
+			<input type="hidden" form= "<?php echo "form_".$i->product_id; ?>"  name="price" value="<?php echo $i->price; ?>">
+			<input type="hidden" form= "<?php echo "form_".$i->product_id; ?>"  name="name" value="<?php echo $i->name_display; ?>">
+			<input type="hidden" form= "<?php echo "form_".$i->product_id; ?>"  name="catalog" value="<?php echo $i->catalog_num; ?>">
+			<input type="hidden" form= "<?php echo "form_".$i->product_id; ?>"  name="ship" value="<?php echo $i->shipping_method; ?>">
+			<td><a href="/<?php echo mb_convert_encoding($i->url, "HTML-ENTITIES", "UTF-8"); ?>.html"><?php echo mb_convert_encoding($i->name_display, "HTML-ENTITIES", "UTF-8"); ?></a></td>
 			<td class="catalog-column"><?php echo isset($i->catalog_num) ? $i->catalog_num : ""; ?></td>
 			<td class="protocol-column">
 			<?php if (!empty($protocol)) {
@@ -47,8 +45,8 @@
                 ?>
     		</td>
         	<td class="price-column"><?php echo isset($i->price) ? "$" . $i->price : '<a href="/support">inquire</a>'; ?></td>
-    		<td class="qty-column"><input style="width: 30px; text-align: center;" type="number" value="1" name="quantity" min="1"></td>
-			<td><button class="cartbtn"><img src="/images/cart.png"></button></td>
+    		<td class="qty-column"><input style="width: 30px; text-align: center;" form= "<?php echo "form_".$i->product_id; ?>" type="number" value="1" name="quantity" min="1"></td>
+			<td><button form= "<?php echo "form_".$i->product_id; ?>"  class="cartbtn"><img src="/images/cart.png"></button></td>
 	</tr>
 	</form>
     <?php   $count++;

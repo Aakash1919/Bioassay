@@ -27,9 +27,9 @@ class Checkout extends Public_Controller{
 		if($this->input->post()){
 			$productId = $this->input->post('product_id');
 			if($this->Products_Model->checkInStock($productId)) {
-			$response = array('Response'=>0,'Message'=>"Product is Out Of Stock.");
-			$this->session->set_flashdata('response',$response);
-			redirect($_SERVER['HTTP_REFERER']);
+				$response = array('Response'=>0,'Message'=>"Product is Out Of Stock.");
+				$this->session->set_flashdata('response',$response);
+				redirect($_SERVER['HTTP_REFERER']);
 			}
 			$data = array(
 				'id' => $productId,
@@ -39,8 +39,8 @@ class Checkout extends Public_Controller{
 				'shippingmt' => $this->input->post('ship'),
 				'name' => str_replace(array( '(', ')' ), '', $this->input->post('name'))
 			);
-			
 		   $result =	$this->cart->insert($data);
+		
 		   $pcode = $this->session->userdata('PromotionCode');
 		   if(!empty($pcode)){
 		   	$cart = $this->cart->contents();
