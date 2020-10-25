@@ -99,8 +99,8 @@ class Products extends Public_Controller{
             if(isset($postData['name']) && isset($postData['order'])) {
                 delete_cookie('order');
                 delete_cookie('format');
-                set_cookie('order',$postData['name'],'7200',base_url());
-                set_cookie('format',$postData['order'],'7200',base_url());
+                set_cookie('order',$postData['name'],7200, 'spinninwebmedia.com');
+                set_cookie('format',$postData['order'],7200, 'spinninwebmedia.com');
             }
 
             $order=get_cookie('order') ? 'name_display' : '';
