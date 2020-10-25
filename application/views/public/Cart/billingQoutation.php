@@ -1416,7 +1416,7 @@ function checkAcceptJs() {
 			  } else {
 				document.getElementById("trsform").submit();
 			  }
-		}
+		})
 }
 function sendPaymentDataToAnet() {
     	var authData = {};
