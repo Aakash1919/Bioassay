@@ -1409,14 +1409,12 @@ $('#copy_personnel').click(function() {
 </script>
 <script type="text/javascript">
 function checkAcceptJs() {
-	$("#paymenttype").change(function(e){
-      		var payment_type = $(this).val(); 
-			  if(payment_type == "Credit Card") {
-				sendPaymentDataToAnet()
-			  } else {
-				document.getElementById("trsform").submit();
-			  }
-		})
+  	var payment_type = $('#paymenttype').val(); 
+	  if(payment_type == "Credit Card") {
+		sendPaymentDataToAnet()
+	  } else {
+		document.getElementById("trsform").submit();
+	  }
 }
 function sendPaymentDataToAnet() {
     	var authData = {};

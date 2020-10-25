@@ -132,9 +132,6 @@ class Checkout extends Public_Controller{
 	{
 	
 		$sitekey =  $this->data['capcha_site_id'];
-		if(!isset($_SESSION['PreviousInfo'])){
-			redirect('/checkout/checkout?fromCart=true');
-		}
 		if($this->input->post() || $_SESSION['PreviousInfo']){
 			$personID = $this->session->userdata('person_id');
 		if(isset($personID)){
@@ -345,6 +342,9 @@ class Checkout extends Public_Controller{
 		}
 		public function finalTransaction()
 		{
+		    if(!isset($_SESSION['PreviousInfo'])){
+    			redirect('/checkout/checkout?fromCart=true');
+    		}
 			$captcha_site_key = $this->data['capcha_site_key'];
 			if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
 				$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$captcha_site_key.'&response='.$_POST['g-recaptcha-response']);
@@ -374,9 +374,6 @@ class Checkout extends Public_Controller{
 				$finalprice = $this->cart->format_number($this->cart->total());
 			}
 			if(isset($postData) && isset($sessionData) && $cart){
-				$auth_net_url="https://secure.authorize.net/gateway/transact.dll"; 
-				// $auth_net_url= "https://test.authorize.net/gateway/transact.dll";
-				define("AUTHORIZENET_SANDBOX", false);
 				$fedex_acct_num = $this->input->post('fedex_accnt');
 				$fedex_service =$this->input->post('fedex_service');
 				if($this->session->userdata('person_id')!=null){
@@ -856,7 +853,9 @@ if($this->input->post('payment_type')=="Paypal"){
 	redirect('express_checkout/SetExpressCheckout');
 }
 //Authorize Start
-
+$auth_net_url="https://secure.authorize.net/gateway/transact.dll"; 
+				// $auth_net_url= "https://test.authorize.net/gateway/transact.dll";
+define("AUTHORIZENET_SANDBOX", false);
 // $x_login_key='3F9eMpx9R';
 // $x_tran_key='467X8MUnbW83v5su';
 // $x_login_key='7sXmC5C7t';

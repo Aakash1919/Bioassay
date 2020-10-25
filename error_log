@@ -1,2 +1,6 @@
 [17-Oct-2020 04:33:39 America/Chicago] PHP Parse error:  syntax error, unexpected ''value'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/views/public/Cart/carttable.php on line 39
 [17-Oct-2020 05:12:22 America/Chicago] PHP Parse error:  syntax error, unexpected end of file in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/views/public/footer.php on line 156
+[24-Oct-2020 23:10:47 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/User.php on line 482
+[24-Oct-2020 23:20:45 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/User.php on line 482
+[24-Oct-2020 23:22:11 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/Products.php on line 108
+[24-Oct-2020 23:27:41 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/Products.php on line 98
