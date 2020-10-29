@@ -50,25 +50,9 @@ if(!empty($PreviousInfo)){
     $scountry= $PreviousInfo['scountry'];
     $sphone= $PreviousInfo['sphone'];
     $semail= $PreviousInfo['semail'];
-    $battn= $PreviousInfo['battn'];
-    $bcompany= $PreviousInfo['bcompany'];
-    $baddr1= $PreviousInfo['baddr1'];
-    $baddr2= $PreviousInfo['baddr2'];
-    $bcity= $PreviousInfo['bcity'];
-    $bstate= $PreviousInfo['bstate'];
-    $bzip= $PreviousInfo['bzip'];
-    $bcountry= $PreviousInfo['bcountry'];
-    $bphone= $PreviousInfo['bphone'];
-    $bfax= $PreviousInfo['bfax'];
     $cmnts= $PreviousInfo['cmnts'];
     $payment_type = $PreviousInfo['payment_type'];
-    $cardnumber = $PreviousInfo['cardnumber'];
-    $csc1 = $PreviousInfo['csc1'];
-    $year = $PreviousInfo['year'];
-    $month = $PreviousInfo['month'];
-    @$cccheck = $PreviousInfo['cccheck'];
-	$sales_tax_exempt_num = $PreviousInfo['sales_tax_exempt_num'];
-	$sales_tax_exempt_num1 = $PreviousInfo['sales_tax_exempt_num1'];
+    $sales_tax_exempt_num1 = $PreviousInfo['sales_tax_exempt_num1'];
 }
 $cart=$this->cart->contents();
 $cn = $scountry;
@@ -97,7 +81,8 @@ if(!empty($personID)){
 }
 ?>
 <section class="content-area">
-	<form  method="post" name="regform" id="regform" action="/checkout/finalTransaction">
+	<form  method="post" name="regform" id="regform" action="https://test.authorize.net/payment/payment">
+		<input type="hidden" name="token" value="<?php echo isset($authToken)?$authToken:0; ?>">
 		<input type="hidden" name="cccheck" value="<?php echo isset($cccheck)?$cccheck:0; ?>">
 		<input type="hidden" name="cardnumber" value="<?php echo isset($cardnumber)?base64_encode($cardnumber):'';?>">
 		<input type="hidden" name="csc1" value="<?php echo isset($csc1)?base64_encode($csc1):'';?>">
@@ -116,19 +101,8 @@ if(!empty($personID)){
 		<input type="hidden" name="scountry" value="<?php echo isset($scountry)?$scountry:'';?>">
 		<input type="hidden" name="sphone" value="<?php echo isset($sphone)?$sphone:'';?>">
 		<input type="hidden" name="semail" value="<?php echo isset($semail)?$semail:'';?>">
-		<input type="hidden" name="battn" value="<?php echo isset($battn)?$battn:'';?>">
-		<input type="hidden" name="bcompany" value="<?php echo isset($bcompany)?$bcompany:'';?>">
-		<input type="hidden" name="baddr1" value="<?php echo isset($baddr1)?$baddr1:'';?>">
-		<input type="hidden" name="baddr2" value="<?php echo isset($baddr2)?$baddr2:'';?>">
-		<input type="hidden" name="bcity" value="<?php echo isset($bcity)?$bcity:'';?>">
-		<input type="hidden" name="bstate" value="<?php echo isset($bstate)?$bstate:'';?>">
-		<input type="hidden" name="bzip" value="<?php echo isset($bzip)?$bzip:'';?>">
-		<input type="hidden" name="bcountry" value="<?php echo isset($bcountry)?$bcountry:'';?>">
-		<input type="hidden" name="bphone" value="<?php echo isset($bphone)?$bphone:'';?>">
-		<input type="hidden" name="bfax" value="<?php echo isset($bfax)?$bfax:'';?>">
 		<input type="hidden" name="cmnts" value="<?php echo isset($cmnts)?$cmnts:'';?>">
 		<input type="hidden" name="payment_type" value="<?php echo isset($payment_type)?$payment_type:'';?>">
-		<input type="hidden" name="sales_tax_exempt_num" value="<?php echo isset($sales_tax_exempt_num)?$sales_tax_exempt_num:'';?>">
 		<input type="hidden" name="sales_tax_exempt_num1" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
 		<section class="content-right">
 			<article class="content-right-btm" style="margin-top:0px;">
@@ -736,131 +710,7 @@ if(!empty($personID)){
 								<br>
 
 								</div>
-									<?php 
-										if(isset($payment_type) && $payment_type!="Paypal")
-										{ 
-									?>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-										<b>
-											Bill to:
-										</b>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($battn)?$battn:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bcompany)?$bcompany:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($baddr1)?$baddr1:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($baddr2)?$baddr2:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bcity)?$bcity:'';
-										?>
-									</div>
-								</div>
-								<div class="clear"> 
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bstate)?$bstate:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bzip)?$bzip:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bcountry)?$bcountry:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bphone)?$bphone:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($bfax)?$bfax:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<?php } ?>
-								<div class="reg_left_no_pad">
+									<div class="reg_left_no_pad">
 									<div class="reg_a">
 										<p>
 											Notes (e.g. special handling):

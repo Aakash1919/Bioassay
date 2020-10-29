@@ -10,8 +10,7 @@ class Checkout extends Public_Controller{
 		$this->load->model('Member/OPLink_Model');
 		$this->load->model('Member/OrderDetails_Model');
 		$this->load->model('Member/TransactionResponse_Model');
-
-
+		$this->load->model('Member/Authentication_Model');
 	}
 
 	public function index(){
@@ -192,6 +191,7 @@ class Checkout extends Public_Controller{
 					
 				}
 			}
+
 			$shippingfee = $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 			
 			$cart = $this->cart->contents();
@@ -238,10 +238,8 @@ class Checkout extends Public_Controller{
 				$this->data['tax'] =(float)$taxrate*$this->cart->total();
 				$this->data['total'] = $this->cart->total() + $this->data['tax'] + $this->data['shippingfee'];				
 			}
-			
+			$this->data['authToken'] = $token = self::generateAuthorizeToken($this->data['total'], $this->cart->contents());
 			$this->data['shippingFee'] = (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
-
-			//print_r($this->data);
 			$this->session->set_userdata('discountamount',$discountamount);
 		 	$this->data['subview'] = "public/Cart/billingQoutationProcess";
 			$this->load->view('public/_layout_main',$this->data);	
@@ -388,16 +386,6 @@ class Checkout extends Public_Controller{
 					'ordering_method'=>'web',
 					'payment_method'=>'cc',
 					'orders_status'=>'processing',
-					'billing_name'=>$this->input->post('battn'),
-					'billing_co_name'=>$this->input->post('bcompany'),
-					'billing_address_1'=>$this->input->post('baddr1'),
-					'billing_address_2'=>$this->input->post('baddr2'),
-					'billing_city'=>$this->input->post('bcity'),
-					'billing_state'=>$this->input->post('bstate'),
-					'billing_zip'=>$this->input->post('bzip'),
-					'billing_country'=>$this->input->post('bcountry'),
-					'billing_tel'=>$this->input->post('bphone'),
-					'billing_fax'=>$this->input->post('bfax'),
 					'shipping_name'=>$this->input->post('sattn'),
 					'shipping_co_name'=>$this->input->post('scompany'),
 					'shipping_address_1'=>$this->input->post('saddr1'),
@@ -408,14 +396,16 @@ class Checkout extends Public_Controller{
 					'shipping_country'=>$this->input->post('scountry'),
 					'shipping_tel'=>$this->input->post('sphone'),
 					'shipping_email'=>$this->input->post('semail'),
-					'tax_exempt'=>$this->input->post('sales_tax_exempt_num'),
+					'tax_exempt'=>$this->input->post('sales_tax_exempt_num1'),
 					'comment_'=>$this->input->post('cmnts'),
 
 					'mod_date'=>date('Y-m-d',time()),
 
 				);
+				
 				$orderID = $this->Order_Model->Save(null,$orderData);
 				if(!empty($orderID)){
+			
 					$tramsactionData = array(
 						'orders_id'=>$orderID,
 						'transaction_time'=>date('Y-m-d h:i:s',time()),
@@ -424,7 +414,7 @@ class Checkout extends Public_Controller{
 					);
 					$TransactionID = $this->Transaction_Model->Save(null,$tramsactionData);
 					$this->session->set_userdata('Transactiondb', $TransactionID);
-
+			
 					foreach ($cart as $c => $value) {
 						if(!empty($value))
 						{
@@ -447,7 +437,7 @@ class Checkout extends Public_Controller{
 						);
 						$this->OrderDetails_Model->Save(null,$orderDetailData);
 					}
-
+			
   			//For tax rate and all other stuff
 			$shippingfee = $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 		    $taxrate = 0.0;
@@ -511,7 +501,7 @@ class Checkout extends Public_Controller{
 					$this->OrderDetails_Model->Save(null,$ODdata4);
 					$sessionperson = $this->session->userdata('person_id');
 
-
+			
 $cn = $this->input->post('scountry');
 if($cn!="United States"){
 	$updata =array('payment_method'=>"Quotation");
@@ -771,18 +761,6 @@ $emailbody3=$emailbody3.$this->input->post('scountry')."<br >";
 $emailbody3=$emailbody3.$this->input->post('sphone')." (tel)<br >";
 $emailbody3=$emailbody3.$this->input->post('semail')."<br ><br >";
 
-$emailbody3=$emailbody3."Bill to:<br ><br >".$this->input->post('battn')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcompany')."<br >";
-$emailbody3=$emailbody3.$this->input->post('baddr1')."<br >";
-$emailbody3=$emailbody3.$this->input->post('baddr2')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcity').", ";
-$emailbody3=$emailbody3.$this->input->post('bstate')." ";
-$emailbody3=$emailbody3.$this->input->post('bzip')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcountry')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bphone')." (tel)<br >";
-$emailbody3=$emailbody3.$this->input->post('bfax')." (fax)<br ><br >";
-$emailbody3=$emailbody3."Notes:<br >".$this->input->post('cmnts')."<br ><br >";
-$emailbody3=$emailbody3."We thank you for your business!<br ><br >Your BioAssay Systems Team<br >";
 $emailbody=$emailbody1.$emailbody2.$emailbody3;
    $email = $this->input->post('semail')."," ;
    $email .="order@bioassaysys.com" .",";
@@ -852,104 +830,14 @@ if($this->input->post('payment_type')=="Paypal"){
 	
 	redirect('express_checkout/SetExpressCheckout');
 }
-//Authorize Start
-$auth_net_url="https://secure.authorize.net/gateway/transact.dll"; 
-				// $auth_net_url= "https://test.authorize.net/gateway/transact.dll";
-define("AUTHORIZENET_SANDBOX", false);
-// $x_login_key='3F9eMpx9R';
-// $x_tran_key='467X8MUnbW83v5su';
-// $x_login_key='7sXmC5C7t';
-// $x_tran_key='24f5F8h7M95dsVvE';
-/*Production Aakash*/ 
-$x_login_key ='3F9eMpx9R';
-$x_tran_key ='24f5F8h7M95dsVvE';
-/*Production Aakash*/ 			
-
-$x_card_num=trim(base64_decode($this->input->post('cardnumber')));
-$x_card_code=base64_decode($this->input->post('csc1'));
-$x_exp_date=base64_decode($this->input->post('year'))."-".base64_decode($this->input->post('month'));
-$x_first_name=$this->input->post('battn');
-$x_last_name='';
-$billCompany = $this->input->post('bcompany');
-$x_address=$this->input->post('baddr1');
-$x_city=$this->input->post('bcity');
-$x_state=$this->input->post('bstate');
-$x_country=$this->input->post('bcountry');
-$x_zip=$this->input->post('bzip');
-$x_phone=$this->input->post('bphone');
-$x_customer_ip=$_SERVER['REMOTE_ADDR'];
-$x_email=$this->session->userdata('email');
-$invoic=time();//need to be changed afterwards
-$orderID=$orderID;
-$x_fax =$this->input->post('bfax');
-$transactionid=$TransactionID;
-//$x_tran_key='26Wv49AQrv9wB583';
-// $x_tran_key='95a88uNnuXD87a8r';
-
-$sattn = $this->input->post('sattn');
-$scompany = $this->input->post('scompany');
-$saddress = $this->input->post('saddr1');
-$scity = $this->input->post('scity');
-$sstate = $this->input->post('sstate');
-$szip = $this->input->post('szip');
-$scountry = $this->input->post('scountry');
-$sphone = $this->input->post('sphone');
-$sFax = '';
-$semail = $this->input->post('semail');
-
-$authnet_values = array
-(
-	"x_login"    => $x_login_key,
-	"x_test_request" => "FALSE",
-	"x_version"    => "3.1",
-	"x_delim_char"   => "|",
-	"x_delim_data"   => "TRUE",
-	"x_url"     => "FALSE",
-	"x_type"    => "AUTH_CAPTURE",
-	"x_method"  => "CC",
-	"x_allow_partial_auth"=>"TRUE", 
-	"x_tran_key"  => $x_tran_key,
-	"x_relay_response"  => "FALSE",
-	"x_card_num"   => $x_card_num,
-	"x_card_code"   => $x_card_code,
-	"x_exp_date"   => $x_exp_date,
-	"x_amount"    =>  $newTotal,
-	"x_first_name" => $x_first_name,
-	"x_last_name"  => $x_last_name,
-	"x_address"  => $x_address,
-	"x_city"    => $x_city,
-	"x_state"   => $x_state,
-	"x_country" => $x_country,
-	"x_zip"     => $x_zip,
-	"x_phone"   => $x_phone,
-	"x_customer_ip" => $x_customer_ip,
-	"x_email"    => $x_email,
-	"x_description" =>'On-line Credit Card Order',  
-	"x_invoice_num" =>$invoic, 
-	"x_email_customer"  => "TRUE",
-	"x_merchant_email"  => "merchant@bioassaysys.com",
-	"x_invoice_num"=>$orderID,
-	"BioAssaySysTransactionID"	=>$transactionid,
-);
+;
 if($this->input->post('payment_type')=="Credit Card"){
-	$profileid = $this->User_Model->checkAuthProfileID($personID);
-	$paymentprofileid = $this->User_Model->checkAuthProfilePaymentID($personID);
-	//If already profile is created else the other method Aakash
-	//If person has not selected the credit card checkbox then the form will not pass else form will pass because those feilds are required fields
-	//One more condition is whether the last card is checked or not
-	$lastcardcheck = $this->input->post('cccheck');
-	if(!empty($profileid) && !empty($paymentprofileid) && $lastcardcheck!=0){
-	$resultAuthentication = $this->Auth_Model->chargeCustomerProfile($profileid, $paymentprofileid, $newTotal);
-	}else{
-	$resultAuthentication = $this->Auth_Model->createPayment($x_card_num,$x_exp_date,$x_card_code,$x_first_name,$billCompany,$x_address,$x_city,$x_state,$x_zip,$x_country,$x_phone,$x_fax,$sattn,$scompany,$saddress,$scity,$sstate,$szip,$scountry,$sphone,$sFax,$semail,$authnet_values,$auth_net_url);
-
-	}
-	
+	$response  = self::getAuthorizeResponse($newTotal);
+	die;
 }
 
-
 $emailbody1="";
-$emailbody1="Dear ".$sattn.",<br ><br >";
+$emailbody1="Dear ".$this->input->post('sattn').",<br ><br >";
 $emailbody2="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Credit Card<br><br>";
 $emailbody3='';
 $emailbody3=$emailbody3."Order Details:<br ><br >";
@@ -1021,10 +909,6 @@ if($shipping_method == "USPS") {
 			$emailbody3=$emailbody3."FedEx Acct #:    ".$this->input->post('fedex_accnt')." Invalid, not counted for S&H fee calculation.<br >";
 		}
 	}
-	// if ($_SESSION['sales_tax_exempt_num']) {
-	// 	$emailbody3=$emailbody3."Tax Exempt #:   ## Testing ##<br >";
-	// }
-
 	$emailbody3=$emailbody3."FedEx Delivery:  ".$this->input->post('fedex_service')."<br ><br >";
 }
 
@@ -1038,143 +922,32 @@ $emailbody3=$emailbody3.$szip."<br >";
 $emailbody3=$emailbody3.$scountry."<br >";
 $emailbody3=$emailbody3.$sphone." (tel)<br >";
 $emailbody3=$emailbody3.$semail."<br ><br >";
-
-$emailbody3=$emailbody3."Bill to:<br ><br >".$this->input->post('battn')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcompany')."<br >";
-$emailbody3=$emailbody3.$this->input->post('baddr1')."<br >";
-$emailbody3=$emailbody3.$this->input->post('baddr2')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcity').", ";
-$emailbody3=$emailbody3.$this->input->post('bstate')." ";
-$emailbody3=$emailbody3.$this->input->post('bzip')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bcountry')."<br >";
-$emailbody3=$emailbody3.$this->input->post('bphone')." (tel)<br >";
-$emailbody3=$emailbody3.$this->input->post('bfax')." (fax)<br ><br >";
-$emailbody3=$emailbody3."Notes:<br >".$this->input->post('cmnts')."<br ><br >";
-
-
-
-if(!empty($resultAuthentication)){
-
-$response_code=$resultAuthentication['response_code'];
-$human_read_response_code=$resultAuthentication['human_read_response_code'];
-$approval_code=$resultAuthentication['approval_code'];
-$transaction_id_gateway=$resultAuthentication['transaction_id_gateway'];
-$mdhash=$resultAuthentication['mdhash'];
-if(isset($sessionperson)){
-$cust_email =$this->session->userdata('email');
-}else{
-$cust_email = $this->input->post('semail');
-}
-
-$transactionResponse = array(
-						'transaction_id'=>$transactionid,
-						'response_code'=>$response_code,
-						'human_read_response_code'=>$human_read_response_code,
-						'approval_code'=>$approval_code,
-						'transaction_id_gateway'=>$transaction_id_gateway,
-						'md5_hash_server'=>$mdhash
-							);
-
-$affected = $this->TransactionResponse_Model->Save(null,$transactionResponse);
-if (empty($affected)){
-	echo "Error: ".mysql_error();
-}
-if ($response_code=="1") {
-		$orderstatusUpdate = array(
-						'orders_status'=>'credit_card_approved'
-						);
-		$resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
-
-	if (empty($resultst)){
-		echo "Error: ".mysql_error();
-	}
-	$responseText = "<span class=\"textbold\">Your credit card has been approved for order # ".$orderID.". We are processing your order and will ship soon.</span><br>";
-
-	$emailbody=$emailbody1.$emailbody2.$emailbody3;
-	$emailbody=$emailbody."<br >Your credit card has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
-
-
-	$email = $this->input->post('semail')."," ;
-	$email .="order@bioassaysys.com" .",";
-
-
-	$salesemail = "order@bioassaysys.com";
-	$emailtitle = "Order receipt - www.bioassaysys.com";
-	$header = "From: ".$salesemail."\r\n"; 
-	$header.= "MIME-Version: 1.0\r\n"; 
-	$header.= "Content-type: text/html; charset=utf-8\r\n";
-	mail($email,$emailtitle,$emailbody, $header);
-	$responseText.= "<span class=\"textbold\">An email has been sent to ".$this->input->post('semail')." about your order.</span><br><br><br >";
-	 $response = array('Response'=>0,'Message'=>$responseText);
-	 $this->session->set_flashdata('response',$response);
-	 $pp=0;
-	 $prods ='';
-	 foreach($cart as $prodid => $product)
-	{
-		if($product != null)
-		{		
-			$quat = $product['qty'];
-			$pdt_price=$product['price'];
-			$pdt_name=$product['name'];
-			$catalogno=$product['catalog'];
-			$pp++;
-			$prods = $prods."{
-		   'sku': '".$catalogno."',
-		   'name': '".$pdt_name."',
-		   'price': ".number_format($pdt_price,2).",
-		   'quantity': ".$quat."
-	   },";	
-		}
-		
-	};
-	 
-	 $this->session->set_flashdata('ecommerce',
-	 "
-   'transactionId': '".$orderID."',
-   'transactionAffiliation': 'Credit Card',
-   'transactionTotal': ".number_format($finalprice,2).",
-   'transactionTax': ".number_format($taxrate*($this->cart->total()),2).",
-   'transactionShipping': ".number_format($shippingfee,2).",
-   'transactionProducts': [".$prods."]"
-	 );
-	$this->cart->destroy();
-	 redirect('/checkout/thanks');
-} else {
-
-$orderstatusUpdate = array(
-						'orders_status'=>'credit_card_failed'
-						);
-		$resultst=$this->Order_Model->Save($orderID,$orderstatusUpdate);
-	
-
-	if (empty($resultst)){
-		echo "Error: ".mysql_error();
-	}
-
-	
-	$emailbody=$emailbody1."Credit card authorization for order #".$orderID." failed. Please check your credit card number and submit your order again or call customer support at 510-782-9988 x 1. Thanks!<br ><br >";
-
-	$emailbody=$emailbody.$emailbody3;
-	$emailtitle = "Order failed - www.bioassaysys.com";
-
-	$email = $this->input->post('semail')."," ;
-	$email .="order@bioassaysys.com" .",";
-	$salesemail = "order@bioassaysys.com";
-	$emailtitle = "Order failed - www.bioassaysys.com";
-
-	$header = "From: ".$salesemail."\r\n"; 
-	$header.= "MIME-Version: 1.0\r\n"; 
-	$header.= "Content-type: text/html; charset=utf-8\r\n";
-
-	mail($email,$emailtitle,$emailbody, $header);
-	redirect('/checkout/failed');
-}
-}
+mail($email,$emailtitle,$emailbody, $header);
  //Authorize End
 
 }
 
 }
+}
+
+public function getAuthorizeResponse($amount=0) {
+
+	$token = self::generateAuthorizeToken($amount);
+	$postField = "token=$token";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL,"https://test.authorize.net/payment/payment");
+	curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'GET' );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $postField );
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$contents = curl_exec($ch);
+
+	curl_close ($ch);;
+}
+
+
+public function generateAuthorizeToken($amount=0, $items) {
+	$token = $this->Authentication_Model->getAnAcceptPaymentPage($amount, $items);
+	return $token;
 }
 public function destroycart(){
 		$this->cart->destroy();
