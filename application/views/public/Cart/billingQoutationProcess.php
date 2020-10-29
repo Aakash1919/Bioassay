@@ -81,7 +81,7 @@ if(!empty($personID)){
 }
 ?>
 <section class="content-area">
-	<form  method="post" name="regform" id="regform" action="https://test.authorize.net/payment/payment">
+	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
 		<input type="hidden" name="token" value="<?php echo isset($authToken)?$authToken:0; ?>">
 		<input type="hidden" name="cccheck" value="<?php echo isset($cccheck)?$cccheck:0; ?>">
 		<input type="hidden" name="cardnumber" value="<?php echo isset($cardnumber)?base64_encode($cardnumber):'';?>">

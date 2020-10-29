@@ -25,9 +25,7 @@ class Authentication_Model extends CI_Model{
         $transactionRequestType->setAmount($amount);
         // $transactionRequestType->setOrder(self::getOrder());
         $transactionRequestType->setLineItems(self::getLineItems($items));
-        echo "<pre>";
-        print_r($transactionRequestType);
-        echo "</pre>";
+    
         return $transactionRequestType;
     }
 
@@ -35,8 +33,8 @@ class Authentication_Model extends CI_Model{
         $lineItem = new AnetAPI\LineItemType();
         
         $lineItem->setItemId($id);
-        $lineItem->setName($name);
-        $lineItem->setDescription("");
+        $lineItem->setName('Product');
+        $lineItem->setDescription($name);
         $lineItem->setTaxable(0);
         $lineItem->setQuantity($qty);
         $lineItem->setUnitPrice($price);
@@ -109,7 +107,7 @@ class Authentication_Model extends CI_Model{
     {
         $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items));
         $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
-        
+       
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();
         } else {

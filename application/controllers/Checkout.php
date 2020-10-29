@@ -238,7 +238,9 @@ class Checkout extends Public_Controller{
 				$this->data['tax'] =(float)$taxrate*$this->cart->total();
 				$this->data['total'] = $this->cart->total() + $this->data['tax'] + $this->data['shippingfee'];				
 			}
-			$this->data['authToken'] = $token = self::generateAuthorizeToken($this->data['total'], $this->cart->contents());
+			if($this->input->post('payment_type')=="Credit Card"){
+				$this->data['authToken'] = $token = self::generateAuthorizeToken($this->data['total'], $this->cart->contents());
+			}
 			$this->data['shippingFee'] = (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 			$this->session->set_userdata('discountamount',$discountamount);
 		 	$this->data['subview'] = "public/Cart/billingQoutationProcess";
@@ -963,6 +965,7 @@ public function destroycart(){
 	}
 public function thanks()
 {
+		$this->cart->destroy();
 	    $this->data['active'] = "Cart";
 		$this->data['subview'] = "public/Cart/thanks";
 		$this->load->view('public/_layout_main',$this->data);
