@@ -1,6 +1,6 @@
 <?php
 require_once(APPPATH.'libraries/authorize_sdk/autoload.php');
-require_once dirname(__FILE__).'\AuthorizeConstants.php';
+require_once dirname(__FILE__).'/AuthorizeConstants.php';
 use net\authorize\api\contract\v1 as AnetAPI;
 use net\authorize\api\controller as AnetController;
 class Authentication_Model extends CI_Model{
