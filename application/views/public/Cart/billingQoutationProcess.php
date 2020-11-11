@@ -1,4 +1,4 @@
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
 <?php
 $PreviousInfo = $this->session->userdata('PreviousInfo');
 $cart=$this->cart->contents();
@@ -39,7 +39,7 @@ $personID = $this->session->userdata('person_id');
 if(!empty($PreviousInfo)){
     $fedex = $PreviousInfo['fedex_accnt'];
     $fedexservice = $PreviousInfo['fedex_service'];
-    $po_num = $PreviousInfo['po_num'];
+    //$po_num = $PreviousInfo['po_num'];
     $sattn= $PreviousInfo['sattn'];
     $scompany= $PreviousInfo['scompany'];
     $sddr1= $PreviousInfo['saddr1'];
@@ -51,7 +51,7 @@ if(!empty($PreviousInfo)){
     $sphone= $PreviousInfo['sphone'];
     $semail= $PreviousInfo['semail'];
     $cmnts= $PreviousInfo['cmnts'];
-    $payment_type = $PreviousInfo['payment_type'];
+   // $payment_type = $PreviousInfo['payment_type'];
     $sales_tax_exempt_num1 = $PreviousInfo['sales_tax_exempt_num1'];
 }
 $cart=$this->cart->contents();
@@ -82,7 +82,7 @@ if(!empty($personID)){
 ?>
 <section class="content-area">
 	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
-		<input type="hidden" name="token" value="<?php echo isset($authToken)?$authToken:0; ?>">
+		<input type="hidden" name="token" id="authToken" value="<?php echo isset($authToken)?$authToken:0; ?>">
 		<input type="hidden" name="cccheck" value="<?php echo isset($cccheck)?$cccheck:0; ?>">
 		<input type="hidden" name="cardnumber" value="<?php echo isset($cardnumber)?base64_encode($cardnumber):'';?>">
 		<input type="hidden" name="csc1" value="<?php echo isset($csc1)?base64_encode($csc1):'';?>">
@@ -92,7 +92,7 @@ if(!empty($personID)){
 		<input type="hidden" name="fedex_service" value="<?php echo isset($fedexservice)?$fedexservice:'';?>">
 		<input type="hidden" name="sattn" value="<?php echo isset($sattn)?$sattn:'';?>">
 		<input type="hidden" name="scompany" value="<?php echo isset($scompany)?$scompany:'';?>">
-		<input type="hidden" name="po_num" value="<?php echo isset($po_num)?$po_num:'';?>">
+		<input type="hidden" name="po_num" id="input_po_num" value="<?php echo isset($po_num)?$po_num:'';?>">
 		<input type="hidden" name="saddr1" value="<?php echo isset($sddr1)?$sddr1:'';?>">
 		<input type="hidden" name="saddr2" value="<?php echo isset($sddr2)?$sddr2:'';?>">
 		<input type="hidden" name="scity" value="<?php echo isset($scity)?$scity:'';?>">
@@ -102,8 +102,8 @@ if(!empty($personID)){
 		<input type="hidden" name="sphone" value="<?php echo isset($sphone)?$sphone:'';?>">
 		<input type="hidden" name="semail" value="<?php echo isset($semail)?$semail:'';?>">
 		<input type="hidden" name="cmnts" value="<?php echo isset($cmnts)?$cmnts:'';?>">
-		<input type="hidden" name="payment_type" value="<?php echo isset($payment_type)?$payment_type:'';?>">
-		<input type="hidden" name="sales_tax_exempt_num1" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
+		<input type="hidden" name="payment_type" id="payment_type" value="<?php echo isset($payment_type)?$payment_type:'';?>">
+		<input type="hidden" id="sales_tax_exempt_num1" name="sales_tax_exempt_num1" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
 		<section class="content-right">
 			<article class="content-right-btm" style="margin-top:0px;">
 				<div class="new-products" style="margin-top:0px;">
@@ -383,6 +383,151 @@ if(!empty($personID)){
 								?>
 						</table>
 						<div class="clear"> 
+						</div>
+						<div>
+
+					<div class="reg_left" style="padding-top: 15px;">
+						<div class="reg_a">
+							<p>
+								Promotion Code: 
+							</p>
+						</div>
+						<div class="reg_cf1">
+							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($promotioncode)?$promotioncode:'';?>">
+							<input class="button" type="button" id="discode_" value="Submit" onClick="dis_check(this.value,this.id)" name="disn">
+						</div>
+						<div class="reg_left">
+						<div class="reg_a">
+						</div>
+						<div class="reg_b">
+						<?php 
+							$dis = $this->session->userdata('discount_data');
+							if(!empty($dis)){
+							foreach ($dis  as $d) {
+								$status = $d['Status'];
+								if($status == 'false'){
+									echo "<p style='margin-top:10px;'> <b>Invalid Code for ".$this->Products_Model->getname($d['Product_Id'])."</b></p>";
+									}
+									if($status == 'true'){
+								  $codedate = $d['Data'][0]->expirydate;
+								  if(empty($codedate)){
+										$codedate = date('Y-m-d',time());
+									}
+									$expd = strtotime($codedate);
+									$dtoday = time();
+									
+									if( $dtoday > $expd ){
+										echo "<p> Code Expired for ".$this->Products_Model->getname($d['Product_Id'])."</p>";
+									}
+									}
+								}
+								
+							}
+						?>
+					</div>
+				</div>
+						<div class="clear">
+						</div>
+					</div>
+					<!-- Aakash Started here -->
+					<?php 
+						$promotionCode = $this->session->userdata('PromotionCode');
+						if(isset($promotionCode))
+						{
+					?>
+
+					<div class="reg_left">
+						<div class="reg_a">
+						</div>
+						<div class="reg_b">
+							<p>
+								<b>Promotio Code Applied:&nbsp;<?php echo @$promotionCode;?> <a href="/checkout/removeDiscountCode">Remove</a></b>
+							</p>
+						</div>
+					</div>
+					<div class="clear">
+					</div>
+					<br />
+					<?php
+						} 
+					?>
+					<div>
+
+					<div class="reg_left">
+						<div class="reg_a">
+							<p>
+								Payment Type<span>*</span>
+							</p>
+						</div>
+						<div class="reg_b">
+							<select name="payment_type" id="paymenttype" class="reg_b_jump" required >
+								<?php
+									if(!empty($uid))
+									{
+								?>								 
+								<option value="Purchase Order" <?php  if($paymenttype=="Purchase Order"){echo "selected";} ?>>
+									Purchase Order
+								</option>
+								<option value="Credit Card" <?php if($paymenttype=="Credit Card"){echo "selected";} ?>>
+									Credit Card
+								</option> 
+								<option value="Paypal" <?php if($paymenttype=="Paypal"){echo "selected";} ?>>
+									Paypal
+								</option>
+								<?php
+									}
+									else
+									{
+								?>
+								<option value="">Please Select Payment Method</option>							  
+								<option value="Credit Card">
+									Credit Card
+								</option>  
+								<option value="Paypal">
+									Paypal
+								</option>
+								<option value="Purchase Order">Purchase Order</option>
+								<?php
+									}
+								?>
+							</select>
+						  
+						</div>
+						<div id="pt" class="errcls">
+						</div>
+					</div>
+
+					<div class="clear">
+					</div>
+					<div id ="po_details" style="display: none" >
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>
+									PO Number <span>* </span>
+								</p>
+							</div>
+							<div class="reg_b">
+								<input name="po_num" id="po_num" type="text" value="" onFocus="clrpo()">
+							</div>
+						</div>
+					</div> 
+					
+					<div class="clear"> 
+					</div>
+					<div class="reg_left">
+						<div class="reg_a">
+							<p id="poNumberid">
+								Tax Exempt ID
+							</p>
+						</div>
+						<div class="reg_b">
+							<input id="tax_exempt_id" type="text" name="tax_exempt_id" value="">
+						</div>
+					</div> 
+					<div class="clear">
+					</div>
+					</div>
+					<!-- Aakash ended here --> 
 						</div>
 						<div style="padding: 15px;">
 							<div id="cc_divp">
@@ -758,7 +903,7 @@ if(!empty($personID)){
 										&nbsp;
 										&nbsp;
 										&nbsp; 
-										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="submit" value="Submit">
+										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="submit" value="Submit" disabled="disabled">
 									</div>
 								</div>
 							</div>
@@ -777,13 +922,95 @@ if(!empty($personID)){
 		</div>
 	</form>
 </section>
+<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/images/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
 <script type="text/javascript">
   $("form#regform").submit(function(event) {
    
-   var recaptcha = grecaptcha.getResponse();
-   if (recaptcha === "") {
-      event.preventDefault();
-    swal('Please check the recaptcha');
+   // var recaptcha = grecaptcha.getResponse();
+   // if (recaptcha === "") {
+   //    event.preventDefault();
+   //  swal('Please check the recaptcha');
+   // }
+   var payment_type = jQuery(this).val();
+   if(payment_type == "Purchase Order"){
+   	//input_po_num
+   	var po_number = jQuery("#po_num").val();
+   	jQuery("#input_po_num").val(po_number);
+   	//tax_exempt_id
+   	var tax_exempt_id = jQuery("#tax_exempt_id").val();
+   	jQuery("#sales_tax_exempt_num1").val(tax_exempt_id);
    }
 });
+
+ 
+    function dis_check()
+    {
+    var discountcod=document.getElementById('discode').value;
+    if(discountcod=='')
+    exit;
+
+  var dataString="discountcod="+discountcod;
+    $.ajax({
+    type: "POST",
+    url: "/checkout/getDiscount",
+    data: dataString,
+    success: function(data){
+   	//console.log(data);
+    if(data=="Invalid Code" || data=="Discount Code Expired"){
+    $("#discode").val(data);
+    return false;  
+    }else{
+    	location.reload();
+         }
+      }
+   });
+      
+
+    }
+
+    function clearall(quantity,id)
+
+    {
+      var code=document.getElementById(id).value;
+  
+      if(code=="Invalid Code"){
+      
+      document.getElementById(id).value='' ; 
+        
+      }
+      
+    }
+    jQuery(document).on('change',"#paymenttype",function(){
+    	jQuery("#payment_type").val("");
+    	var payment_type = jQuery(this).val();
+    	console.log(payment_type); 
+    	//
+    	if(payment_type == "Purchase Order"){
+    		jQuery("#po_details").toggle();
+    		jQuery("#regform").attr("action", "/checkout/finalTransaction");
+    		jQuery("#po_num").attr("required",true);
+    		jQuery("#bill_chkout_qtn").val("Submit Order");
+    	}else{
+    		jQuery("#po_details").css('display','none');
+    		if(payment_type == "Credit Card"){
+    			jQuery("#wait").css("display", "block");
+    			jQuery("#bill_chkout_qtn").attr("disabled",true);
+    			jQuery.get( "/checkout/GetAuthToken", function( data ) {
+				  jQuery("#po_num").attr("required",false);
+				  var result = jQuery.parseJSON(data);
+				  jQuery("input#authToken").val(result.AuthToken);
+				  jQuery("#regform").attr("action", result.Url);
+				});
+				jQuery("#bill_chkout_qtn").attr("disabled",false);
+				jQuery("#wait").css("display", "none");
+    		}else{
+    			jQuery("#regform").attr("action", "/checkout/finalTransaction");
+    			jQuery("#po_num").attr("required",false);
+    		}
+    		jQuery("#bill_chkout_qtn").val("Continue");
+    	}
+    	//payment_type
+    	jQuery("#payment_type").val(payment_type);
+    	jQuery("#bill_chkout_qtn").attr("disabled",false);
+    });
 </script>

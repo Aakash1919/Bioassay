@@ -4,3 +4,4 @@
 [24-Oct-2020 23:20:45 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/User.php on line 482
 [24-Oct-2020 23:22:11 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/Products.php on line 108
 [24-Oct-2020 23:27:41 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/controllers/Products.php on line 98
+[29-Oct-2020 16:13:06 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '/home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/models/Member\AuthorizeConstants.php' (include_path='.:/opt/php56/lib/php') in /home4/c5z2c8v8/bioassay.artiqulatemusic.com/application/models/Member/Authentication_Model.php on line 3

@@ -248,6 +248,11 @@ class Checkout extends Public_Controller{
 		}
 		
 	}
+	public function GetAuthToken(){
+		$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents());
+		$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
+		echo json_encode($data,JSON_UNESCAPED_SLASHES);
+	}
 	public function get_shipping_fee($fedex_acct_num, $fedex_service, $cart) {
 		$shipping_fee = 0;
 		$base_ice = 38.90;
@@ -335,7 +340,7 @@ class Checkout extends Public_Controller{
 			$personID = $this->session->userdata('person_id');
 
 			if(!empty($personID)){
-				redirect('/checkout/checkout');
+				redirect('/checkout/billingQuotationProcess');
 			}else{
 				redirect('/checkout/guestcheckout');
 			}
@@ -345,24 +350,24 @@ class Checkout extends Public_Controller{
 		    if(!isset($_SESSION['PreviousInfo'])){
     			redirect('/checkout/checkout?fromCart=true');
     		}
-			$captcha_site_key = $this->data['capcha_site_key'];
-			if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
-				$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$captcha_site_key.'&response='.$_POST['g-recaptcha-response']);
-				$responseData = json_decode($verifyResponse);
+			// $captcha_site_key = $this->data['capcha_site_key'];
+			// if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
+			// 	$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$captcha_site_key.'&response='.$_POST['g-recaptcha-response']);
+			// 	$responseData = json_decode($verifyResponse);
 			
-				if(!$responseData->success){
-					$response = array('Response'=>0,'Message'=>"reCaptcha Verification failed.");
-					$this->session->set_flashdata('response',$response);
-					redirect('/checkout/billingQuotationProcess');
-				}
-			}else{
-				$response = array('Response'=>0,'Message'=>"Please select reCaptcha");
-				$this->session->set_flashdata('response',$response);
-				redirect('/checkout/billingQuotationProcess');
-			}
-			if(isset($_SESSION['PreviousInfo'])){
-				unset($_SESSION['PreviousInfo']);
-			}
+			// 	if(!$responseData->success){
+			// 		$response = array('Response'=>0,'Message'=>"reCaptcha Verification failed.");
+			// 		$this->session->set_flashdata('response',$response);
+			// 		redirect('/checkout/billingQuotationProcess');
+			// 	}
+			// }else{
+			// 	$response = array('Response'=>0,'Message'=>"Please select reCaptcha");
+			// 	$this->session->set_flashdata('response',$response);
+			// 	redirect('/checkout/billingQuotationProcess');
+			// }
+			// if(isset($_SESSION['PreviousInfo'])){
+			// 	unset($_SESSION['PreviousInfo']);
+			// }
 
 			$postData = $this->input->post();
 			$sessionData = $this->session->userdata;

@@ -37,7 +37,7 @@ if(!empty($pre)){
   $tel=$_SESSION['PreviousInfo']['sphone'];
   $fedex = $_SESSION['PreviousInfo']['fedex_accnt'];
   $fedexService = $_SESSION['PreviousInfo']['fedex_service'];
-//  $po_num = $_SESSION['PreviousInfo']['po_num'];
+  $po_num = $_SESSION['PreviousInfo']['po_num'];
   $email=$_SESSION['PreviousInfo']['semail'];
   $address1=$_SESSION['PreviousInfo']['saddr1'];
   $address2 = $_SESSION['PreviousInfo']['saddr2'];
@@ -55,7 +55,7 @@ if(!empty($pre)){
   $scountry=$_SESSION['PreviousInfo']['scountry'];
   $stel=$_SESSION['PreviousInfo']['sphone'];
   $semail=$_SESSION['PreviousInfo']['semail'];
- // $paymenttype =$_SESSION['PreviousInfo']['payment_type']; 
+  $paymenttype =$_SESSION['PreviousInfo']['payment_type']; 
   $stax1 = $_SESSION['PreviousInfo']['sales_tax_exempt_num1'];
   
 }
@@ -291,7 +291,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 					<div class="clear">
 					</div>
 
-					<!--
+
 					<div class="reg_left" style="padding-top: 15px;">
 						<div class="reg_a">
 							<p>
@@ -299,7 +299,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 							</p>
 						</div>
 						<div class="reg_cf1">
-							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php //echo isset($promotioncode)?$promotioncode:'';?>">
+							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($promotioncode)?$promotioncode:'';?>">
 							<input class="button" type="button" id="discode_" value="Submit" onClick="dis_check(this.value,this.id)" name="disn">
 						</div>
 						<div class="reg_left">
@@ -307,42 +307,40 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 						</div>
 						<div class="reg_b">
 						<?php 
-							// $dis = $this->session->userdata('discount_data');
-							// if(!empty($dis)){
-							// foreach ($dis  as $d) {
-							// 	$status = $d['Status'];
-							// 	if($status == 'false'){
-							// 		echo "<p style='margin-top:10px;'> <b>Invalid Code for ".$this->Products_Model->getname($d['Product_Id'])."</b></p>";
-							// 		}
-							// 		if($status == 'true'){
-							// 	  $codedate = $d['Data'][0]->expirydate;
-							// 	  if(empty($codedate)){
-							// 			$codedate = date('Y-m-d',time());
-							// 		}
-							// 		$expd = strtotime($codedate);
-							// 		$dtoday = time();
+							$dis = $this->session->userdata('discount_data');
+							if(!empty($dis)){
+							foreach ($dis  as $d) {
+								$status = $d['Status'];
+								if($status == 'false'){
+									echo "<p style='margin-top:10px;'> <b>Invalid Code for ".$this->Products_Model->getname($d['Product_Id'])."</b></p>";
+									}
+									if($status == 'true'){
+								  $codedate = $d['Data'][0]->expirydate;
+								  if(empty($codedate)){
+										$codedate = date('Y-m-d',time());
+									}
+									$expd = strtotime($codedate);
+									$dtoday = time();
 									
-							// 		if( $dtoday > $expd ){
-							// 			echo "<p> Code Expired for ".$this->Products_Model->getname($d['Product_Id'])."</p>";
-							// 		}
-							// 		}
-							// 	}
+									if( $dtoday > $expd ){
+										echo "<p> Code Expired for ".$this->Products_Model->getname($d['Product_Id'])."</p>";
+									}
+									}
+								}
 								
-							// }
+							}
 						?>
 					</div>
 				</div>
 						<div class="clear">
 						</div>
 					</div>
-				-->
 					<!-- Aakash Started here -->
 					<?php 
-						// $promotionCode = $this->session->userdata('PromotionCode');
-						// if(isset($promotionCode))
-						// {
+						$promotionCode = $this->session->userdata('PromotionCode');
+						if(isset($promotionCode))
+						{
 					?>
-					<!--
 					<div class="reg_left">
 						<div class="reg_a">
 						</div>
@@ -355,11 +353,10 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 					<div class="clear">
 					</div>
 					<br />
-				-->
 					<?php
-						//} 
+						} 
 					?>
-					<!-- Aakash ended here --> 
+					<!-- Aakash ended here -->
 					<?php
 						$uid = $this->session->userdata('person_id');
 						if(!empty($uid))
@@ -477,7 +474,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 					<?php
 						}
 					?>
-					<!--
+
 					<div class="reg_left">
 						<div class="reg_a">
 							<p>
@@ -487,31 +484,31 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 						<div class="reg_b">
 							<select name="payment_type" id="paymenttype" class="reg_b_jump" required >
 								<?php
-									//if(!empty($uid))
-									//{
+									if(!empty($uid))
+									{
 								?>								 
-								<option value="Purchase Order" <?php // if($paymenttype=="Purchase Order"){echo "selected";} ?>>
+								<option value="Purchase Order" <?php if($paymenttype=="Purchase Order"){echo "selected";} ?>>
 									Purchase Order
 								</option>
-								<option value="Credit Card" <?php //if($paymenttype=="Credit Card"){echo "selected";} ?>>
+								<option value="Credit Card" <?php if($paymenttype=="Credit Card"){echo "selected";} ?>>
 									Credit Card
 								</option> 
-								<option value="Paypal" <?php //if($paymenttype=="Paypal"){echo "selected";} ?>>
+								<option value="Paypal" <?php if($paymenttype=="Paypal"){echo "selected";} ?>>
 									Paypal
 								</option>
 								<?php
-								//	}
-								//	else
-								//	{
+									}
+									else
+									{
 								?>							  
-								<option value="Credit Card" <?php //if($paymenttype=="Credit Card"){echo "selected";} ?>>
+								<option value="Credit Card" <?php if($paymenttype=="Credit Card"){echo "selected";} ?>>
 									Credit Card
 								</option>  
-								<option value="Paypal" <?php //if($paymenttype=="Paypal"){echo "selected";} ?>>
+								<option value="Paypal" <?php if($paymenttype=="Paypal"){echo "selected";} ?>>
 									Paypal
 								</option>
 								<?php
-								//	}
+									}
 								?>
 							</select>
 						  
@@ -519,7 +516,6 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 						<div id="pt" class="errcls">
 						</div>
 					</div>
-				-->
 					<div class="clear">
 					</div>
 					<!--
@@ -535,7 +531,7 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 							</div>
 						</div>
 					</div> 
-					
+					-->
 					<div class="clear"> 
 					</div>
 					<div class="reg_left">
@@ -545,11 +541,11 @@ $countries=array("United States","Albania","Algeria","American Samoa",
 							</p>
 						</div>
 						<div class="reg_b">
-							<input id="po_num" type="text" name="po_num" value="<?php // echo isset($po_num)?$po_num:'';?>">
+							<input id="po_num" type="text" name="po_num" value="<?php echo isset($po_num)?$po_num:'';?>">
 						</div>
 					</div>
 					<div class="clear">
-					</div>-->
+					</div>
 					<div class="reg_left">
 						<div class="reg_a">
 						</div>
