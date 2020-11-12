@@ -96,13 +96,17 @@ class Products extends Public_Controller{
     public function getTable() {
             $postData = $this->input->post();
             $param= $this->input->get('q') ? $this->input->get('q') : '';
-            if(isset($postData['name']) && isset($postData['order'])) {
+            if(isset($postData['name'])) {
                 delete_cookie('order');
-                delete_cookie('format');
+                if(get_cookie('format')=='ASC'){
+                    delete_cookie('format');
+                    set_cookie('format','DESC',7200, 'spinninwebmedia.com');
+                }else { 
+                    delete_cookie('format');
+                    set_cookie('format','ASC',7200, 'spinninwebmedia.com');
+                }
                 set_cookie('order',$postData['name'],7200, 'spinninwebmedia.com');
-                set_cookie('format',$postData['order'],7200, 'spinninwebmedia.com');
             }
-
             $order=get_cookie('order') ? 'name_display' : '';
             $format =get_cookie('format') ? 'ASC' : '';
             $config['full_tag_open'] = '<div class="pagination" style="align:center;float:right;"><span>';

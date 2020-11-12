@@ -4,7 +4,7 @@
 		<th width="14%" scope="col">Quantity</th>
 		<th width="17%" scope="col">Unit Price</th>
 		<th width="15%" scope="col">Total</th>
-		<th class="update-remove" width="25%" scope="col">Update/Remove</th>
+		<th class="update-remove" width="25%" scope="col">Remove</th>
 	</tr>
 	<?php $i = 1;?>
 	<?php foreach ($this->cart->contents() as $items): ?>
@@ -21,7 +21,8 @@
 			<td><label><?php echo $this->cart->format_number($items['price']); ?></label></td>
 			<td><label>$<?php echo $this->cart->format_number($items['subtotal']); ?></label></td>
 			<td class="update-remove">
-				<a href="/checkout/delete/?rowid=<?php echo $items['rowid']; ?>"> <img src="/images/remove.png"></a>
+			<!-- <img src="/images/remove.png"> -->
+				<a href="/checkout/delete/?rowid=<?php echo $items['rowid']; ?>" class="button" style="color:red;">Remove</a>
 			</td>
 		</tr>
 		<?php $i++;?>

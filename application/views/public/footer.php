@@ -152,9 +152,9 @@
 </footer>
 <?php echo $cookieStatus;?>
 <?php if(!isset($cookieStatus) || $cookieStatus=='false'){?>	
-	<div id="MyMessage" style="text-align: center;z-index: 999;position:sticky;width:100%;bottom: 0;padding:25px 0;background-color: #06b;color: white;font-size: 18px;">
+	<div id="MyMessage" class="gdpr">
      <div>
-     	<p style="line-height: 30px;">This website uses cookies to ensure you get the best experience on our website. <button style="font-size: 16px;padding: 2px 10px;cursor: pointer;border-radius: 5px;border:none;margin-left: 5px;" id="acceptcookies">Accept</button></p>
+     	<p>This website uses cookies to ensure you get the best experience on our website. <button id="acceptcookies">Accept</button></p>
      </div>
      <div>
      	

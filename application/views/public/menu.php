@@ -193,9 +193,3 @@
 	
 </header>
 <div class="clear"></div>
-<?php
-	$r = $this->session->flashdata('response');
-	if(isset($r)){?>
-			<div style="color: white;text-align: center;font-size: 16px;background: red;margin-bottom: 4px;"><?php echo $r['Message']?></div>
-<?php } 
-?>
