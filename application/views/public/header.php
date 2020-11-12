@@ -43,9 +43,10 @@
 		-->
 		
 		<link rel="stylesheet" type="text/css" href="/theme/css/mastercss-min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/theme/css/style.css">
+        
 		<!--
-		<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
-        <link rel="stylesheet" type="text/css" href="/theme/ddlevelsfiles/ddlevelsmenu-base.css">
+		<link rel="stylesheet" type="text/css" href="/theme/ddlevelsfiles/ddlevelsmenu-base.css">
         <link rel="stylesheet" type="text/css" href="/theme/ddlevelsfiles/ddlevelsmenu-topbar.css">        
         <link rel="stylesheet" type="text/css" href="/theme/css/responsive-devic.css">
         <link rel="stylesheet" type="text/css" href="/theme/css/jquery.mmenu.css">
@@ -206,18 +207,13 @@
 		
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="https://jstest.authorize.net/v1/Accept.js" charset="utf-8"></script>
-      </head>
-      <?php
-
-      // print_r($this->session->userdata);
-      ?>
+	
+</head>
 <body class="homepage" id="topbody">
-
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4CBMLH"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
 <article class="main">
 <header>
         <div class="header-top">

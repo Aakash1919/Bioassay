@@ -333,7 +333,11 @@ class Express_checkout extends CI_Controller
 			$this->load->vars('cart', $cart);
 
 			// Example - Load Review Page
-			$this->load->view('paypal/demos/express_checkout/review', $cart);
+			// $this->load->view('paypal/demos/express_checkout/review', $cart);
+			$this->data['active'] = "Products";
+			$this->data['cart'] = $cart;
+			$this->data['subview'] = "paypal/demos/express_checkout/review";
+			$this->load->view('public/_layout_main',$this->data);
 		}
 	}
 
@@ -562,7 +566,7 @@ class Express_checkout extends CI_Controller
 				 $emailbody3=$emailbody3.$cart['shipping_zip']."<br >";
 				 $emailbody3=$emailbody3.$cart['shipping_country_name']."<br >";
 				 $emailbody3=$emailbody3.$cart['phone_number']." (tel)<br >";
-				 $emailbody3=$emailbody3.$_SESSION['payEmail']."<br ><br >";
+				 @$emailbody3=$emailbody3.$_SESSION['payEmail']."<br ><br >";
 				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
 				 $emailbody=$emailbody."<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
 				
@@ -584,27 +588,8 @@ class Express_checkout extends CI_Controller
 		$this->load->vars('cart', $cart);
 
 		// Successful call.  Load view or whatever you need to do here.
-		$pp=0;
-		$prods ='';
-		foreach($cart1 as $cart_item)
-		{		
-				$quat = $cart_item['qty'];
-				$pdt_price=$cart_item['price'];
-				$pdt_name=$cart_item['name'];
-				$catalogno=$cart_item['catalog'];
-				$pp++;
-				$prods = $prods."{
-			   'sku': '".$catalogno."',
-			   'name': '".$pdt_name."',
-			   'price': ".number_format($pdt_price,2).",
-			   'quantity': ".$quat."
-		   },";
-			
-		};
-		 
 		$this->cart->destroy();
-		$this->load->view('paypal/demos/express_checkout/payment_complete');
-
+		redirect('/checkout/thanks');
 
 	}
 	

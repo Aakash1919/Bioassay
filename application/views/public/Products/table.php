@@ -1,10 +1,10 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tabTable">
 	<tr  class="productListing-rowheading" vertical-align="middle">
-		<th><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="#">Product Name  </a><p style="margin-left: auto;"><span ><button style="padding: 0px 3px;" class="asc" id="name"><i class="arrow up"></i></button><br><button style="padding: 0px 3px;"  class="desc" id="name"><i class="arrow down"></i></button></span></p></div></th>
-		<th class="catalog-column"><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="#">Catalog #</a><p style="margin-left: auto;"><span ><button style="padding: 0px 3px;"  class="asc" id="catalog_num"><i class="arrow up"></i></button><br><button style="padding: 0px 3px;" class="desc" id="catalog_num"><i class="arrow down"></i></button></span></p></div></th>
+		<th><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="javascript:void(0)" id="productName">Product Name  </a></div></th>
+		<th class="catalog-column"><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="javascript:void(0)" id="catalog_num">Catalog #</a></div></th>
 		<th class="protocol-column"><a href="#">Protocol</a></th>
 		<th class="msds-column"><a href="#">SDS</a></th>
-		<th class="price-column"><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="#">Price ($)</a> <p style="margin-left: auto;"><span ><button style="padding: 0px 3px;" class="asc" id="price"><i class="arrow up"></i></button><br><button style="padding: 0px 3px;" class="desc" id="price"><i class="arrow down"></i></button></span></p></div></th>
+		<th class="price-column"><div style="display: flex;align-items: center;padding-bottom: 5px;"><a href="javascript:void(0)" id="price">Price ($)</a> </div></th>
 		<th class="qty-column"><a href="#">QTY</a></th>
 		<th><a href="#">Add to Cart</a></th>
 	</tr>
@@ -46,7 +46,7 @@
     		</td>
         	<td class="price-column"><?php echo isset($i->price) ? "$" . $i->price : '<a href="/support">inquire</a>'; ?></td>
     		<td class="qty-column"><input style="width: 30px; text-align: center;" form= "<?php echo "form_".$i->product_id; ?>" type="number" value="1" name="quantity" min="1"></td>
-			<td><button form= "<?php echo "form_".$i->product_id; ?>"  class="cartbtn"><img src="/images/cart.png"></button></td>
+			<td><?php echo ($i->in_stock == 'n') ? 'Out Of Stock' :'<button form = "form_'.$i->product_id.'"  class="cartbtn"><img src="/images/cart.png"></button>'; ?></td>
 	</tr>
 	</form>
     <?php   $count++;

@@ -59,18 +59,22 @@
 		}
 </script>
 <script>
-jQuery(document).on('click','.asc',function(){	
-		var orderby = jQuery(this).attr('id');
-		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
-		jQuery.post( url,{'name':orderby,'order':'asc'}, function( data ) {
-		  jQuery("#productData").html(data);
-		});
+jQuery(document).on('click','#productName',function(){	
+	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	jQuery.post( url,{'name':'name_display'}, function( data ) {
+	jQuery("#productData").html(data);
 	});
-jQuery(document).on('click','.desc',function(){
-		var orderby = jQuery(this).attr('id');
-		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
-		jQuery.post( url,{'name':orderby,'order':'desc'}, function( data ) {
-		  jQuery("#productData").html(data);
-		});
-	})
+});
+jQuery(document).on('click','#catalog_num',function(){	
+	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	jQuery.post( url,{'name':'catalog_num'}, function( data ) {
+	jQuery("#productData").html(data);
+	});
+});
+jQuery(document).on('click','#price',function(){	
+	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	jQuery.post( url,{'name':'price'}, function( data ) {
+	jQuery("#productData").html(data);
+	});
+});
 </script>

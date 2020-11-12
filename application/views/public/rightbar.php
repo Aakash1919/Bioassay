@@ -13,6 +13,7 @@ foreach ($item as $i) {
 	$storage = $i->storage;
 	$product_figure = $i->product_figure;
 	$url = $i->url;
+	$inStock = $i->in_stock;
 }
 ?>
 
@@ -29,8 +30,13 @@ foreach ($item as $i) {
 					<input type="hidden" name="catalog" value="<?php echo $catalog_num;?>">
 					<input type="hidden" name="ship" value="<?php echo $shipping_method;?>">
 					<input type="hidden" name="name" value="<?php echo mb_convert_encoding($display_name, "HTML-ENTITIES", "UTF-8");?>">
-					<span class="buynow_black">Price:</span> $<?php echo stripslashes($price);?> &nbsp;&nbsp;&nbsp;<span class="buynow_black">Qty:</span> <input type="text" name="quantity" size="2" value="1" />    
-					 <input class="cart-icon" style="cursor:pointer;" type="submit" size="2" value="" >
+					<span class="buynow_black">Price:</span> $<?php echo stripslashes($price);?> &nbsp;&nbsp;&nbsp;
+					<?php if(isset($inStock) && $inStock=='n'){ ?>
+					<span class="buynow_black">Out Of Stock</span>
+					<?php }else { ?>
+					<span class="buynow_black">Qty:</span> <input type="text" name="quantity" size="2" value="1" />    
+					<input class="cart-icon" style="cursor:pointer;" type="submit" size="2" value="" >
+					<?php } ?>
 					<div class="clear" style="padding-bottom:15px;"></div>
 					<span class="buynow_black"><i>For orders of 10 or more kits, please call <a href="tel:+15107829988,1">+1-510-782-9988x1</a> or <a href="javascript:location='mailto:\u0069\u006e\u0066\u006f\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003d<?php echo ucfirst($name);?> Bulk Order ';void 0"> email us</a> for best pricing and/or bulk order</i>. </span><br><br>
 
