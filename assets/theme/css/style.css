@@ -23,21 +23,40 @@ div.datepicker{ min-width: initial !important; } */
     border-radius: 5px;
     border:none;
     margin-left: 5px;
+    background-color: #06b;
+    color: #fff;;
 }
 .gdpr p {
     line-height: 30px;
 }
+.cookieMessage {
+    display: flex;
+    margin: 0px auto;
+    max-width: 50%;
+}
 @media screen and (max-width: 360px) {
-.gdpr button {
-    font-size: 12px;
-    background-color: #06b;
-    color: white;
-}
-.gdpr {
-    font-size: 14px;
-    padding: 9px 0px;
-}
-.gdpr p {
-    line-height: 20px;
-}
+    .gdpr button {
+        font-size: 12px;
+        background-color: #06b;
+        color: white;
+        width: 30%;
+        align-self: flex-end;
+        height: 37px;
+    }
+    .cookieMessage {
+        display: flex;
+        padding: 0px 18px;
+        max-width: 100%;
+    }
+    .gdpr {
+        font-size: 14px;
+        padding: 9px 0px;
+    }
+    .gdpr p {
+        line-height: 20px;
+        text-align: left;
+        font-size: 13px;
+        flex-basis: 70%;
+        font-weight: bold;
+    }
 }
