@@ -32,9 +32,15 @@ div.datepicker{ min-width: initial !important; } */
 .cookieMessage {
     display: flex;
     margin: 0px auto;
-    max-width: 50%;
+    max-width: 65%;
 }
-@media screen and (max-width: 360px) {
+@media screen and (min-width: 768px) {
+    .gdpr {
+    width: 1020px;
+    margin: auto;
+    }
+}
+@media screen and (max-width: 400px) {
     .gdpr button {
         font-size: 12px;
         background-color: #06b;
