@@ -9,10 +9,12 @@ div.datepicker{ min-width: initial !important; } */
     position:sticky;
     width:100%;
     bottom: 0;
-    padding:25px 0;
-    background-color: #06b;
-    color: white;
-    font-size: 18px;
+    padding:10px 0px;
+    background-color: white;
+    color: black;
+    border:2px solid #06b;;
+    font-size: 16px;
+    border-radius: 8px;
 }
 .gdpr button {
     font-size: 16px;
@@ -28,6 +30,8 @@ div.datepicker{ min-width: initial !important; } */
 @media screen and (max-width: 360px) {
 .gdpr button {
     font-size: 12px;
+    background-color: #06b;
+    color: white;
 }
 .gdpr {
     font-size: 14px;

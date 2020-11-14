@@ -4,17 +4,11 @@
 
 <div class="clear"> </div>
 
-<section class="content-bottom">
-
-
+<section class="content-bottom"> 
 
 </section> 
 
 </section>
-
-
-
-
 
 <div class="clear"></div>
 
@@ -147,28 +141,29 @@
 
 		<img src="/images/shadow.png" width="1020" height="28" alt="">
 
-	</div>
+
 	
+		</div>
 </footer>
 <?php echo $cookieStatus;?>
-<?php if(!isset($cookieStatus) || $cookieStatus=='false'){?>	
-	<div id="MyMessage" class="gdpr">
-     <div>
-     	<p>This website uses cookies to ensure you get the best experience on our website. <button id="acceptcookies">Accept</button></p>
-     </div>
-     <div>
-     	
-     </div>
-	</div>
-	<script type="text/javascript">
-		jQuery(document).on('click','#acceptcookies',function(){
-			var url = "/home/cookieset";
-			jQuery.post( url,{'status':'true'}, function( data ) {
-				jQuery("#MyMessage").css('display','none');
-		});
-		});
-	</script>
-<?php } ?>	
+	<?php if(!isset($cookieStatus) || $cookieStatus=='false'){?>	
+		<div id="MyMessage" class="gdpr">
+	     <div>
+	     	<p>This website uses cookies to ensure you get the best experience on our website. <button id="acceptcookies">Ok</button></p>
+	     </div>
+	     <div>
+	     	
+	     </div>
+		</div>
+		<script type="text/javascript">
+			jQuery(document).on('click','#acceptcookies',function(){
+				var url = "/home/cookieset";
+				jQuery.post( url,{'status':'true'}, function( data ) {
+					jQuery("#MyMessage").css('display','none');
+			});
+			});
+		</script>
+	<?php } ?>	 
 </body>
 
 <style>
