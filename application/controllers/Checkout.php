@@ -151,7 +151,7 @@ class Checkout extends Public_Controller{
 					$taxrate =  0.0975;	  
 				 } else {
 					 if (strtoupper($this->input->post('sstate'))=="CA" || strtoupper($this->input->post('sstate'))=="CALIFORNIA") {
-						if(!empty($this->input->post('sales_tax_exempt_num')) || !empty($this->input->post('sales_tax_exempt_num1'))){
+						if(!empty($this->input->post('tax_exempt_id'))){
 							
 							$taxrate =  0;
 						}else{
@@ -178,7 +178,7 @@ class Checkout extends Public_Controller{
 	  
 				 } else {
 					 if (strtoupper($PreviousInfo['sstate'])=="CA" || strtoupper($PreviousInfo['sstate'])=="CALIFORNIA") {
-						if(!empty($PreviousInfo['sales_tax_exempt_num']) || !empty($PreviousInfo['sales_tax_exempt_num1'])){
+						if(!empty($PreviousInfo['tax_exempt_id'])){
 							$taxrate =  0;
 						}else{
 							$taxrate =  0.0725;
@@ -403,7 +403,7 @@ class Checkout extends Public_Controller{
 					'shipping_country'=>$this->input->post('scountry'),
 					'shipping_tel'=>$this->input->post('sphone'),
 					'shipping_email'=>$this->input->post('semail'),
-					'tax_exempt'=>$this->input->post('sales_tax_exempt_num1'),
+					'tax_exempt'=>$this->input->post('tax_exempt_id'),
 					'comment_'=>$this->input->post('cmnts'),
 
 					'mod_date'=>date('Y-m-d',time()),
@@ -457,7 +457,7 @@ class Checkout extends Public_Controller{
 		  
 					 }else{
 						if (strtoupper($this->input->post('sstate'))=="CA" || strtoupper($this->input->post('sstate'))=="CALIFORNIA") {
-							if(!empty($this->input->post('sales_tax_exempt_num')) || !empty($this->input->post('sales_tax_exempt_num1'))){
+							if(!empty($this->input->post('tax_exempt_id'))){
 								$taxrate =  0;
 							}else{
 								$taxrate =  0.0725;
@@ -558,8 +558,8 @@ if($cn!="United States"){
 	}
 	$emailbody3=$emailbody3."Subtotal:        $".$finalprice."<br >";
 	$emailbody3=$emailbody3."S/H:             TBD<br >";  
-	if(!empty($this->input->post('sales_tax_exempt_num'))){
-		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('sales_tax_exempt_num')."<br/>";  
+	if(!empty($this->input->post('tax_exempt_id'))){
+		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('tax_exempt_id')."<br/>";  
 	}
 	//$emailbody3=$emailbody3."Tax:             $".number_format($taxrate*($this->cart->total()),2)."<br >";
 	
@@ -721,8 +721,8 @@ foreach($cart as $prodid => $product) {
 }
    $emailbody3=$emailbody3."Subtotal:        $".$finalprice."<br >";
    $emailbody3=$emailbody3."S/H:             $".number_format($shippingfee,2)."<br >";  
-   if(!empty($this->input->post('sales_tax_exempt_num'))){
-		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('sales_tax_exempt_num')."<br/>";  
+   if(!empty($this->input->post('tax_exempt_id'))){
+		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('tax_exempt_id')."<br/>";  
 	}
    $emailbody3=$emailbody3."Tax:             $".number_format($taxrate*($this->cart->total()),2)."<br >";
 
@@ -887,8 +887,8 @@ foreach($cart as $prodid => $product)
 }
 $emailbody3=$emailbody3."Subtotal:        $".number_format($finalprice,2)."<br >";
 $emailbody3=$emailbody3."S/H:             $".number_format($shippingfee,2)."<br >";      
-if(!empty($this->input->post('sales_tax_exempt_num'))){
-		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('sales_tax_exempt_num')."<br/>";  
+if(!empty($this->input->post('tax_exempt_id'))){
+		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('tax_exempt_id')."<br/>";  
 	}
 $emailbody3=$emailbody3."Tax:             $".number_format($taxrate*($this->cart->total()),2)."<br >";
 
