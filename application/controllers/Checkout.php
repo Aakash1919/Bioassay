@@ -140,14 +140,13 @@ class Checkout extends Public_Controller{
 		}
 		
 			$PostData = $this->input->post();
-			//print_r($PostData);
 			$cart=$this->cart->contents();
 
 			$Alameda_zip_arr = array("94501", "94502", "94536", "94538", "94539", "94541", "94542", "94544", "94545", "94546", "94550", "94551", "94552", "94555", "94560", "94566", "94568", "94577", "94578", "94579", "94580", "94586", "94587", "94588", "94601", "94602", "94603", "94605", "94606", "94607", "94608", "94609", "94610", "94611", "94612", "94615", "94617", "94618", "94619", "94621", "94702", "94703", "94704", "94705", "94706", "94707", "94708", "94709", "94710");
 			if($PostData){
 				$fedex_acct_num = $this->input->post('fedex_accnt');
 				$fedex_service =$this->input->post('fedex_service');
-				if (in_array($this->input->post('szip'), $Alameda_zip_arr)) {			
+				if (in_array($this->input->post('szip'), $Alameda_zip_arr) && empty($this->input->post('tax_exempt_id'))) {			
 					$taxrate =  0.0975;	  
 				 } else {
 					 if (strtoupper($this->input->post('sstate'))=="CA" || strtoupper($this->input->post('sstate'))=="CALIFORNIA") {
@@ -368,9 +367,10 @@ class Checkout extends Public_Controller{
 			// if(isset($_SESSION['PreviousInfo'])){
 			// 	unset($_SESSION['PreviousInfo']);
 			// }
-
+				
 			$postData = $this->input->post();
 			$sessionData = $this->session->userdata;
+
 			$cart = $this->cart->contents();
 			$discountamount = $this->session->userdata('discountamount');
 			if(!empty($discountamount)){
@@ -451,7 +451,7 @@ class Checkout extends Public_Controller{
 
 		    $Alameda_zip_arr = array("94501", "94502", "94536", "94538", "94539", "94541", "94542", "94544", "94545", "94546", "94550", "94551", "94552", "94555", "94560", "94566", "94568", "94577", "94578", "94579", "94580", "94586", "94587", "94588", "94601", "94602", "94603", "94605", "94606", "94607", "94608", "94609", "94610", "94611", "94612", "94615", "94617", "94618", "94619", "94621", "94702", "94703", "94704", "94705", "94706", "94707", "94708", "94709", "94710");
 			
-					if (in_array($this->input->post('szip'), $Alameda_zip_arr)) {
+					if (in_array($this->input->post('szip'), $Alameda_zip_arr) && empty($this->input->post('tax_exempt_id'))) {
 					
 						$taxrate =  0.0975;
 		  
@@ -467,7 +467,6 @@ class Checkout extends Public_Controller{
 						}
 					 }
 					//end
-			
 			  $newTotal = $this->cart->total()+($this->cart->total() * $taxrate)+$shippingfee;
 			  $newTotal = number_format((float)$newTotal, 2, '.', '');
 			  $this->session->set_userdata('newTotal', $newTotal);
@@ -767,6 +766,7 @@ $emailbody3=$emailbody3.$this->input->post('szip')."<br >";
 $emailbody3=$emailbody3.$this->input->post('scountry')."<br >";
 $emailbody3=$emailbody3.$this->input->post('sphone')." (tel)<br >";
 $emailbody3=$emailbody3.$this->input->post('semail')."<br ><br >";
+$emailbody3=$emailbody3."Notes:<br >".$this->input->post('cmnts')."<br ><br >";
 
 $emailbody=$emailbody1.$emailbody2.$emailbody3;
    $email = $this->input->post('semail')."," ;
@@ -821,117 +821,26 @@ $emailbody=$emailbody1.$emailbody2.$emailbody3;
 	$this->cart->destroy();
 	redirect('/checkout/thanks');
 }
-if($this->input->post('payment_type')=="Paypal"){
-	$countryCode = $this->returnCountryCode($this->input->post('scountry'));
-	
-	$this->session->set_userdata('orderID', $orderID);
-	$this->session->set_userdata('SHIPTONAME', $this->input->post('sattn'));
-	$this->session->set_userdata('SHIPTOSTREET', $this->input->post('saddr1').', '.$this->input->post('saddr2'));
-	$this->session->set_userdata('SHIPTOCITY', $this->input->post('scity'));
-	$this->session->set_userdata('SHIPTOSTATE', $this->input->post('sstate'));
-	$this->session->set_userdata('SHIPTOCOUNTRY', $countryCode);
-	$this->session->set_userdata('SHIPTOZIP', $this->input->post('szip'));
-	$this->session->set_userdata('SHIPTOPHONENUM', $this->input->post('sphone'));
-	$this->session->set_userdata('po_num', $this->input->post('po_num'));
-	$this->session->set_userdata('payEmail', $this->input->post('semail'));
-	
-	redirect('express_checkout/SetExpressCheckout');
-}
-;
-if($this->input->post('payment_type')=="Credit Card"){
-	$response  = self::getAuthorizeResponse($newTotal);
-	die;
-}
-
-$emailbody1="";
-$emailbody1="Dear ".$this->input->post('sattn').",<br ><br >";
-$emailbody2="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Credit Card<br><br>";
-$emailbody3='';
-$emailbody3=$emailbody3."Order Details:<br ><br >";
-$po_num = $this->input->post('po_num');
-if(isset($po_num)){
-	$emailbody3=$emailbody3."PO Number: ".$po_num."<br ><br >";
-}
-$kk=0;
-foreach($cart as $prodid => $product) 
-
-
-{
-	$sumtot=0;
-	if($product != null)
-	{
-		$quat = $product['qty'];
-		$tot=$product['qty']*$prdt_price; 
-		$sumtot=$sumtot+$tot;
-
-		$kk++;
-
-		$shipping_method= $product['shippingmt'];
-		$pdt_price=$product['price'];
-		$pdt_name=$product['name'];
-		$catalogno=$product['catalog'];
-		$discountcode=$this->session->userdata('PromotionCode');
+	if($this->input->post('payment_type')=="Paypal"){
+		$countryCode = $this->returnCountryCode($this->input->post('scountry'));
 		
-		$emailbody3=$emailbody3."Product Name:     $pdt_name<br >Catalog No:        $catalogno<br >Shipping method:  $shipping_method<br >Price:           $". $pdt_price."<br >QTY:             $quat<br >";
-	
-		$emailbody3=$emailbody3.'<br>';
-
+		$this->session->set_userdata('orderID', $orderID);
+		$this->session->set_userdata('SHIPTONAME', $this->input->post('sattn'));
+		$this->session->set_userdata('SHIPTOSTREET', $this->input->post('saddr1').', '.$this->input->post('saddr2'));
+		$this->session->set_userdata('SHIPTOCITY', $this->input->post('scity'));
+		$this->session->set_userdata('SHIPTOSTATE', $this->input->post('sstate'));
+		$this->session->set_userdata('SHIPTOCOUNTRY', $countryCode);
+		$this->session->set_userdata('SHIPTOZIP', $this->input->post('szip'));
+		$this->session->set_userdata('SHIPTOPHONENUM', $this->input->post('sphone'));
+		$this->session->set_userdata('po_num', $this->input->post('po_num'));
+		$this->session->set_userdata('payEmail', $this->input->post('semail'));
+		
+		redirect('express_checkout/SetExpressCheckout');
 	}
-}
-
-   //loop ends
-   if($discountcode!=""){
-	$discountamount = $this->session->userdata('discountamount');	
-	$emailbody3=$emailbody3."Discount Code:    $discountcode<br > Discount Price:$".$discountamount."<br>";
-	$newTotal = $newTotal-$discountamount;
-}
-$emailbody3=$emailbody3."Subtotal:        $".number_format($finalprice,2)."<br >";
-$emailbody3=$emailbody3."S/H:             $".number_format($shippingfee,2)."<br >";      
-if(!empty($this->input->post('tax_exempt_id'))){
-		$emailbody3=$emailbody3."Tax Exempt Number: ".$this->input->post('tax_exempt_id')."<br/>";  
+	if($this->input->post('payment_type')=="Credit Card"){
+		$response  = self::getAuthorizeResponse($newTotal);
+		die;
 	}
-$emailbody3=$emailbody3."Tax:             $".number_format($taxrate*($this->cart->total()),2)."<br >";
-
-$customrate = 0.00; //This need to be changed afterwards aakash
-
-if ($customrate>0)
-{
-
-	$customamount = $this->cart->total() * $customrate;
-	$emailbody3=$emailbody3."Custom Charge:\t$".sprintf("%0.2f",$customamount)."<br >";
-	//echo "<tr class=textbold><td colspan=5 align=right>Custom:</td><td>$".sprintf("%0.2f",$customamount)."</td></tr><br >";
-}
-$emailbody3=$emailbody3."Total:           $".$newTotal."<br ><br >";
-
-if($shipping_method == "USPS") {
-	$emailbody3=$emailbody3."Free 2-5 Day USPS Shipping<br ><br >";
-} else {
-
-
-	if ($this->input->post('fedex_accnt')) {
-		if ( preg_match("/^[0-9]{9}$/",$this->input->post('fedex_accnt')) ) {
-			$emailbody3=$emailbody3."FedEx Acct #:    ".$this->input->post('fedex_accnt')."<br >";
-
-		} else {
-			$emailbody3=$emailbody3."FedEx Acct #:    ".$this->input->post('fedex_accnt')." Invalid, not counted for S&H fee calculation.<br >";
-		}
-	}
-	$emailbody3=$emailbody3."FedEx Delivery:  ".$this->input->post('fedex_service')."<br ><br >";
-}
-
-$emailbody3=$emailbody3."Ship to:<br ><br >".$sattn."<br >";
-$emailbody3=$emailbody3.$scompany."<br >";
-$emailbody3=$emailbody3.$this->input->post('saddr1')."<br >";
-$emailbody3=$emailbody3.$this->input->post('saddr2')."<br >";
-$emailbody3=$emailbody3.$scity.", ";
-$emailbody3=$emailbody3.$sstate." ";
-$emailbody3=$emailbody3.$szip."<br >";
-$emailbody3=$emailbody3.$scountry."<br >";
-$emailbody3=$emailbody3.$sphone." (tel)<br >";
-$emailbody3=$emailbody3.$semail."<br ><br >";
-mail($email,$emailtitle,$emailbody, $header);
- //Authorize End
-
 }
 
 }

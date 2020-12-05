@@ -567,9 +567,10 @@ class Express_checkout extends CI_Controller
 				 $emailbody3=$emailbody3.$cart['shipping_country_name']."<br >";
 				 $emailbody3=$emailbody3.$cart['phone_number']." (tel)<br >";
 				 @$emailbody3=$emailbody3.$_SESSION['payEmail']."<br ><br >";
+				 $emailbody3=$emailbody3."Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
+
 				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
 				 $emailbody=$emailbody."<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
-				
 			  
 			   $email = $cart['email']."," ;
 			   $email .="order@bioassaysys.com" .",";
