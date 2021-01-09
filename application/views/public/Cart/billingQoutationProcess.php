@@ -94,7 +94,7 @@ if(!empty($personID)){
 		<input type="hidden" name="scompany" value="<?php echo isset($scompany)?$scompany:'';?>">
 		<input type="hidden" name="po_num" id="input_po_num" value="<?php echo isset($po_num)?$po_num:'';?>">
 		<input type="hidden" name="saddr1" value="<?php echo isset($sddr1)?$sddr1:'';?>">
-		<input type="hidden" name="saddr2" value="<?php echo isset($sddr2)?$sddr2:'';?>">
+		<input type="hidden" name="saddr2" value="<?php echo isset($saddr2)?$saddr2:'';?>">
 		<input type="hidden" name="scity" value="<?php echo isset($scity)?$scity:'';?>">
 		<input type="hidden" name="sstate" value="<?php echo isset($sstate)?$sstate:'';?>">
 		<input type="hidden" name="szip" value="<?php echo isset($szip)?$szip:'';?>">
