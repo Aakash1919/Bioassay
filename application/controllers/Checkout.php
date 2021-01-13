@@ -242,16 +242,13 @@ class Checkout extends Public_Controller{
 			}
 			$this->data['shippingFee'] = (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 			$this->session->set_userdata('discountamount',$discountamount);
+			$this->data['hostedAccessPaymentPage'] = $this->load->view('public/Modals/hostedAccessPaymentPage', NULL, TRUE);
 		 	$this->data['subview'] = "public/Cart/billingQoutationProcess";
 			$this->load->view('public/_layout_main',$this->data);	
 		}
 		
 	}
-	public function GetAuthToken(){
-		$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents());
-		$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
-		echo json_encode($data,JSON_UNESCAPED_SLASHES);
-	}
+
 	public function get_shipping_fee($fedex_acct_num, $fedex_service, $cart) {
 		$shipping_fee = 0;
 		$base_ice = 38.90;
@@ -884,6 +881,14 @@ public function thanks()
 		$this->data['subview'] = "public/Cart/thanks";
 		$this->load->view('public/_layout_main',$this->data);
 }
+
+public function GetAuthToken(){
+	$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents());
+	$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
+	echo json_encode($data,JSON_UNESCAPED_SLASHES);
+}
+
+
 public function returnCountryCode($countryNamePost){
 	$countryvalue=array("US","AL","DZ","AS","AO","AI","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT",
 "BO","BL","BA","BW","BR","VG","BN","BG","BF","BI","KH","CM","CA","CV","KY","TD","CL","CN","CO","CG","CK","CR","HR","CB","CY","CZ","DK",

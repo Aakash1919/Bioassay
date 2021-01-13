@@ -23,7 +23,6 @@ class Authentication_Model extends CI_Model{
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setTransactionType("authCaptureTransaction");
         $transactionRequestType->setAmount($amount);
-        // $transactionRequestType->setOrder(self::getOrder());
         $transactionRequestType->setLineItems(self::getLineItems($items));
     
         return $transactionRequestType;
@@ -49,57 +48,30 @@ class Authentication_Model extends CI_Model{
         }
         return $itemsArray;
     }
-    function getSetting1() {
-
-        $setting1 = new AnetAPI\SettingType();
-        $setting1->setSettingName("hostedPaymentButtonOptions");
-        $setting1->setSettingValue("{\"text\": \"Pay\"}");
+    public function getSetting($name=null, $value=null) {
+        $setting = new AnetAPI\SettingType();
+        $setting->setSettingName($name);
+        $setting->setSettingValue($value);
         
-        return $setting1;
+        return $setting;
     }
-
-    function getSetting2() {
-
-        $setting2 = new AnetAPI\SettingType();
-        $setting2->setSettingName("hostedPaymentOrderOptions");
-        $setting2->setSettingValue("{\"show\": false}");
-
-        return $setting2;
-    }
-
-    function getSetting3() {
-        
-        $thanksUrl = base_url().'checkout/thanks';
-        $cancelUrl = base_url().'checkout';
-        $setting3 = new AnetAPI\SettingType();
-        $setting3->setSettingName("hostedPaymentReturnOptions");
-        $setting3->setSettingValue(
-            "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": true}"
-        );
-        
-        return $setting3;
-    }
-
-    // function getOrder($order){
-        
-    //     $order = new AnetAPI\OrderType();
-    //     $order->setInvoiceNumber(time());
-    //     $order->setDescription("Golf Shirts");
-        
-    //     return $order;
-    // }
 
     function getRequestforHAS($amount, $items) {
 
         $refId = 'ref' . time();
         
+        $iframeUrl = base_url().'checkout/billingQuotationProcess';
+        $thanksUrl = base_url().'checkout/thanks';
+        $cancelUrl = base_url().'checkout';
+
         $request = new AnetAPI\GetHostedPaymentPageRequest();
         $request->setMerchantAuthentication(self::getMerchantAuthentication());
         $request->setRefId($refId);
         $request->setTransactionRequest(self::getTransactionRequestType($amount, $items));
-        $request->addToHostedPaymentSettings(self::getSetting1());
-        $request->addToHostedPaymentSettings(self::getSetting2());
-        $request->addToHostedPaymentSettings(self::getSetting3());
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentButtonOptions", "{\"text\": \"Pay\"}"));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentOrderOptions", "{\"show\": false}"));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": true}"));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentIFrameCommunicatorUrl", "{\"url\": \"$iframeUrl\"}"));
 
         return $request;
     }
@@ -107,13 +79,11 @@ class Authentication_Model extends CI_Model{
     {
         $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items));
         $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
-       
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();
         } else {
            return false;
         }
-      
         return $response;
     }
 }

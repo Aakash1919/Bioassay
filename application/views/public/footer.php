@@ -43,7 +43,6 @@
 		<img src="/images/shadow.png" width="1020" height="28" alt="">
 	</div>
 </footer>
-<?php echo $cookieStatus;?>
 	<?php if(!isset($cookieStatus) || $cookieStatus=='false'){?>	
 		<div id="MyMessage" class="gdpr">
 			<div class="cookieMessage">
@@ -61,13 +60,5 @@
 		</script>
 	<?php } ?>	 
 </body>
-
-<style>
-
-  .seal{float:right;}
-
-  .seal li{float:left;margin:10px 10px;}
-
-</style>
-
+<script type="text/javascript" src="/assets/theme/js/custom.js"></script>
 </html>
