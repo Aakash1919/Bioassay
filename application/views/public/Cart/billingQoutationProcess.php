@@ -80,6 +80,9 @@ if(!empty($personID)){
   
 }
 ?>
+<form method="post" action="https://test.authorize.net/payment/payment" id="formAuthorizeNetPopup" name="formAuthorizeNetPopup" target="iframeAuthorizeNet" style="display:none;">
+	<input type="hidden" id="popupToken" name="token" value="Replace with form token from getHostedPaymentPageResponse" />
+</form>   
 <section class="content-area">
 	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
 		<input type="hidden" name="token" id="authToken" value="<?php echo isset($authToken)?$authToken:0; ?>">
@@ -903,7 +906,7 @@ if(!empty($personID)){
 										&nbsp;
 										&nbsp;
 										&nbsp; 
-										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="submit" value="Submit" disabled="disabled">
+										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="button" value="Submit" disabled="disabled">
 									</div>
 								</div>
 							</div>
@@ -923,94 +926,5 @@ if(!empty($personID)){
 	</form>
 </section>
 <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/images/demo_wait.gif' width="64" height="64" /><br>Loading..</div>
-<script type="text/javascript">
-  $("form#regform").submit(function(event) {
-   
-   // var recaptcha = grecaptcha.getResponse();
-   // if (recaptcha === "") {
-   //    event.preventDefault();
-   //  swal('Please check the recaptcha');
-   // }
-   var payment_type = jQuery(this).val();
-   if(payment_type == "Purchase Order"){
-   	//input_po_num
-   	var po_number = jQuery("#po_num").val();
-   	jQuery("#input_po_num").val(po_number);
-   	//tax_exempt_id
-   	var tax_exempt_id = jQuery("#tax_exempt_id").val();
-   	jQuery("#sales_tax_exempt_num1").val(tax_exempt_id);
-   }
-});
+<?= isset($hostedAccessPaymentPage) ? $hostedAccessPaymentPage : ''?>
 
- 
-    function dis_check()
-    {
-    var discountcod=document.getElementById('discode').value;
-    if(discountcod=='')
-    exit;
-
-  var dataString="discountcod="+discountcod;
-    $.ajax({
-    type: "POST",
-    url: "/checkout/getDiscount",
-    data: dataString,
-    success: function(data){
-   	//console.log(data);
-    if(data=="Invalid Code" || data=="Discount Code Expired"){
-    $("#discode").val(data);
-    return false;  
-    }else{
-    	location.reload();
-         }
-      }
-   });
-      
-
-    }
-
-    function clearall(quantity,id)
-
-    {
-      var code=document.getElementById(id).value;
-  
-      if(code=="Invalid Code"){
-      
-      document.getElementById(id).value='' ; 
-        
-      }
-      
-    }
-    jQuery(document).on('change',"#paymenttype",function(){
-    	jQuery("#payment_type").val("");
-    	var payment_type = jQuery(this).val();
-    	console.log(payment_type); 
-    	//
-    	if(payment_type == "Purchase Order"){
-    		jQuery("#po_details").toggle();
-    		jQuery("#regform").attr("action", "/checkout/finalTransaction");
-    		jQuery("#po_num").attr("required",true);
-    		jQuery("#bill_chkout_qtn").val("Submit Order");
-    	}else{
-    		jQuery("#po_details").css('display','none');
-    		if(payment_type == "Credit Card"){
-    			jQuery("#wait").css("display", "block");
-    			jQuery("#bill_chkout_qtn").attr("disabled",true);
-    			jQuery.get( "/checkout/GetAuthToken", function( data ) {
-				  jQuery("#po_num").attr("required",false);
-				  var result = jQuery.parseJSON(data);
-				  jQuery("input#authToken").val(result.AuthToken);
-				  jQuery("#regform").attr("action", result.Url);
-				});
-				jQuery("#bill_chkout_qtn").attr("disabled",false);
-				jQuery("#wait").css("display", "none");
-    		}else{
-    			jQuery("#regform").attr("action", "/checkout/finalTransaction");
-    			jQuery("#po_num").attr("required",false);
-    		}
-    		jQuery("#bill_chkout_qtn").val("Continue");
-    	}
-    	//payment_type
-    	jQuery("#payment_type").val(payment_type);
-    	jQuery("#bill_chkout_qtn").attr("disabled",false);
-    });
-</script>
