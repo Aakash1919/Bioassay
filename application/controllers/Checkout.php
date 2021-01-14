@@ -888,6 +888,9 @@ public function GetAuthToken(){
 	echo json_encode($data,JSON_UNESCAPED_SLASHES);
 }
 
+public function iFrameCommunicator() {
+	$this->load->view('public/Cart/iframeCommunicator');
+}
 
 public function returnCountryCode($countryNamePost){
 	$countryvalue=array("US","AL","DZ","AS","AO","AI","AG","AR","AM","AW","AU","AT","AZ","BS","BH","BD","BB","BY","BE","BZ","BJ","BM","BT",
