@@ -93,7 +93,7 @@ $(function () {
     AuthorizeNetPopup.closePopup = function () {
         document.getElementById("divAuthorizeNetPopupScreen").style.display = "none";
         document.getElementById("divAuthorizeNetPopup").style.display = "none";
-        document.getElementById("iframeAuthorizeNet").src = "empty.html";
+        document.getElementById("iframeAuthorizeNet").src = "/empty.html";
         if (AuthorizeNetPopup.options.onPopupClosed) AuthorizeNetPopup.options.onPopupClosed();
         };
 
