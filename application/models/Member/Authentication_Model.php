@@ -70,7 +70,7 @@ class Authentication_Model extends CI_Model{
         $request->setTransactionRequest(self::getTransactionRequestType($amount, $items));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentButtonOptions", "{\"text\": \"Pay\"}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentOrderOptions", "{\"show\": false}"));
-        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": true}"));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": false}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentIFrameCommunicatorUrl", "{\"url\": \"$iframeUrl\"}"));
 
         return $request;

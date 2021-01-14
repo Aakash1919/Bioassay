@@ -130,6 +130,7 @@ $(function () {
                     var response = params["response"];
                     document.getElementById("token").value = response;
                     AuthorizeNetPopup.closePopup();
+                    window.location.href="/checkout/thanks"
                     break;
                 case "resizeWindow":
                     var w = parseInt(params["width"]);
