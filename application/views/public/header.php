@@ -61,7 +61,7 @@
 		<link rel="icon" href="https://www.bioassaysys.com/favicon.ico" type="image/icon">
 		
 		<!-- Android -->
-		<link rel="manifest" href="manifest.json" />
+		<link rel="manifest" href="/manifest.json" />
 		<meta name="theme-color" content="#0072bb"/>
 
 		<!-- iOS -->
