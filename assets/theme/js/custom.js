@@ -128,7 +128,6 @@ $(function () {
                     break;
                 case "transactResponse":
                     var response = params["response"];
-                    document.getElementById("token").value = response;
                     AuthorizeNetPopup.closePopup();
                     window.location.href="/checkout/thanks"
                     break;
