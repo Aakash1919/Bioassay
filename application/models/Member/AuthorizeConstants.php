@@ -2,8 +2,8 @@
 
 class AuthorizeConstants {
     // Aakash's Development Keys
-    const MERCHANT_LOGIN_ID = '5KP3u95bQpv';
-    const MERCHANT_TRANSACTION_KEY = '346HZ32z3fP4hTG2';
+    const MERCHANT_LOGIN_ID = '3vXhy9ctGU2t';
+    const MERCHANT_TRANSACTION_KEY = '5ZCq5v48tW3yJw8R';
     // Kapil's Development Key
     // const MERCHANT_LOGIN_ID = '7sXmC5C7t';
     // const MERCHANT_TRANSACTION_KEY = '773R3ez9QtaN4AX5'; 
