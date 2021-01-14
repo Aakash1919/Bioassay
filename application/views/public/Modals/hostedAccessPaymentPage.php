@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="AuthorizeNetPopupInner">
-            <iframe name="iframeAuthorizeNet" id="iframeAuthorizeNet" src="empty.html" frameborder="0" scrolling="no"></iframe>
+            <iframe name="iframeAuthorizeNet" id="iframeAuthorizeNet" src="/checkout/billingQuotationProcess" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="AuthorizeNetPopupBottom">
             <div class="AuthorizeNetPopupLogo" title="Powered by Authorize.Net"></div>
