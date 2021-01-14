@@ -118,7 +118,7 @@ $(function () {
 
     AuthorizeNetPopup.onReceiveCommunication = function (querystr) {
             var params = parseQueryString(querystr);
-            console.log(params)
+            // console.log(params)
             switch (params["action"]) {
                 case "successfulSave":
                     window.location.href="/checkout/thanks"
