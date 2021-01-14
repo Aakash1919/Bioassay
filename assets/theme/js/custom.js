@@ -80,6 +80,10 @@ $(document).on('click','.closeModal', function() {
     document.getElementById("hostedAccessPayment").style.display = "none";
 })
 
+$(document).on('click', '#cancelBtn',  function(){
+    console.log('Aakash');
+})
+
 $(function () {
     if (!window.AuthorizeNetPopup) window.AuthorizeNetPopup = {};
     if (!AuthorizeNetPopup.options) AuthorizeNetPopup.options = {
@@ -89,7 +93,7 @@ $(function () {
     AuthorizeNetPopup.closePopup = function () {
         document.getElementById("divAuthorizeNetPopupScreen").style.display = "none";
         document.getElementById("divAuthorizeNetPopup").style.display = "none";
-        document.getElementById("iframeAuthorizeNet").src = "/checkout/billingQuotationProcess";
+        document.getElementById("iframeAuthorizeNet").src = "empty.html";
         if (AuthorizeNetPopup.options.onPopupClosed) AuthorizeNetPopup.options.onPopupClosed();
         };
 
@@ -110,6 +114,7 @@ $(function () {
         popupScreen.style.display = "";
         centerPopup();
         };
+
 
     AuthorizeNetPopup.onReceiveCommunication = function (querystr) {
             var params = parseQueryString(querystr);
@@ -136,6 +141,7 @@ $(function () {
                     break;
                 }
         };
+
 
 
     function centerPopup() {

@@ -60,7 +60,7 @@ class Authentication_Model extends CI_Model{
 
         $refId = 'ref' . time();
         
-        $iframeUrl = base_url().'checkout/billingQuotationProcess';
+        $iframeUrl = base_url().'checkout/iFrameCommunicator';
         $thanksUrl = base_url().'checkout/thanks';
         $cancelUrl = base_url().'checkout';
 
