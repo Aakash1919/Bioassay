@@ -107,20 +107,20 @@ div.datepicker{ min-width: initial !important; } */
   }
 
 .AuthorizeNetPopupGrayFrameTheme .AuthorizeNetPopupClose a {
-  background-image: url('/images/delete.png');
+  /* background-image: url('/images/delete.png'); */
   background-repeat: no-repeat;
   height: 16px;
   width: 16px;
   display: inline-block;
   }
 
-.AuthorizeNetPopupGrayFrameTheme .AuthorizeNetPopupClose a:hover {
+/* .AuthorizeNetPopupGrayFrameTheme .AuthorizeNetPopupClose a:hover {
   background-image: url('/images/delete.png');
   }
 
 .AuthorizeNetPopupGrayFrameTheme .AuthorizeNetPopupClose a:active {
   background-image: url('/images/delete.png');
-  }
+  } */
 
 .AuthorizeNetPopupGrayFrameTheme .AuthorizeNetPopupInner {
   background-color: #ffffff;
@@ -139,7 +139,6 @@ div.datepicker{ min-width: initial !important; } */
   bottom: 4px;
   width: 200px;
   height: 25px;
-  background-image: url('/images/logo-min.png');
   }
 
 .AuthorizeNetPopupSimpleTheme .AuthorizeNetPopupOuter {

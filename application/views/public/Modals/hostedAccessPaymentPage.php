@@ -2,7 +2,7 @@
 	<div class="AuthorizeNetPopupOuter">
         <div class="AuthorizeNetPopupTop">
             <div class="AuthorizeNetPopupClose">
-                <a href="javascript:;" onclick="AuthorizeNetPopup.closePopup();" title="Close"> </a>
+                <a href="javascript:;" onclick="AuthorizeNetPopup.closePopup();" title="Close">x</a>
             </div>
         </div>
         <div class="AuthorizeNetPopupInner">
