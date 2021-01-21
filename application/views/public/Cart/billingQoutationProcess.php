@@ -1,4 +1,3 @@
-<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
 <?php
 $PreviousInfo = $this->session->userdata('PreviousInfo');
 $cart=$this->cart->contents();
@@ -32,9 +31,6 @@ foreach ($diss  as $d) {
 	  }
     }										
 }
-// echo "<pre>";
-// print_r($PreviousInfo);
-// echo "</pre>";
 $personID = $this->session->userdata('person_id');
 if(!empty($PreviousInfo)){
     $fedex = $PreviousInfo['fedex_accnt'];
@@ -86,11 +82,6 @@ if(!empty($personID)){
 <section class="content-area">
 	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
 		<input type="hidden" name="token" id="authToken" value="<?php echo isset($authToken)?$authToken:0; ?>">
-		<input type="hidden" name="cccheck" value="<?php echo isset($cccheck)?$cccheck:0; ?>">
-		<input type="hidden" name="cardnumber" value="<?php echo isset($cardnumber)?base64_encode($cardnumber):'';?>">
-		<input type="hidden" name="csc1" value="<?php echo isset($csc1)?base64_encode($csc1):'';?>">
-		<input type="hidden" name="year" value="<?php echo isset($year)?base64_encode($year):'';?>">
-		<input type="hidden" name="month" value="<?php echo isset($month)?base64_encode($month):'';?>">
 		<input type="hidden" name="fedex_accnt" value="<?php echo isset($fedex)?$fedex:'';?>">
 		<input type="hidden" name="fedex_service" value="<?php echo isset($fedexservice)?$fedexservice:'';?>">
 		<input type="hidden" name="sattn" value="<?php echo isset($sattn)?$sattn:'';?>">
@@ -505,14 +496,116 @@ if(!empty($personID)){
 					<div id ="po_details" style="display: none" >
 						<div class="reg_left"> 
 							<div class="reg_a">
-								<p>
-									PO Number <span>* </span>
-								</p>
+								<p>PO Number <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="po_num" id="po_num" type="text" value="" onFocus="clrpo()">
+								<input name="po_num" id="po_num" type="text" value="">
 							</div>
 						</div>
+						<div class="clear"></div>
+						<div class="reg_left">
+							<div class="reg_a"></div>
+							<div class="reg_b">
+								<b>Bill to:</b>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Attn <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="battn" id="battn" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Company Name <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bcompany" id="bcompany" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Address 1 <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="baddr1" id="baddr1" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Address 2<span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="baddr2" id="baddr2" type="text" value="">
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>City <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bcity" id="bcity" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>State <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bstate" id="bstate" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Zip <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bzip" id="bzip" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Country <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<select name="bcountry" id="bcountry"  class="reg_b_jump" required>
+									<option value=""> --- Choose country --- </option>
+									<?php foreach ($countries as $k => $value) {
+												echo '<option value="'.$value.'">'.$value.'</option>';
+									}?>
+								</select>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Tel <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bphone" id="bphone" type="text" value="" required>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="reg_left"> 
+							<div class="reg_a">
+								<p>Fax <span>* </span></p>
+							</div>
+							<div class="reg_b">
+								<input name="bfax" id="bfax" type="text" value="" >
+							</div>
+						</div>
+						<div class="clear"></div>
+						
 					</div> 
 					
 					<div class="clear"> 
@@ -538,192 +631,10 @@ if(!empty($personID)){
 								<?php 
 									echo !empty($fedex)?'<div class="reg_a"><p>Carrier info: </p></div><div class="reg_b">'.$fedex.'</div></div>':'';
 								?>
+								
 								<div class="clear">
 								</div>
-								<?php 
-									if(isset($payment_type) && $payment_type=="Paypal")
-									{
-								?>
-								 <div class="reg_left_no_pad"> 
-									 <div class="reg_a">
-										<p>
-											Payment Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										Paypal
-									</div>
-								</div>
-								<div class="clear"> 
-								</div>
-								 <div class="reg_left_no_pad"> 
-									 <div class="reg_a">
-										<p>
-											PO Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($po_num)?$po_num:'';
-										?>
-									</div>
-								</div>
-								<div class="clear"> 
-								</div>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											Fedex Service Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($fedexservice)?$fedexservice:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-										<p>
-										Tax Exemption Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<br>
-								</div>
-								<?php 
-									}  
-								?>
-
-								<?php 
-									if(isset($payment_type) && $payment_type=="Purchase Order")
-									{ 
-								?>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											Payment Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										Purchase Order
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											PO Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($po_num)?$po_num:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											Fedex Service Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($fedexservice)?$fedexservice:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-										<p>
-										Tax Exemption Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($sales_tax_exempt_num)?$sales_tax_exempt_num:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<br>
-								</div>
-								<?php 
-									}
-								?>
-
-
-								<?php 
-									if(isset($payment_type) && $payment_type=="Credit Card")
-									{ 
-								?>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											Payment Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										Credit Card
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											PO Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($po_num)?$po_num:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								</div>
-								<div class="reg_left_no_pad"> 
-									<div class="reg_a">
-										<p>
-											Fedex Service Type: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($fedexservice)?$fedexservice:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<div class="reg_left_no_pad">
-									<div class="reg_a">
-										<p>
-										Tax Exemption Number: 
-										</p>
-									</div>
-									<div class="reg_b">
-										<?php 
-											echo isset($sales_tax_exempt_num)?$sales_tax_exempt_num:'';
-										?>
-									</div>
-								</div>
-								<div class="clear">
-								<br>
-								</div>
-								<?php }  ?>
+						
 
 								<div class="reg_left_no_pad">
 									<div class="reg_cf">
@@ -906,7 +817,7 @@ if(!empty($personID)){
 										&nbsp;
 										&nbsp;
 										&nbsp; 
-										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="button" value="Submit" disabled="disabled">
+										<input class="button" name="bill_chkout_qtn" id="bill_chkout_qtn" type="button" value="Submit">
 									</div>
 								</div>
 							</div>

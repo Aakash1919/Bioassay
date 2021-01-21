@@ -41,9 +41,13 @@ jQuery(document).on('change', "#paymenttype", function () {
     if (payment_type == "Purchase Order") {
         jQuery("#po_details").toggle();
         jQuery("#regform").attr("action", "/checkout/finalTransaction");
-        jQuery("#po_num").attr("required", true);
         jQuery("#bill_chkout_qtn").val("Submit Order");
+        document.getElementById("bill_chkout_qtn").id = 'bill_submit_qtn'
+        document.getElementById("bill_submit_qtn").type = 'submit'
     } else {
+        if(document.getElementById("bill_submit_qtn").id) {   
+            document.getElementById("bill_submit_qtn").id = 'bill_chkout_qtn'
+        }
         jQuery("#po_details").css('display', 'none');
         if (payment_type == "Credit Card") {
             jQuery("#wait").css("display", "block");
