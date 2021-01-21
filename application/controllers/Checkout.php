@@ -609,7 +609,7 @@ class Checkout extends Public_Controller{
 
 		$billingAddress = $this->setBillingAddress($body);
 		$shippingAddress = $this->setShippingAddress($body);
-		$emailbody3.=$billingAddress.$shippingAddress;
+		$emailbody3.=$shippingAddress.$billingAddress;
 		$emailbody3.="Notes:<br >".$body['cmnts']."<br ><br >";
 		$emailbody3.="We thank you for your business!<br ><br >Your BioAssay Systems Team<br >";
 		$emailbody=$emailbody1.$emailbody2.$emailbody3;
