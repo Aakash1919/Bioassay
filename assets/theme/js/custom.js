@@ -45,8 +45,9 @@ jQuery(document).on('change', "#paymenttype", function () {
         document.getElementById("bill_chkout_qtn").id = 'bill_submit_qtn'
         document.getElementById("bill_submit_qtn").type = 'submit'
     } else {
-        if(document.getElementById("bill_submit_qtn").id) {   
+        if(document.getElementById("bill_submit_qtn")) {   
             document.getElementById("bill_submit_qtn").id = 'bill_chkout_qtn'
+            document.getElementById("bill_chkout_qtn").type = 'button'
         }
         jQuery("#po_details").css('display', 'none');
         if (payment_type == "Credit Card") {
