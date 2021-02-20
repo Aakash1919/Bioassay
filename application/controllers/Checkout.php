@@ -769,20 +769,21 @@ class Checkout extends Public_Controller{
 * Get Authorization token for paypal
 */
 
-public function getPaypalIframe() {
-	
-	$cart = $this->cart->contents();
-	$response = $this->PaypalPayflow->runPayflow($cart);
-	echo json_encode($response);
-}
+	public function getPaypalIframe() {
+		
+		$cart = $this->cart->contents();
+		$response = $this->PaypalPayflow->runPayflow($cart);
+		echo json_encode($response);
+	}
 
-public function getPaypalResponse() {
-	if (isset($_POST['RESULT']) || isset($_GET['RESULT']) ) {
-		$_SESSION['payflowresponse'] = array_merge($_GET, $_POST);
-		echo '<script type="text/javascript">window.top.location.href = "' . base_url('checkout/thanks') .  '";</script>';
-		exit(0);
-	  }
-}
-
+	public function getPaypalResponse() {
+		if (isset($_POST['RESULT']) || isset($_GET['RESULT']) ) {
+			$_SESSION['payflowresponse'] = array_merge($_GET, $_POST);
+			$data = array('transaction_id' => $_SESSION['payflowresponse']['PNREF'], 'order_items' => json_encode($this->cart->contents()));
+			$this->PaypalPayflow->save(null, $data);
+			echo '<script type="text/javascript">window.top.location.href = "' . base_url('checkout/thanks') .  '";</script>';
+			exit(0);
+		}
+	}
 	
 }

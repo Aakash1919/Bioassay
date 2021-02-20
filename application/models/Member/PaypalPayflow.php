@@ -3,6 +3,7 @@ class PaypalPayflow extends Members_Model{
 
     protected $environment = 'sandbox';
     protected $mode = 'Test';
+    protected $_table_name = 'paypal_hosted_transactions';
 
 	public function __construct() {
 		parent::__construct();
