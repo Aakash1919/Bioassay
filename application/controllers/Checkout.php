@@ -11,6 +11,7 @@ class Checkout extends Public_Controller{
 		$this->load->model('Member/OrderDetails_Model');
 		$this->load->model('Member/TransactionResponse_Model');
 		$this->load->model('Member/Authentication_Model');
+		$this->load->model('Member/PaypalPayflow');
 	}
 	/*
 	* Function to load main cart page 
@@ -239,6 +240,7 @@ class Checkout extends Public_Controller{
 			$this->data['shippingFee'] = $shippingFee;
 			$this->data['countries'] = $this->getCountryName();
 			$this->data['hostedAccessPaymentPage'] = $this->load->view('public/Modals/hostedAccessPaymentPage', NULL, TRUE);
+			$this->data['paypalHostedAccessPaymentPage'] = $this->load->view('public/Modals/paypalHostedAcceptPaymentPage', NULL, TRUE);
 			$this->data['subview'] = "public/Cart/billingQoutationProcess";
 			$this->load->view('public/_layout_main',$this->data);	
 		}
@@ -677,6 +679,20 @@ class Checkout extends Public_Controller{
 	public function thanks() {
 
 		$this->cart->destroy();
+		if(!empty($_SESSION['payflowresponse'])) {
+			// $response= $_SESSION['payflowresponse'];
+			// unset($_SESSION['payflowresponse']);
+		  
+			// $success = ($response['RESULT'] == 0);
+		  
+			// if($success) echo "<span style='font-family:sans-serif;font-weight:bold;'>Transaction approved! Thank you for your order.</span>";
+			// else echo "<span style='font-family:sans-serif;'>Transaction failed! Please try again with another payment method.</span>";
+		  
+			// echo "<pre>(server response follows)\n";
+			// print_r($response);
+			// echo "</pre>";
+			// exit(0);
+		  }
 		$this->data['active'] = "Cart";
 		$this->data['subview'] = "public/Cart/thanks";
 		$this->load->view('public/_layout_main',$this->data);
@@ -720,6 +736,9 @@ class Checkout extends Public_Controller{
 
 		return(array_search($countryNamePost, $newCountryArray));
 	}
+	/*
+	* Function to return the country name array
+	*/
 	public function getCountryName() {
 		return array("United States","Albania","Algeria","American Samoa",
 		"Angola","Anguilla","Antigua","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
@@ -746,4 +765,24 @@ class Checkout extends Public_Controller{
 		"United Arab Emirates","United Kingdom","Uruguay","US Virgin Islands","Uzbekistan","Vanuatu","Venezuela","Vietnam",
 		"Virgin Gorda","Wallis and Futuna","Western Samoa","Yap","Yemen","Zambia","Zimbabwe");
 	}
+/*
+* Get Authorization token for paypal
+*/
+
+public function getPaypalIframe() {
+	
+	$cart = $this->cart->contents();
+	$response = $this->PaypalPayflow->runPayflow($cart);
+	echo json_encode($response);
+}
+
+public function getPaypalResponse() {
+	if (isset($_POST['RESULT']) || isset($_GET['RESULT']) ) {
+		$_SESSION['payflowresponse'] = array_merge($_GET, $_POST);
+		echo '<script type="text/javascript">window.top.location.href = "' . base_url('checkout/thanks') .  '";</script>';
+		exit(0);
+	  }
+}
+
+	
 }

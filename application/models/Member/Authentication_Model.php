@@ -73,9 +73,9 @@ class Authentication_Model extends CI_Model{
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": false}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentIFrameCommunicatorUrl", "{\"url\": \"$iframeUrl\"}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentShippingAddressOptions", '{"show": true, "required": true}'));
-       
-        
-        return $request;
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentVisaCheckoutOptions", '{"apiKey":"3F9eMpx9R","displayName":"Bioassay","message":"Bioassay Message"}'));
+
+        return $request;    
     }
     function getAnAcceptPaymentPage($amount, $items)
     {

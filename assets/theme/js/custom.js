@@ -62,8 +62,16 @@ jQuery(document).on('change', "#paymenttype", function () {
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
-            jQuery("#regform").attr("action", "/checkout/finalTransaction");
-            jQuery("#po_num").attr("required", false);
+            jQuery("#wait").css("display", "block");
+            jQuery("#bill_chkout_qtn").attr("disabled", true);
+            jQuery.get("/checkout/getPaypalIframe", function (data) {
+                var result = jQuery.parseJSON(data);
+                $('#frameContent').html(result)
+            });
+            jQuery("#bill_chkout_qtn").attr("disabled", false);
+            jQuery("#wait").css("display", "none");
+            // jQuery("#regform").attr("action", "/checkout/finalTransaction");
+            // jQuery("#po_num").attr("required", false);
         }
     }
     //payment_type
@@ -76,6 +84,10 @@ $(document).on('click', '#bill_chkout_qtn', function () {
     if (payment_type === 'Credit Card') {
         var authToken = $("#authToken").val();
         AuthorizeNetPopup.openPopup(authToken)
+    }else if(payment_type === 'Paypal') {
+        // paypal Modal
+        var modal = document.getElementById("paypalModal");
+        modal.style.display = "block";
     } else {
         $("#regform").submit();
     }
@@ -83,10 +95,6 @@ $(document).on('click', '#bill_chkout_qtn', function () {
 
 $(document).on('click','.closeModal', function() {
     document.getElementById("hostedAccessPayment").style.display = "none";
-})
-
-$(document).on('click', '#cancelBtn',  function(){
-    console.log('Aakash');
 })
 
 $(function () {
@@ -144,7 +152,7 @@ $(function () {
                     ifrm.style.height = h.toString() + "px";
                     centerPopup();
                     break;
-                }
+            }
         };
 
 
@@ -180,3 +188,14 @@ $(function () {
             return vars;
         }
 }());
+
+var modal = document.getElementById("paypalModal");
+var span = document.getElementsByClassName("close")[0];      
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
