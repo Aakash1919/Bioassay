@@ -62,16 +62,16 @@ jQuery(document).on('change', "#paymenttype", function () {
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
-            jQuery("#wait").css("display", "block");
-            jQuery("#bill_chkout_qtn").attr("disabled", true);
-            jQuery.get("/checkout/getPaypalIframe", function (data) {
-                var result = jQuery.parseJSON(data);
-                $('#frameContent').html(result)
-            });
-            jQuery("#bill_chkout_qtn").attr("disabled", false);
-            jQuery("#wait").css("display", "none");
-            // jQuery("#regform").attr("action", "/checkout/finalTransaction");
-            // jQuery("#po_num").attr("required", false);
+            // jQuery("#wait").css("display", "block");
+            // jQuery("#bill_chkout_qtn").attr("disabled", true);
+            // jQuery.get("/checkout/getPaypalIframe", function (data) {
+            //     var result = jQuery.parseJSON(data);
+            //     $('#frameContent').html(result)
+            // });
+            // jQuery("#bill_chkout_qtn").attr("disabled", false);
+            // jQuery("#wait").css("display", "none");
+            jQuery("#regform").attr("action", "/checkout/finalTransaction");
+            jQuery("#po_num").attr("required", false);
         }
     }
     //payment_type
@@ -84,11 +84,13 @@ $(document).on('click', '#bill_chkout_qtn', function () {
     if (payment_type === 'Credit Card') {
         var authToken = $("#authToken").val();
         AuthorizeNetPopup.openPopup(authToken)
-    }else if(payment_type === 'Paypal') {
-        // paypal Modal
-        var modal = document.getElementById("paypalModal");
-        modal.style.display = "block";
-    } else {
+    }
+    // else if(payment_type === 'Paypal') {
+    //     // paypal Modal
+    //     var modal = document.getElementById("paypalModal");
+    //     modal.style.display = "block";
+    // }
+     else {
         $("#regform").submit();
     }
 })

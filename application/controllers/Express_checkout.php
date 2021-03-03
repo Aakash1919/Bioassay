@@ -149,15 +149,16 @@ class Express_checkout extends CI_Controller
 		 */
 		// $_SESSION['SHIPTOPHONENUM']
 		$Payments = array();
+		
 		$Payment = array(
 			'amt' => $this->cart->format_number($TotalAmount), 	// Required.  The total cost of the transaction to the customer.  If shipping cost and tax charges are known, include them in this value.  If not, this value should be the current sub-total of the order.
-			'SHIPTONAME' => $_SESSION['SHIPTONAME'],
-			'SHIPTOSTREET' => $_SESSION['SHIPTOSTREET'],
-			'SHIPTOCITY' => $_SESSION['SHIPTOCITY'],
-			'SHIPTOSTATE' => $_SESSION['SHIPTOSTATE'],
-			'SHIPTOCOUNTRY' => $_SESSION['SHIPTOCOUNTRY'],
-			'SHIPTOZIP' => $_SESSION['SHIPTOZIP'],
-			'SHIPTOPHONENUM' =>'987-654-3210'
+			'SHIPTONAME' => $this->session->userdata('SHIPTONAME'),
+			'SHIPTOSTREET' => $this->session->userdata('SHIPTOSTREET'),
+			'SHIPTOCITY' => $this->session->userdata('SHIPTOCITY'),
+			'SHIPTOSTATE' => $this->session->userdata('SHIPTOSTATE'),
+			'SHIPTOCOUNTRY' => $this->session->userdata('SHIPTOCOUNTRY'),
+			'SHIPTOZIP' => $this->session->userdata('SHIPTOZIP'),
+			'SHIPTOPHONENUM' => $this->session->userdata('SHIPTOPHONENUM')
 		);
 		unset($_SESSION['SHIPTONAME']);
 		unset($_SESSION['SHIPTOSTREET']);
@@ -179,7 +180,7 @@ class Express_checkout extends CI_Controller
 			'SECFields' => $SECFields,
 			'Payments' => $Payments,
 		);
-
+		
 		/**
 		 * Here we are making the call to the SetExpressCheckout function in the library,
 		 * and we're passing in our $PayPalRequestData that we just set above.
@@ -187,7 +188,7 @@ class Express_checkout extends CI_Controller
 
 		$PayPalResult = $this->paypal_pro->SetExpressCheckout($PayPalRequestData);
 		// echo "<pre>";
-		// print_r($PayPalRequestData);
+		// // print_r($PayPalRequestData);
 		// print_r($PayPalResult);
 		// echo "</pre>";
 		/**
