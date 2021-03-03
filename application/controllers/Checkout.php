@@ -240,7 +240,7 @@ class Checkout extends Public_Controller{
 			$this->data['shippingFee'] = $shippingFee;
 			$this->data['countries'] = $this->getCountryName();
 			$this->data['hostedAccessPaymentPage'] = $this->load->view('public/Modals/hostedAccessPaymentPage', NULL, TRUE);
-			$this->data['paypalHostedAccessPaymentPage'] = $this->load->view('public/Modals/paypalHostedAcceptPaymentPage', NULL, TRUE);
+			// $this->data['paypalHostedAccessPaymentPage'] = $this->load->view('public/Modals/paypalHostedAcceptPaymentPage', NULL, TRUE);
 			$this->data['subview'] = "public/Cart/billingQoutationProcess";
 			$this->load->view('public/_layout_main',$this->data);	
 		}
@@ -479,7 +479,6 @@ class Checkout extends Public_Controller{
 	* Function to set paypal Payment Gateway
 	*/
 	public function getPaypalCheckout($orderId=null, $data = []) {
-
 		$countryCode = $this->returnCountryCode($data['scountry']);	
 		$this->session->set_userdata('orderID', $orderId);
 		$this->session->set_userdata('SHIPTONAME', $data['sattn']);
@@ -491,7 +490,7 @@ class Checkout extends Public_Controller{
 		$this->session->set_userdata('SHIPTOPHONENUM', $data['sphone']);
 		$this->session->set_userdata('po_num', $data['po_num']);
 		$this->session->set_userdata('payEmail', $data['semail']);
-
+		
 		redirect('express_checkout/SetExpressCheckout');
 	}
 
