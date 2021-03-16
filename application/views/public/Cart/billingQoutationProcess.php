@@ -257,7 +257,7 @@ if(!empty($personID)){
 									</td>
 									<td>
 										$<?php 
-											echo isset($shippingfee)?number_format($shippingfee,2):'0.00'; 
+											echo isset($shippingFee)?number_format($shippingFee,2):'0.00'; 
 										?>
 									</td>
 								</tr>
@@ -314,7 +314,7 @@ if(!empty($personID)){
 									</td>
 									<td>
 										$<?php 
-											echo isset($shippingfee)?number_format($shippingfee,2):'0.00'; 
+											echo isset($shippingFee)?number_format($shippingFee,2):'0.00'; 
 										?>
 									</td>
 								</tr>
