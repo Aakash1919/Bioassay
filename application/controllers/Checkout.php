@@ -217,7 +217,8 @@ class Checkout extends Public_Controller{
 			}
 
 			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'));
-			$shippingFee = (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
+			
+			$shippingFee = !empty($fedex_acct_num) ? 0 : (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 
 			if($discountamount !== 0){
 				$newTaxTotal = $taxrate*($this->cart->total()-$discountamount);
