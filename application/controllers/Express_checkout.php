@@ -568,7 +568,7 @@ class Express_checkout extends CI_Controller
 				 $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
 
 				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
-				 $emailbody.=$emailbody."<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
+				 $emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
 			  
 			   $email = $cart['email']."," ;
 			   $email .="order@bioassaysys.com" .",";
@@ -577,20 +577,17 @@ class Express_checkout extends CI_Controller
 			   $header = "From: ".$salesemail."\r\n"; 
 			   $header.= "MIME-Version: 1.0\r\n"; 
 			   $header.= "Content-type: text/html; charset=utf-8\r\n";
-				mail($email,$emailtitle,$emailbody, $header);
-				unset($_SESSION['payEmail']);
+			$status = mail($email,$emailtitle,$emailbody, $header);
+			unset($_SESSION['payEmail']);
 			// }
 			
 
-     	// Set cart data into session userdata
+	     	// Set cart data into session userdata
      	
 		$this->load->vars('cart', $cart);
-
 		// Successful call.  Load view or whatever you need to do here.
 		$this->cart->destroy();
-		
 		redirect('/checkout/thanks');
-
 	}
 	
 	/**
