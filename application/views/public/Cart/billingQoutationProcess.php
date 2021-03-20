@@ -457,35 +457,21 @@ if(!empty($personID)){
 						</div>
 						<div class="reg_b">
 							<select name="payment_type" id="paymenttype" class="reg_b_jump" required >
-								<?php
-									if(!empty($uid))
-									{
-								?>								 
-								<option value="Purchase Order" <?php  if($paymenttype=="Purchase Order"){echo "selected";} ?>>
-									Purchase Order
-								</option>
-								<option value="Credit Card" <?php if($paymenttype=="Credit Card"){echo "selected";} ?>>
-									Credit Card
-								</option> 
-								<option value="Paypal" <?php if($paymenttype=="Paypal"){echo "selected";} ?>>
-									Paypal
-								</option>
-								<?php
-									}
-									else
-									{
-								?>
+							<?php if(isset($scountry) && $scountry!='United States') { ?>
+								<option value="Purchase Order">Send Qoutation Request</option> 
+							<?php }else { ?>
+								<?php if(!empty($uid)) { ?>								 
+								<option value="Purchase Order" <?php  if($paymenttype=="Purchase Order"){echo "selected";} ?>>Purchase Order</option>
+								<option value="Credit Card" <?php if($paymenttype=="Credit Card"){echo "selected";} ?>>Credit Card</option> 
+								<option value="Paypal" <?php if($paymenttype=="Paypal"){echo "selected";} ?>>Paypal</option>
+								<?php }else { ?>
 								<option value="">Please Select Payment Method</option>							  
-								<option value="Credit Card">
-									Credit Card
-								</option>  
-								<option value="Paypal">
-									Paypal
-								</option>
+								<option value="Credit Card">Credit Card</option>  
+								<option value="Paypal">Paypal</option>
 								<option value="Purchase Order">Purchase Order</option>
-								<?php
-									}
-								?>
+								<?php } ?>
+							<?php } ?>
+								
 							</select>
 						  
 						</div>

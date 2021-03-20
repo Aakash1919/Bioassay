@@ -37,7 +37,9 @@ function clearall(quantity, id) {
 }
 jQuery(document).on('change', "#paymenttype", function () {
     jQuery("#payment_type").val("");
-    var payment_type = jQuery(this).val();
+    var payment_type = jQuery(this).val(); 
+    var country = $('input[name=scountry]').val();
+    console.log(country)
     if (payment_type == "Purchase Order") {
         jQuery("#po_details").toggle();
         jQuery("#regform").attr("action", "/checkout/finalTransaction");
@@ -200,9 +202,12 @@ $(function () {
 
 var modal = document.getElementById("paypalModal");
 var span = document.getElementsByClassName("close")[0];      
-span.onclick = function() {
-    modal.style.display = "none";
-}
+if(span) {  
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+}   
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
