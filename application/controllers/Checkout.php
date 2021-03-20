@@ -403,7 +403,7 @@ class Checkout extends Public_Controller{
 						$this->setAndSaveOrderDetails($orderID, 'price_'.$value['id'], $value['price']);
 					}
 				}
-				$shippingfee = $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
+				$shippingfee =  !empty($fedex_acct_num) ? 0 : $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 				$taxrate = $this->getTaxRate($this->input->post('szip'), $this->input->post('sstate'), $this->input->post('tax_exempt_id'));
 				$newTotal = $this->cart->total()+($this->cart->total() * $taxrate)+$shippingfee;
 				$newTotal = number_format((float)$newTotal, 2, '.', '');
