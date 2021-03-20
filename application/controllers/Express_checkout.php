@@ -564,8 +564,8 @@ class Express_checkout extends CI_Controller
 				 $emailbody3.=$cart['shipping_zip']."<br >";
 				 $emailbody3.=$cart['shipping_country_name']."<br >";
 				 $emailbody3.=$cart['phone_number']." (tel)<br >";
-				 @$emailbody3.=$_SESSION['payEmail']."<br ><br >";
-				 $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
+				//  @$emailbody3.=$_SESSION['payEmail']."<br ><br >";
+				//  $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
 
 				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
 				 $emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
@@ -577,8 +577,8 @@ class Express_checkout extends CI_Controller
 			   $header = "From: ".$salesemail."\r\n"; 
 			   $header.= "MIME-Version: 1.0\r\n"; 
 			   $header.= "Content-type: text/html; charset=utf-8\r\n";
-			$status = mail($email,$emailtitle,$emailbody, $header);
-			unset($_SESSION['payEmail']);
+				$status = mail($email,$emailtitle,$emailbody, $header);
+				unset($_SESSION['payEmail']);
 			// }
 			
 
