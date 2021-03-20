@@ -206,16 +206,18 @@ class Checkout extends Public_Controller{
 			if($PostData){
 				$fedex_acct_num = $this->input->post('fedex_accnt');
 				$fedex_service =$this->input->post('fedex_service');
-				$taxrate = $this->getTaxRate($this->input->post('szip'), $this->input->post('sstate'), $this->input->post('sales_tax_exempt_num1'));
+				$taxExemptId = $this->input->post('sales_tax_exempt_num1');
+				$taxrate = $this->getTaxRate($this->input->post('szip'), $this->input->post('sstate'), $taxExemptId);
 				$this->session->set_userdata('PreviousInfo',$PostData);
 			}
 			if($_SESSION['PreviousInfo']){
 				$PreviousInfo = $_SESSION['PreviousInfo'];
 				$fedex_acct_num = $PreviousInfo['fedex_accnt'];
 				$fedex_service =$PreviousInfo['fedex_service'];
-				$taxrate = $this->getTaxRate($PreviousInfo['szip'], $PreviousInfo['sstate'], $PreviousInfo['sales_tax_exempt_num1']);
+				$taxExemptId = $PreviousInfo['sales_tax_exempt_num1'];
+				$taxrate = $this->getTaxRate($PreviousInfo['szip'], $PreviousInfo['sstate'], $taxExemptId);
 			}
-
+			
 			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'));
 			
 			$shippingFee = !empty($fedex_acct_num) ? 0 : (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
@@ -229,7 +231,12 @@ class Checkout extends Public_Controller{
 				$total = $this->cart->total() + $tax + $shippingFee;				
 			}
 			if($this->input->post('payment_type')=="Credit Card"){
-				$this->data['authToken'] = self::generateAuthorizeToken($total, $this->cart->contents());
+				$extraInfo = array(
+					'taxExempt' => $taxExemptId,
+					'tax' => $tax,
+					'shippingFee' => $shippingFee
+				);
+				$this->data['authToken'] = self::generateAuthorizeToken($total, $this->cart->contents(), $extraInfo);
 			}
 
 			$this->session->set_userdata('discountamount',$discountamount);
@@ -514,9 +521,9 @@ class Checkout extends Public_Controller{
 	/*
 	* Function to generate authorize token
 	*/
-	public function generateAuthorizeToken($amount=0, $items) {
+	public function generateAuthorizeToken($amount=0, $items, $extraInfo = []) {
 
-		$token = $this->Authentication_Model->getAnAcceptPaymentPage($amount, $items);
+		$token = $this->Authentication_Model->getAnAcceptPaymentPage($amount, $items, $extraInfo);
 
 		return $token;
 	}
@@ -701,8 +708,13 @@ class Checkout extends Public_Controller{
 	* Function to get authorization token for the hosted access payment pages
 	*/
 	public function GetAuthToken(){
-
-		$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents());
+		$tax = $_GET['taxExempt'] ==0 ? $_GET['tax'] : 0;
+		$extraInfo = array(
+			'taxExempt' => $_GET['taxExempt'] ? $_GET['taxExempt'] : 0,
+			'tax' => $tax ? $tax : 0,
+			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0
+		);
+		$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents(), $extraInfo);
 		$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
 
 		echo json_encode($data,JSON_UNESCAPED_SLASHES);

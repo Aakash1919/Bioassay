@@ -18,14 +18,29 @@ class Authentication_Model extends CI_Model{
         return $merchantAuthentication;
     }
 
-    function getTransactionRequestType($amount, $items) {
+    function getTransactionRequestType($amount, $items, $extraInfo) {
         
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setTransactionType("authCaptureTransaction");
         $transactionRequestType->setAmount($amount);
+        $transactionRequestType->setTax($this->setTax(isset($extraInfo['tax']) ? $extraInfo['tax'] : 0 ));
+        $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? $extraInfo['taxExempt'] : 0 );
+        $transactionRequestType->setShipping($this->setShipping(isset($extraInfo['shippingFee']) ? $extraInfo['shippingFee'] : 0 ));
         $transactionRequestType->setLineItems(self::getLineItems($items));
     
         return $transactionRequestType;
+    }
+
+    function setTax( $amount = 0 ) {
+        $tax =  new AnetAPI\ExtendedAmountType();
+        $tax->setAmount($amount);
+        return $tax;
+    }
+
+    function setShipping($amount = 0) {
+        $shipping =  new AnetAPI\ExtendedAmountType();
+        $shipping->setAmount($amount);
+        return $shipping;
     }
 
     function setLineItem($id,$name,$price,$qty) {
@@ -56,7 +71,7 @@ class Authentication_Model extends CI_Model{
         return $setting;
     }
 
-    function getRequestforHAS($amount, $items) {
+    function getRequestforHAS($amount, $items, $extraInfo = []) {
 
         $refId = 'ref' . time();
         
@@ -67,7 +82,7 @@ class Authentication_Model extends CI_Model{
         $request = new AnetAPI\GetHostedPaymentPageRequest();
         $request->setMerchantAuthentication(self::getMerchantAuthentication());
         $request->setRefId($refId);
-        $request->setTransactionRequest(self::getTransactionRequestType($amount, $items));
+        $request->setTransactionRequest(self::getTransactionRequestType($amount, $items, $extraInfo));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentButtonOptions", "{\"text\": \"Pay\"}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentOrderOptions", "{\"show\": false}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": false}"));
@@ -77,9 +92,9 @@ class Authentication_Model extends CI_Model{
 
         return $request;    
     }
-    function getAnAcceptPaymentPage($amount, $items)
+    function getAnAcceptPaymentPage($amount, $items, $extraInfo = [])
     {
-        $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items));
+        $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items, $extraInfo));
         $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();

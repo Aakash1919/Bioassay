@@ -53,12 +53,7 @@ jQuery(document).on('change', "#paymenttype", function () {
         if (payment_type == "Credit Card") {
             jQuery("#wait").css("display", "block");
             jQuery("#bill_chkout_qtn").attr("disabled", true);
-            jQuery.get("/checkout/GetAuthToken", function (data) {
-                jQuery("#po_num").attr("required", false);
-                var result = jQuery.parseJSON(data);
-                jQuery("input#authToken").val(result.AuthToken);
-                jQuery("#regform").attr("action", result.Url);
-            });
+            
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
@@ -82,8 +77,20 @@ jQuery(document).on('change', "#paymenttype", function () {
 $(document).on('click', '#bill_chkout_qtn', function () {
     var payment_type = jQuery("#payment_type").val();
     if (payment_type === 'Credit Card') {
-        var authToken = $("#authToken").val();
-        AuthorizeNetPopup.openPopup(authToken)
+        var tax = $('#tax').val();
+            var shippingFee = $('#shippingFee').val();
+            var taxExempt = $('#tax_exempt_id').val() ? $('#tax_exempt_id').val() : 0;
+
+            jQuery.get("/checkout/GetAuthToken", {taxExempt: taxExempt, tax: tax, shipping: shippingFee}, function (data) {
+                jQuery("#po_num").attr("required", false);
+                var result = jQuery.parseJSON(data);
+                jQuery("input#authToken").val(result.AuthToken);
+                AuthorizeNetPopup.openPopup(result.AuthToken)
+                jQuery("#regform").attr("action", result.Url);
+            });
+
+        // var authToken = $("#authToken").val();
+        // AuthorizeNetPopup.openPopup(authToken)
     }
     // else if(payment_type === 'Paypal') {
     //     // paypal Modal

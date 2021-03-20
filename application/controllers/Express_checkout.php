@@ -513,7 +513,7 @@ class Express_checkout extends CI_Controller
 	 */
 	function OrderComplete()
 	{
-		// Get cart from session userdata
+	// Get cart from session userdata
 		$cart = $this->session->userdata('shopping_cart');
 		if(empty($cart)) redirect('/express_checkout');
 		// $transactionResponse = array(
@@ -530,48 +530,45 @@ class Express_checkout extends CI_Controller
 			  $emailbody1="Dear ".$cart['first_name']." ".$cart['last_name'].",<br ><br >";
 			  $orderID = $this->session->userdata('orderID');
 			  $cart1 = $this->cart->contents(); 
-			 
 			  $emailbody2="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Paypal<br><br>";
-			  $emailbody3='';
-			  $emailbody3=$emailbody3."Order Details:<br ><br >";
+			  $emailbody2.=$emailbody2."Order Details:<br ><br >";
 			  $po_num = $_SESSION['po_num'];
 				if(isset($po_num)){
-					$emailbody3=$emailbody3."PO Number: ".$po_num."<br ><br >";
+					$emailbody2.="PO Number: ".$po_num."<br ><br >";
 				}
 				$discountamount = $this->session->userdata('discountamount');	
                 if(!empty($discountamount)){
-                                $total = number_format($this->cart->total(),2) - number_format($discountamount,2); 
-                            }else{
-                                $total = number_format($this->cart->total(),2); 
-                            }
-                            
-
-			  foreach($cart1 as $cart_item) {
+					$total = number_format($this->cart->total(),2) - number_format($discountamount,2); 
+				}else{
+					$total = number_format($this->cart->total(),2); 
+				}         
+				$emailbody3 = '';
+			  	foreach($cart1 as $cart_item) {
 			
-				  $emailbody3=$emailbody3."Product Name:     ".$cart_item['name']."<br >Catalog No:        ".$cart_item['catalog']."<br >Shipping method:  ".$cart_item['shippingmt']."<br >Price:           $".$cart_item['price']."<br >QTY:             ".$cart_item['qty']."<br ><br >";
+				  $emailbody3.="Product Name:     ".$cart_item['name']."<br >Catalog No:        ".$cart_item['catalog']."<br >Shipping method:  ".$cart_item['shippingmt']."<br >Price:           $".$cart_item['price']."<br >QTY:             ".$cart_item['qty']."<br ><br >";
 				}
-				$emailbody3=$emailbody3."Subtotal:        $".$total."<br >";
-				$emailbody3=$emailbody3."S/H:             $".number_format($cart['shopping_cart']['shipping'],2)."<br >";      
+				$emailbody3.="Subtotal:        $".$total."<br >";
+				$emailbody3.="S/H:             $".number_format($cart['shopping_cart']['shipping'],2)."<br >";      
 		 		
-				 $emailbody3=$emailbody3."Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
+				 $emailbody3.="Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
 				 if(!empty($discountamount)){
-                                $emailbody3=$emailbody3."Discount :           $".number_format($discountamount,2)."<br >"; 
+                                $emailbody3.="Discount :           $".number_format($discountamount,2)."<br >"; 
                            
                  }
-				 $emailbody3=$emailbody3."Total:           $".$cart['shopping_cart']['grand_total']."<br ><br >";
-				 $emailbody3=$emailbody3."Ship to:<br ><br >".$this->input->post('sattn')."<br >";
-		  		 $emailbody3=$emailbody3.$cart['shipping_name']."<br >";
-				 $emailbody3=$emailbody3.$cart['shipping_street']."<br >";
-				 $emailbody3=$emailbody3.$cart['shipping_city'].", ";
-				 $emailbody3=$emailbody3.$cart['shipping_state']." ";
-				 $emailbody3=$emailbody3.$cart['shipping_zip']."<br >";
-				 $emailbody3=$emailbody3.$cart['shipping_country_name']."<br >";
-				 $emailbody3=$emailbody3.$cart['phone_number']." (tel)<br >";
-				 @$emailbody3=$emailbody3.$_SESSION['payEmail']."<br ><br >";
-				 $emailbody3=$emailbody3."Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
+				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br ><br >";
+				 $emailbody3.="Ship to:<br ><br >".$this->input->post('sattn')."<br >";
+		  		 $emailbody3.=$cart['shipping_name']."<br >";
+				 $emailbody3.=$cart['shipping_street']."<br >";
+				 $emailbody3.=$cart['shipping_city'].", ";
+				 $emailbody3.=$cart['shipping_state']." ";
+				 $emailbody3.=$cart['shipping_zip']."<br >";
+				 $emailbody3.=$cart['shipping_country_name']."<br >";
+				 $emailbody3.=$cart['phone_number']." (tel)<br >";
+				 @$emailbody3.=$_SESSION['payEmail']."<br ><br >";
+				 $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
 
 				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
-				 $emailbody=$emailbody."<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
+				 $emailbody.=$emailbody."<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
 			  
 			   $email = $cart['email']."," ;
 			   $email .="order@bioassaysys.com" .",";
@@ -591,6 +588,7 @@ class Express_checkout extends CI_Controller
 
 		// Successful call.  Load view or whatever you need to do here.
 		$this->cart->destroy();
+		
 		redirect('/checkout/thanks');
 
 	}

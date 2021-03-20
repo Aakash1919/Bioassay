@@ -96,6 +96,8 @@ if(!empty($personID)){
 		<input type="hidden" name="sphone" value="<?php echo isset($sphone)?$sphone:'';?>">
 		<input type="hidden" name="semail" value="<?php echo isset($semail)?$semail:'';?>">
 		<input type="hidden" name="cmnts" value="<?php echo isset($cmnts)?$cmnts:'';?>">
+		<input type="hidden" id="tax" value="<?php echo isset($tax)?number_format((float)$tax,2):'0.00'; ?>">
+		<input type="hidden" id="shippingFee" value="<?php echo isset($shippingFee)?number_format($shippingFee,2):'0.00';?> ">
 		<input type="hidden" name="payment_type" id="payment_type" value="<?php echo isset($payment_type)?$payment_type:'';?>">
 		<input type="hidden" id="sales_tax_exempt_num1" name="sales_tax_exempt_num1" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
 		<section class="content-right">
