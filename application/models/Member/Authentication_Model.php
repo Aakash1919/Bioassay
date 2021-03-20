@@ -24,7 +24,7 @@ class Authentication_Model extends CI_Model{
         $transactionRequestType->setTransactionType("authCaptureTransaction");
         $transactionRequestType->setAmount($amount);
         $transactionRequestType->setTax($this->setTax(isset($extraInfo['tax']) ? $extraInfo['tax'] : 0 ));
-        $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? $extraInfo['taxExempt'] : 0 );
+        $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? true : false );
         $transactionRequestType->setShipping($this->setShipping(isset($extraInfo['shippingFee']) ? $extraInfo['shippingFee'] : 0 ));
         $transactionRequestType->setLineItems(self::getLineItems($items));
     
@@ -99,8 +99,8 @@ class Authentication_Model extends CI_Model{
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();
         } else {
-           return false;
+            $errorMessages = $response->getMessages()->getMessage();
+           return $errorMessages[0]->getText();
         }
-        return $response;
     }
 }

@@ -552,7 +552,7 @@ class Express_checkout extends CI_Controller
 		 		
 				 $emailbody3.="Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
 				 if(!empty($discountamount)){
-                                $emailbody3.="Discount :           $".number_format($discountamount,2)."<br >"; 
+                     $emailbody3.="Discount :           $".number_format($discountamount,2)."<br >"; 
                            
                  }
 				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br ><br >";

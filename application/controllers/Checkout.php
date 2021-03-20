@@ -164,10 +164,10 @@ class Checkout extends Public_Controller{
 	/*
 	* Function to calculate the discount from the discount Array
 	*/
-	public function getDiscountAmount($discountArray = null) {
+	public function getDiscountAmount($discountArray = null, $cart = []) {
 
 		$discountamount = 0;
-		if(is_array($discountArray) && !empty($discountArray)){
+		if(is_array($discountArray) && !empty($discountArray) && !empty($cart)){
 			foreach ($discountArray  as $d) {
 				$status = $d['Status'];
 				if($status == 'true'){
@@ -218,7 +218,7 @@ class Checkout extends Public_Controller{
 				$taxrate = $this->getTaxRate($PreviousInfo['szip'], $PreviousInfo['sstate'], $taxExemptId);
 			}
 			
-			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'));
+			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'), $this->cart->contents());
 			
 			$shippingFee = !empty($fedex_acct_num) ? 0 : (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 
@@ -524,7 +524,7 @@ class Checkout extends Public_Controller{
 	public function generateAuthorizeToken($amount=0, $items, $extraInfo = []) {
 
 		$token = $this->Authentication_Model->getAnAcceptPaymentPage($amount, $items, $extraInfo);
-
+		
 		return $token;
 	}
 	/*
@@ -708,7 +708,7 @@ class Checkout extends Public_Controller{
 	* Function to get authorization token for the hosted access payment pages
 	*/
 	public function GetAuthToken(){
-		$tax = $_GET['taxExempt'] ==0 ? $_GET['tax'] : 0;
+		$tax = $_GET['taxExempt'] == 0 ? $_GET['tax'] : 0;
 		$extraInfo = array(
 			'taxExempt' => $_GET['taxExempt'] ? $_GET['taxExempt'] : 0,
 			'tax' => $tax ? $tax : 0,
