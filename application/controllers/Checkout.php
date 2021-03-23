@@ -487,10 +487,7 @@ class Checkout extends Public_Controller{
 	* Function to set paypal Payment Gateway
 	*/
 	public function getPaypalCheckout($orderId=null, $data = []) {
-		echo "<pre>";
-		print_r($this->session->userdata());
-		print_r($data);
-		die;
+		
 		$countryCode = $this->returnCountryCode($data['scountry']);	
 		$this->session->set_userdata('orderID', $orderId);
 		$this->session->set_userdata('SHIPTONAME', $data['sattn']);
@@ -581,7 +578,6 @@ class Checkout extends Public_Controller{
 	* Function to get full final email body
 	*/
 	public function getEmailBody($emailArray = [], $body = null) {
-
 		$emailbody1 = "Dear ".$body['sattn'].",<br ><br >";
 		$emailbody2 = $this->getEmailBodyTwo($emailArray['orderId'], $emailArray['type']);
 		$emailbody3 = ($emailArray['type']=='Purchase Order') ? 'Order Details:<br ><br >' : 'Quotation Request Details:<br ><br >';	
@@ -593,9 +589,9 @@ class Checkout extends Public_Controller{
 			}
 			$emailbody3.='<br>';
 		}
-		if(!empty($emailArray['discountcode'])){
+		if(!empty($body['discount'])){
 			$discountamount = $this->session->userdata('discountamount');	
-			$emailbody3.="Discount Code: ".$emailArray['discountcode']." <br > Discount Price: $".$discountamount."<br>";
+			$emailbody3.="Discount Code: ".$body['discount']." <br > Discount Price: $".$discountamount."<br>";
 			if($emailArray['type']=='Purchase Order') { 
 				$emailArray['newTotal'] = $emailArray['newTotal']-$discountamount;
 			}
@@ -629,7 +625,6 @@ class Checkout extends Public_Controller{
 		$emailbody3.="Notes:<br >".$body['cmnts']."<br ><br >";
 		$emailbody3.="We thank you for your business!<br ><br >Your BioAssay Systems Team<br >";
 		$emailbody=$emailbody1.$emailbody2.$emailbody3;
-
 		return $emailbody;
 	}
 	/*

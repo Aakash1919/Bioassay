@@ -388,8 +388,9 @@ if(!empty($personID)){
 								Promotion Code: 
 							</p>
 						</div>
+						<?php $promotionCode = $this->session->userdata('PromotionCode'); ?>
 						<div class="reg_cf1">
-							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($promotioncode)?$promotioncode:'';?>">
+							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($promotionCode)?$promotionCode:'';?>">
 							<input class="button" type="button" id="discode_" value="Submit" onClick="dis_check(this.value,this.id)" name="disn">
 						</div>
 						<div class="reg_left">
@@ -427,7 +428,6 @@ if(!empty($personID)){
 					</div>
 					<!-- Aakash Started here -->
 					<?php 
-						$promotionCode = $this->session->userdata('PromotionCode');
 						if(isset($promotionCode))
 						{
 					?>

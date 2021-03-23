@@ -559,7 +559,7 @@ class Express_checkout extends CI_Controller
 				 if(isset($discountCode)) {
 					$emailbody3.='Discount Code: '.$discountCode.'<br>';
 				 }
-				 if(!empty($discountamount)){
+				 if(isset($discountamount)){
                      $emailbody3.="Discount : $".number_format($discountamount,2)."<br >"; 
                  }
 				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
@@ -578,16 +578,15 @@ class Express_checkout extends CI_Controller
 				//  @$emailbody3.=$_SESSION['payEmail']."<br ><br >";
 				//  $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
 
-				 $emailbody=$emailbody1.$emailbody2.$emailbody3;
-				 $emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
-			  
-			   $email = $cart['email']."," ;
-			   $email .="order@bioassaysys.com" .",";
-			   $salesemail = "order@bioassaysys.com";
-			   $emailtitle = "Order receipt - www.bioassaysys.com";
-			   $header = "From: ".$salesemail."\r\n"; 
-			   $header.= "MIME-Version: 1.0\r\n"; 
-			   $header.= "Content-type: text/html; charset=utf-8\r\n";
+				$emailbody=$emailbody1.$emailbody2.$emailbody3;
+				$emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
+				$email = $cart['email']."," ;
+				$email .="order@bioassaysys.com" .",";
+				$salesemail = "order@bioassaysys.com";
+				$emailtitle = "Order receipt - www.bioassaysys.com";
+				$header = "From: ".$salesemail."\r\n"; 
+				$header.= "MIME-Version: 1.0\r\n"; 
+				$header.= "Content-type: text/html; charset=utf-8\r\n";
 				$status = mail($email,$emailtitle,$emailbody, $header);
 				unset($_SESSION['payEmail']);
 			// }
