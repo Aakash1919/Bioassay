@@ -18,7 +18,7 @@ function dis_check() {
         url: "/checkout/getDiscount",
         data: dataString,
         success: function (data) {
-            //console.log(data);
+            console.log(data);
             if (data == "Invalid Code" || data == "Discount Code Expired") {
                 $("#discode").val(data);
                 return false;

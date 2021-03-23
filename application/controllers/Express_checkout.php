@@ -551,12 +551,23 @@ class Express_checkout extends CI_Controller
 				$emailbody3.="S/H:             $".number_format($cart['shopping_cart']['shipping'],2)."<br >";      
 		 		
 				 $emailbody3.="Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
+				 $taxExemptId = $_SESSION['taxExemptId'];
+				 if(isset($taxExemptId)) {
+					 $emailbody3.="Tax Exemption Number:".$taxExemptId.'<br>';
+				 }
+				 $discountCode = $_SESSION['PromotionCode'];
+				 if(isset($discountCode)) {
+					$emailbody3.='Discount Code: '.$discountCode.'<br>';
+				 }
 				 if(!empty($discountamount)){
-                     $emailbody3.="Discount :           $".number_format($discountamount,2)."<br >"; 
-                           
+                     $emailbody3.="Discount : $".number_format($discountamount,2)."<br >"; 
                  }
-				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br ><br >";
-				 $emailbody3.="Ship to:<br ><br >".$this->input->post('sattn')."<br >";
+				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
+				 $fedexAccount = $_SESSION['fedex_account_number'];
+				 if(isset($fedexAccount)) {
+					 $emailbody3.="Fedex Account: ".$fedexAccount;
+				 }
+				 $emailbody3.="<br /><br />Ship to:<br ><br >".$this->input->post('sattn')."<br >";
 		  		 $emailbody3.=$cart['shipping_name']."<br >";
 				 $emailbody3.=$cart['shipping_street']."<br >";
 				 $emailbody3.=$cart['shipping_city'].", ";

@@ -487,6 +487,10 @@ class Checkout extends Public_Controller{
 	* Function to set paypal Payment Gateway
 	*/
 	public function getPaypalCheckout($orderId=null, $data = []) {
+		echo "<pre>";
+		print_r($this->session->userdata());
+		print_r($data);
+		die;
 		$countryCode = $this->returnCountryCode($data['scountry']);	
 		$this->session->set_userdata('orderID', $orderId);
 		$this->session->set_userdata('SHIPTONAME', $data['sattn']);
@@ -497,7 +501,10 @@ class Checkout extends Public_Controller{
 		$this->session->set_userdata('SHIPTOZIP', $data['szip']);
 		$this->session->set_userdata('SHIPTOPHONENUM', $data['sphone']);
 		$this->session->set_userdata('po_num', $data['po_num']);
+		$this->session->set_userdata('fedex_account_number', $data['fedex_accnt']);
 		$this->session->set_userdata('payEmail', $data['semail']);
+		$this->session->set_userdata('taxExemptId', $data['tax_exempt_id']);
+
 		
 		redirect('express_checkout/SetExpressCheckout');
 	}
@@ -714,7 +721,8 @@ class Checkout extends Public_Controller{
 			'tax' => $tax ? $tax : 0,
 			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0
 		);
-		$this->data['authToken'] = self::generateAuthorizeToken($this->cart->total(), $this->cart->contents(), $extraInfo);
+		$totalAmount = $this->cart->total() + $extraInfo['shippingFee'] + $extraInfo['tax'];
+		$this->data['authToken'] = self::generateAuthorizeToken($totalAmount, $this->cart->contents(), $extraInfo);
 		$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
 
 		echo json_encode($data,JSON_UNESCAPED_SLASHES);
