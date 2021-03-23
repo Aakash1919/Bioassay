@@ -717,6 +717,9 @@ class Checkout extends Public_Controller{
 			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0
 		);
 		$totalAmount = $this->cart->total() + $extraInfo['shippingFee'] + $extraInfo['tax'];
+		if(isset($_SESSION['discountamount'])) {
+			$totalAmount = $totalAmount - $_SESSION['discountamount'];
+		}
 		$this->data['authToken'] = self::generateAuthorizeToken($totalAmount, $this->cart->contents(), $extraInfo);
 		$data = array('AuthToken'=>$this->data['authToken'],'Url'=>'https://test.authorize.net/payment/payment');
 

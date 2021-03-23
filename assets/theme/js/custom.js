@@ -18,7 +18,6 @@ function dis_check() {
         url: "/checkout/getDiscount",
         data: dataString,
         success: function (data) {
-            console.log(data);
             if (data == "Invalid Code" || data == "Discount Code Expired") {
                 $("#discode").val(data);
                 return false;
@@ -39,7 +38,6 @@ jQuery(document).on('change', "#paymenttype", function () {
     jQuery("#payment_type").val("");
     var payment_type = jQuery(this).val(); 
     var country = $('input[name=scountry]').val();
-    console.log(country)
     if (payment_type == "Purchase Order") {
         jQuery("#po_details").toggle();
         jQuery("#regform").attr("action", "/checkout/finalTransaction");
