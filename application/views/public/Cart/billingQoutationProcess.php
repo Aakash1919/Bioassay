@@ -82,7 +82,7 @@ if(!empty($personID)){
 <section class="content-area">
 	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
 		<input type="hidden" name="token" id="authToken" value="<?php echo isset($authToken)?$authToken:0; ?>">
-		<input type="hidden" name="fedex_accnt" value="<?php echo isset($fedex)?$fedex:'';?>">
+		<input type="hidden" name="fedex_accnt" id="fedex_accnt" value="<?php echo isset($fedex)?$fedex:'';?>">
 		<input type="hidden" name="fedex_service" value="<?php echo isset($fedexservice)?$fedexservice:'';?>">
 		<input type="hidden" name="sattn" value="<?php echo isset($sattn)?$sattn:'';?>">
 		<input type="hidden" name="scompany" value="<?php echo isset($scompany)?$scompany:'';?>">

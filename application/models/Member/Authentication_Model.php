@@ -26,7 +26,7 @@ class Authentication_Model extends CI_Model{
         $transactionRequestType->setTax($this->setTax(isset($extraInfo['tax']) ? $extraInfo['tax'] : 0 ));
         $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? true : false );
         $transactionRequestType->setShipping($this->setShipping(isset($extraInfo['shippingFee']) ? $extraInfo['shippingFee'] : 0 ));
-        $transactionRequestType->setLineItems(self::getLineItems($items));
+        $transactionRequestType->setLineItems(self::getLineItems($items, isset($extraInfo['taxExempt']) ? $extraInfo['taxExempt'] : null, isset($extraInfo['fedex']) ? $extraInfo['fedex'] : null));
     
         return $transactionRequestType;
     }
@@ -43,23 +43,31 @@ class Authentication_Model extends CI_Model{
         return $shipping;
     }
 
-    function setLineItem($id,$name,$price,$qty) {
+    function setLineItem($id,$name, $desc,$price,$qty) {
         $lineItem = new AnetAPI\LineItemType();
         
         $lineItem->setItemId($id);
         $lineItem->setName($name);
-        $lineItem->setDescription('Fedex #123456789 Tax #123123123123');
+        $lineItem->setDescription($desc);
         $lineItem->setTaxable(0);
         $lineItem->setQuantity($qty);
         $lineItem->setUnitPrice($price);
         
         return $lineItem;
     }
-    function getLineItems($items) {
+    function getLineItems($items, $taxExempt=null, $fedex=null) {
         $itemsArray = array();
         foreach($items as $item) {
-         $lineItem = self::setLineItem($item['id'],$item['name'],$item['price'], $item['qty']);
+         $lineItem = self::setLineItem($item['id'],'Product',$item['name'],$item['price'], $item['qty']);
          array_push($itemsArray, $lineItem);
+        }
+        if(isset($fedex)) {
+            $fedexItem = self::setLineItem('#','Fedex',$fedex,0, 1);
+            array_push($itemsArray, $fedexItem);
+        }
+        if(isset($taxExempt)) {
+            $TaxItem = self::setLineItem('#','Tax Exempt', $taxExempt,0, 1);
+            array_push($itemsArray, $TaxItem);
         }
         return $itemsArray;
     }

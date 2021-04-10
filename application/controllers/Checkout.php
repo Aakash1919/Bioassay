@@ -712,9 +712,10 @@ class Checkout extends Public_Controller{
 	public function GetAuthToken(){
 		$tax = $_GET['taxExempt'] == 0 ? $_GET['tax'] : 0;
 		$extraInfo = array(
-			'taxExempt' => $_GET['taxExempt'] ? $_GET['taxExempt'] : 0,
+			'taxExempt' => $_GET['taxExempt'] ? $_GET['taxExempt'] :null,
 			'tax' => $tax ? $tax : 0,
-			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0
+			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0,
+			'fedex' => $_GET['fedex'] ? $_GET['fedex'] : null
 		);
 		$totalAmount = $this->cart->total() + $extraInfo['shippingFee'] + $extraInfo['tax'];
 		if(isset($_SESSION['discountamount'])) {
