@@ -47,8 +47,8 @@ class Authentication_Model extends CI_Model{
         $lineItem = new AnetAPI\LineItemType();
         
         $lineItem->setItemId($id);
-        $lineItem->setName('Product');
-        $lineItem->setDescription($name);
+        $lineItem->setName($name);
+        $lineItem->setDescription('Fedex #123456789 Tax #123123123123');
         $lineItem->setTaxable(0);
         $lineItem->setQuantity($qty);
         $lineItem->setUnitPrice($price);
