@@ -531,7 +531,7 @@ class Express_checkout extends CI_Controller
 			  $orderID = $this->session->userdata('orderID');
 			  $cart1 = $this->cart->contents(); 
 			  $emailbody2="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Paypal<br><br>";
-			  $emailbody2.=$emailbody2."Order Details:<br ><br >";
+			  $emailbody2.="Order Details:<br ><br >";
 			  $po_num = $_SESSION['po_num'];
 				if(isset($po_num) && !empty($po_num)){
 					$emailbody2.="PO Number: ".$po_num."<br ><br >";
@@ -568,8 +568,7 @@ class Express_checkout extends CI_Controller
 					 $emailbody3.="Fedex Account: ".$fedexAccount.'<br>';
 				 }
 				 $emailbody3.= isset($_SESSION['PreviousInfo']['scountry']) && $_SESSION['PreviousInfo']['scountry']=="United States" ? "FedEx Delivery: ".$_SESSION['PreviousInfo']['fedex_service']."<br >" : "International Shipping <br>";
-				 $emailbody3.="Notes: ";
-				 $emailbody3.=isset($_SESSION['PreviousInfo']['cmnts']) ? $_SESSION['PreviousInfo']['cmnts']."<br>": ''."<br >";
+				 $emailbody3.=isset($_SESSION['PreviousInfo']['cmnts']) && !empty($_SESSION['PreviousInfo']['cmnts'])? "Notes: ".$_SESSION['PreviousInfo']['cmnts']."<br>": ''."<br >";
 				 $emailbody3.="<br />Ship to:<br >".$this->input->post('sattn')."<br >";
 		  		 $emailbody3.=$cart['shipping_name']."<br >";
 				 $emailbody3.=$cart['shipping_street']."<br >";
