@@ -533,7 +533,7 @@ class Express_checkout extends CI_Controller
 			  $emailbody2="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Paypal<br><br>";
 			  $emailbody2.=$emailbody2."Order Details:<br ><br >";
 			  $po_num = $_SESSION['po_num'];
-				if(isset($po_num)){
+				if(isset($po_num) && !empty($po_num)){
 					$emailbody2.="PO Number: ".$po_num."<br ><br >";
 				}
 				$discountamount = $this->session->userdata('discountamount');	
@@ -564,12 +564,13 @@ class Express_checkout extends CI_Controller
                  }
 				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
 				 $fedexAccount = $_SESSION['fedex_account_number'];
-				 if(isset($fedexAccount)) {
-					 $emailbody3.="Fedex Account: ".$fedexAccount;
+				 if(isset($fedexAccount) && !empty($fedexAccount)) {
+					 $emailbody3.="Fedex Account: ".$fedexAccount.'<br>';
 				 }
-				 $emailbody3.= isset($_SESSION['PreviousInfo']['scountry']) && $_SESSION['PreviousInfo']['scountry']=="United States" ? "FedEx Delivery: ".$_SESSION['PreviousInfo']['fedex_service']."<br ><br >" : "International Shipping <br><br>";
-
-				 $emailbody3.="<br /><br />Ship to:<br ><br >".$this->input->post('sattn')."<br >";
+				 $emailbody3.= isset($_SESSION['PreviousInfo']['scountry']) && $_SESSION['PreviousInfo']['scountry']=="United States" ? "FedEx Delivery: ".$_SESSION['PreviousInfo']['fedex_service']."<br >" : "International Shipping <br>";
+				 $emailbody3.="Notes: ";
+				 $emailbody3.=isset($_SESSION['PreviousInfo']['cmnts']) ? $_SESSION['PreviousInfo']['cmnts']."<br>": ''."<br >";
+				 $emailbody3.="<br />Ship to:<br >".$this->input->post('sattn')."<br >";
 		  		 $emailbody3.=$cart['shipping_name']."<br >";
 				 $emailbody3.=$cart['shipping_street']."<br >";
 				 $emailbody3.=$cart['shipping_city'].", ";
@@ -577,8 +578,6 @@ class Express_checkout extends CI_Controller
 				 $emailbody3.=$cart['shipping_zip']."<br >";
 				 $emailbody3.=$cart['shipping_country_name']."<br >";
 				 $emailbody3.=$cart['phone_number']." (tel)<br >";
-				//  @$emailbody3.=$_SESSION['payEmail']."<br ><br >";
-				 $emailbody3.="Notes:<br >".isset($_SESSION['PreviousInfo']['cmnts']) ? isset($_SESSION['PreviousInfo']['cmnts']): ''."<br ><br >";
 
 				$emailbody=$emailbody1.$emailbody2.$emailbody3;
 				$emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
