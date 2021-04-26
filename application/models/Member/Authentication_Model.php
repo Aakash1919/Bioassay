@@ -26,7 +26,7 @@ class Authentication_Model extends CI_Model{
         $transactionRequestType->setTax($this->setTax(isset($extraInfo['tax']) ? $extraInfo['tax'] : 0 ));
         $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? true : false );
         $transactionRequestType->setShipping($this->setShipping(isset($extraInfo['shippingFee']) ? $extraInfo['shippingFee'] : 0 ));
-        $transactionRequestType->setLineItems(self::getLineItems($items, isset($extraInfo['taxExempt']) ? $extraInfo['taxExempt'] : null, isset($extraInfo['fedex']) ? $extraInfo['fedex'] : null));
+        $transactionRequestType->setLineItems(self::getLineItems($items, isset($extraInfo) ? $extraInfo: []));
     
         return $transactionRequestType;
     }
@@ -55,22 +55,27 @@ class Authentication_Model extends CI_Model{
         
         return $lineItem;
     }
-    function getLineItems($items, $taxExempt=null, $fedex=null) {
+    function getLineItems($items, $extraInfo=[]) {
         $itemsArray = array();
         foreach($items as $item) {
          $lineItem = self::setLineItem($item['id'],'Product',$item['name'],$item['price'], $item['qty']);
          array_push($itemsArray, $lineItem);
         }
-        if(isset($fedex)) {
-            $fedexItem = self::setLineItem('#','Fedex',$fedex,0, 1);
+        if(isset($extraInfo['fedex'])) {
+            $fedexItem = self::setLineItem('#','Fedex',$extraInfo['fedex'],0, 1);
             array_push($itemsArray, $fedexItem);
         }
-        if(isset($taxExempt)) {
-            $TaxItem = self::setLineItem('#','Tax Exempt', $taxExempt,0, 1);
+        if(isset($extraInfo['taxExempt'])) {
+            $TaxItem = self::setLineItem('#','Tax Exempt', $extraInfo['taxExempt'],0, 1);
             array_push($itemsArray, $TaxItem);
+        }
+        if(isset($extraInfo['discountCode'])) {
+            $discountItem = self::setLineItem('#','Discount Code', $extraInfo['discountCode'], $extraInfo['discountAmount'], 1);
+            array_push($itemsArray, $discountItem);
         }
         return $itemsArray;
     }
+
     public function getSetting($name=null, $value=null) {
         $setting = new AnetAPI\SettingType();
         $setting->setSettingName($name);

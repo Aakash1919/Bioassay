@@ -718,7 +718,9 @@ class Checkout extends Public_Controller{
 			'fedex' => $_GET['fedex'] ? $_GET['fedex'] : null
 		);
 		$totalAmount = $this->cart->total() + $extraInfo['shippingFee'] + $extraInfo['tax'];
-		if(isset($_SESSION['discountamount'])) {
+		if(isset($_SESSION['PromotionCode']) && isset($_SESSION['discountamount'])) {
+			$extraInfo['discountCode'] = $_SESSION['PromotionCode'];
+			$extraInfo['discountAmount'] = $_SESSION['discountamount'];
 			$totalAmount = $totalAmount - $_SESSION['discountamount'];
 		}
 		$this->data['authToken'] = self::generateAuthorizeToken($totalAmount, $this->cart->contents(), $extraInfo);
