@@ -594,7 +594,7 @@ class Express_checkout extends CI_Controller
 
 	     	// Set cart data into session userdata
      	
-		$this->load->vars('cart', $cart);
+		// $this->load->vars('cart', $cart);
 		// Successful call.  Load view or whatever you need to do here.
 		$this->cart->destroy();
 		redirect('/checkout/thanks');

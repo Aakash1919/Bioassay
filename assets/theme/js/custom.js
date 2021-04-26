@@ -37,7 +37,6 @@ function clearall(quantity, id) {
 jQuery(document).on('change', "#paymenttype", function () {
     jQuery("#payment_type").val("");
     var payment_type = jQuery(this).val(); 
-    var country = $('input[name=scountry]').val();
     if (payment_type == "Purchase Order") {
         jQuery("#po_details").toggle();
         jQuery("#regform").attr("action", "/checkout/finalTransaction");
@@ -92,11 +91,10 @@ $(document).on('click', '#bill_chkout_qtn', function () {
         // var authToken = $("#authToken").val();
         // AuthorizeNetPopup.openPopup(authToken)
     }
-    // else if(payment_type === 'Paypal') {
-    //     // paypal Modal
-    //     var modal = document.getElementById("paypalModal");
-    //     modal.style.display = "block";
-    // }
+    else if(payment_type === '') {
+        // paypal Modal
+      alert('Please Select Payment Type')
+    }
      else {
         $("#regform").submit();
     }
