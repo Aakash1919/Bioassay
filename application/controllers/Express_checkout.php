@@ -556,6 +556,13 @@ class Express_checkout extends CI_Controller
 			
 				  $emailbody3.="Product Name:     ".$cart_item['name']."<br >Catalog No:        ".$cart_item['catalog']."<br >Shipping method:  ".$cart_item['shippingmt']."<br >Price:           $".$cart_item['price']."<br >QTY:             ".$cart_item['qty']."<br ><br >";
 				}
+				$discountCode = isset($_SESSION['PromotionCode']) ? $_SESSION['PromotionCode'] : null;
+				 if(isset($discountCode)) {
+					$emailbody3.='Discount Code: '.$discountCode.'<br>';
+				 }
+				 if(isset($discountamount)){
+                     $emailbody3.="Discount : $".number_format($discountamount,2)."<br >"; 
+                 }
 				$emailbody3.="Subtotal:        $".$total."<br >";
 				$emailbody3.="S/H:             $".number_format($cart['shopping_cart']['shipping'],2)."<br >";      
 		 		
@@ -564,13 +571,7 @@ class Express_checkout extends CI_Controller
 				 if(isset($taxExemptId)) {
 					 $emailbody3.="Tax Exemption Number:".$taxExemptId.'<br>';
 				 }
-				 $discountCode = isset($_SESSION['PromotionCode']) ? $_SESSION['PromotionCode'] : null;
-				 if(isset($discountCode)) {
-					$emailbody3.='Discount Code: '.$discountCode.'<br>';
-				 }
-				 if(isset($discountamount)){
-                     $emailbody3.="Discount : $".number_format($discountamount,2)."<br >"; 
-                 }
+				 
 				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
 				 $fedexAccount = $_SESSION['fedex_account_number'];
 				 if(isset($fedexAccount) && !empty($fedexAccount)) {
