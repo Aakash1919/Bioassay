@@ -117,7 +117,6 @@ class Checkout extends Public_Controller{
 	* Function to view the checkout page
 	*/
 	public function checkout() {
-
 		$personID = $this->session->userdata('person_id');
 		if(isset($personID)){
 			$this->data['active'] = "Checkout";

@@ -354,6 +354,15 @@ class Express_checkout extends CI_Controller
 				);
 			array_push($itemsArray, $Item);
 		}
+		if(isset($_SESSION['PromotionCode']) && isset($_SESSION['discountamount'])) {
+			$Item = array(
+				'name' => 'Discount Amount', 								// Item name. 127 char max.
+				'desc' => $_SESSION['PromotionCode'], 								// Item description. 127 char max.
+				'amt' => -$_SESSION['discountamount'],							// Item number.  127 char max.
+				'qty' => 1, 								// Item qty on order.  Any positive integer.
+				);
+			array_push($itemsArray, $Item);
+		}
 		return $itemsArray;
 	}
 
@@ -594,7 +603,7 @@ class Express_checkout extends CI_Controller
 
 	     	// Set cart data into session userdata
      	
-		// $this->load->vars('cart', $cart);
+		$this->load->vars('cart', $cart);
 		// Successful call.  Load view or whatever you need to do here.
 		$this->cart->destroy();
 		redirect('/checkout/thanks');
