@@ -61,8 +61,8 @@ class Authentication_Model extends CI_Model{
          $lineItem = self::setLineItem($item['id'],'Product',$item['name'],$item['price'], $item['qty']);
          array_push($itemsArray, $lineItem);
         }
-        if(isset($extraInfo['fedex'])) {
-            $fedexItem = self::setLineItem('#','Fedex',$extraInfo['fedex'],0, 1);
+        if(isset($extraInfo['fedex']) || isset($extraInfo['delivery'])) {
+            $fedexItem = self::setLineItem('#','Fedex',$extraInfo['fedex'].' '.$extraInfo['delivery'],0, 1);
             array_push($itemsArray, $fedexItem);
         }
         if(isset($extraInfo['taxExempt'])) {
@@ -102,6 +102,7 @@ class Authentication_Model extends CI_Model{
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentIFrameCommunicatorUrl", "{\"url\": \"$iframeUrl\"}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentShippingAddressOptions", '{"show": true, "required": true}'));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentVisaCheckoutOptions", '{"apiKey":"3F9eMpx9R","displayName":"Bioassay","message":"Bioassay Message"}'));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentCustomerOptions", '{"showEmail": true, "requiredEmail": true, "addPaymentProfile": true}'));
 
         return $request;    
     }

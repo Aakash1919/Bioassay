@@ -80,7 +80,8 @@ $(document).on('click', '#bill_chkout_qtn', function () {
             var shippingFee = $('#shippingFee').val();
             var taxExempt = $('#tax_exempt_id').val() ? $('#tax_exempt_id').val() : 0;
             var fedexAccount = $('#fedex_accnt').val();
-            jQuery.get("/checkout/GetAuthToken", {taxExempt: taxExempt, tax: tax, shipping: shippingFee, fedex : fedexAccount}, function (data) {
+            var deliveryType = $('#fedex_service').val();
+            jQuery.get("/checkout/GetAuthToken", {taxExempt: taxExempt, tax: tax, shipping: shippingFee, fedex : fedexAccount, delivery: deliveryType}, function (data) {
                 jQuery("#po_num").attr("required", false);
                 var result = jQuery.parseJSON(data);
                 jQuery("input#authToken").val(result.AuthToken);

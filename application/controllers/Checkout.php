@@ -714,7 +714,8 @@ class Checkout extends Public_Controller{
 			'taxExempt' => $_GET['taxExempt'] ? $_GET['taxExempt'] :null,
 			'tax' => $tax ? $tax : 0,
 			'shippingFee' => $_GET['shipping'] ? $_GET['shipping'] : 0,
-			'fedex' => $_GET['fedex'] ? $_GET['fedex'] : null
+			'fedex' => $_GET['fedex'] ? $_GET['fedex'] : null,
+			'delivery' => $_GET['delivery'] ? $_GET['delivery'] : null
 		);
 		$totalAmount = $this->cart->total() + $extraInfo['shippingFee'] + $extraInfo['tax'];
 		if(isset($_SESSION['PromotionCode']) && isset($_SESSION['discountamount'])) {
