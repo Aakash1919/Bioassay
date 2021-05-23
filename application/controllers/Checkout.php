@@ -362,6 +362,7 @@ class Checkout extends Public_Controller{
 			$orderData = array(		
 				'account_id'=>$personID,
 				'orders_time'=>date('Y-m-d h:i:s',time()),
+				'po_num' => $this->input->post('po_num'),
 				'ordering_method'=>'web',
 				'payment_method'=>$this->input->post('payment_type'),
 				'orders_status'=>'processing',

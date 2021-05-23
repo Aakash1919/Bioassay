@@ -34,6 +34,7 @@
         $fedex_ser = $OD->fedex_delivery;
         $price = $OD->price;
         $catalog_num = $OD->catalog_num;
+        $po_num = $OD->po_num;
         if(isset($orders_time)){
           $order_time = explode(' ', $orders_time); 
           $orderDate = $order_time[0];
