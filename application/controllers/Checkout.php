@@ -420,13 +420,13 @@ class Checkout extends Public_Controller{
 
 				if($country!="United States"){
 					$dataArray = array(
-						'orderId' => $orderID, 'cart' => $cart, 'discountCode' => null, 'type' => null, 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => null, 'newTotal' => null
+						'orderId' => $orderID, 'cart' => $cart, 'type' => null, 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => null, 'newTotal' => null
 					);  
 					$this->getPurchaseOrderCheckout($dataArray, $this->input->post(), true);
 				}
 				if($this->input->post('payment_type')=="Purchase Order"){
 					$dataArray = array(
-						'orderId' => $orderID, 'cart' => $cart, 'discountCode' => null, 'type' => 'Purchase Order', 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => $taxrate, 'newTotal' => $newTotal
+						'orderId' => $orderID, 'cart' => $cart, 'type' => 'Purchase Order', 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => $taxrate, 'newTotal' => $newTotal
 					);  
 					$this->getPurchaseOrderCheckout($dataArray, $this->input->post(), false);
 				}
@@ -434,7 +434,10 @@ class Checkout extends Public_Controller{
 					$this->getPaypalCheckout($orderID=null, $this->input->post());	
 				}
 				if($this->input->post('payment_type')=="Credit Card"){
-					$response  = $this->getAuthorizeResponse($newTotal);
+				    $dataArray = array(
+						'orderId' => $orderID, 'cart' => $cart, 'type' => 'Credit Card', 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => $taxrate, 'newTotal' => $newTotal
+					);  
+					$response  = $this->getAuthorizeResponse($dataArray, $this->input->post());
 				}
 			}
 		}
@@ -508,18 +511,21 @@ class Checkout extends Public_Controller{
 	/*
 	* Function to set Hosted Access Payment Pages
 	*/
-	public function getAuthorizeResponse($amount=0) {
+	public function getAuthorizeResponse($dataArray = [], $postArray = []) {
 
-		$token = $this->generateAuthorizeToken($amount);
-		$postField = "token=$token";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,"https://test.authorize.net/payment/payment");
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'GET' );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, $postField );
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$contents = curl_exec($ch);
+		$updateArray = array('payment_method'=> "CC");
+		$purchaseOrderDetails = array('orders_id'=>$dataArray['orderId'],'tag'=>'po_num','value'=>$postArray['po_num'],'mod_date'=>date('Y-m-d',time()));
 
-		curl_close ($ch);;
+		$this->Order_Model->Save($dataArray['orderId'],$updateArray);
+		$this->OrderDetails_Model->Save(null,$purchaseOrderDetails);
+
+		$email = $this->getEmailReceivers($postArray['semail']);
+		$emailtitle = $this->getEmailTitle();
+		$emailbody = $this->getEmailBody($dataArray, $postArray);
+		$header = $this->getEmailHeader();
+		mail($email,$emailtitle,$emailbody, $header);
+
+		$this->getThanksResponse($postArray['semail']);
 	}
 	/*
 	* Function to generate authorize token

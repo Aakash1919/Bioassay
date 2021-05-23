@@ -56,14 +56,6 @@ jQuery(document).on('change', "#paymenttype", function () {
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
-            // jQuery("#wait").css("display", "block");
-            // jQuery("#bill_chkout_qtn").attr("disabled", true);
-            // jQuery.get("/checkout/getPaypalIframe", function (data) {
-            //     var result = jQuery.parseJSON(data);
-            //     $('#frameContent').html(result)
-            // });
-            // jQuery("#bill_chkout_qtn").attr("disabled", false);
-            // jQuery("#wait").css("display", "none");
             jQuery("#regform").attr("action", "/checkout/finalTransaction");
             jQuery("#po_num").attr("required", false);
         }
@@ -149,11 +141,11 @@ $(function () {
                     break;
                 case "transactResponse":
                     var response = params["response"];
-                    updateInputValues(response)
+                    updateInputValues(JSON.parse(response))
                     AuthorizeNetPopup.closePopup();
                     var form = document.forms["regform"];
-                    console.log(form)
-                    // form.submit();
+                    form.action = "/checkout/finalTransaction";
+                    form.submit();
                     break;
                 case "resizeWindow":
                     var w = parseInt(params["width"]);
