@@ -339,7 +339,6 @@ class Checkout extends Public_Controller{
 	* Function to process final transaction of the items contains paypal authorize and purchase orders
 	*/
 	public function finalTransaction() {
-
 		if(!isset($_SESSION['PreviousInfo'])){
 			redirect('/checkout/checkout?fromCart=true');
 		}

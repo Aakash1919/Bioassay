@@ -173,7 +173,7 @@ $(function () {
             document.getElementsByName("bcity")[0].value=input.billTo.city
             document.getElementsByName("bstate")[0].value=input.billTo.state
             document.getElementsByName("bzip")[0].value=input.billTo.zip
-            document.getElementsByName("bcountry")[0].value=input.billTo.country
+            $('#bcountry').append("<option value='"+input.billTo.country+"' selected>"+input.billTo.country+"</option>"); 
             document.getElementsByName("bphone")[0].value=input.billTo.phoneNumber
         }
     }
