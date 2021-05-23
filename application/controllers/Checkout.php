@@ -386,8 +386,8 @@ class Checkout extends Public_Controller{
 				'shipping_tel'=>$this->input->post('sphone'),
 				'shipping_email'=>$this->input->post('semail'),
 				'tax_exempt'=>$this->input->post('tax_exempt_id'),
-				'fedex_number' => $this->input->post('fedex_accnt'
-				'fedex_delivery' => $this->input->post('fedex_service')
+				'fedex_number' => $this->input->post('fedex_accnt'),
+				'fedex_delivery' => $this->input->post('fedex_service'),
 				'comment_'=>$this->input->post('cmnts'),
 				'mod_date'=>date('Y-m-d',time()),
 			);
