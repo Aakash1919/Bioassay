@@ -571,12 +571,11 @@ class Checkout extends Public_Controller{
 	*/
 	public function getEmailBodyTwo($orderID = null, $type=null) {
 
-		if($type=='Purchase Order') {
-			$emailbody="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: Purchase Order<br><br>";
+		if(isset($type)) {
+			$emailbody="Your order #".$orderID." has been placed, please keep a record of this receipt.<br ><br >Payment Method: $type<br><br>";
 		}else {
 			$emailbody = "This is to confirm that we have received your quotation request #".$orderID.".  BioAssay Systems will email a detailed quote for your order including shipping/handling fee within 24 hours.<br ><br >";
 		}
-
 		return $emailbody;
 	}
 	/*
@@ -585,7 +584,7 @@ class Checkout extends Public_Controller{
 	public function getEmailBody($emailArray = [], $body = null) {
 		$emailbody1 = "Dear ".$body['sattn'].",<br ><br >";
 		$emailbody2 = $this->getEmailBodyTwo($emailArray['orderId'], $emailArray['type']);
-		$emailbody3 = ($emailArray['type']=='Purchase Order') ? 'Order Details:<br ><br >' : 'Quotation Request Details:<br ><br >';	
+		$emailbody3 = isset($emailArray['type']) ? 'Order Details:<br ><br >' : 'Quotation Request Details:<br ><br >';	
 		$emailbody3.= isset($body['po_num']) ? "PO Number: ".$body['po_num']."<br ><br >" :'';
 		foreach($emailArray['cart'] as $prodid => $product) {
 			if($product != null) {
@@ -597,14 +596,14 @@ class Checkout extends Public_Controller{
 		if(!empty($body['discount'])){
 			$discountamount = $this->session->userdata('discountamount');	
 			$emailbody3.="Discount Code: ".$body['discount']." <br > Discount Price: $".$discountamount."<br>";
-			if($emailArray['type']=='Purchase Order') { 
+			if(isset($emailArray['type'])) { 
 				$emailArray['newTotal'] = $emailArray['newTotal']-$discountamount;
 			}
 		}
 		$emailbody3.="Subtotal: $".$emailArray['finalPrice']."<br >";
-		$emailbody3.=($emailArray['type']=='Purchase Order') ? "S/H: $".number_format($emailArray['shippingfee'],2)."<br >" : "S/H: TBD<br >";	 
+		$emailbody3.=isset($emailArray['type']) ? "S/H: $".number_format($emailArray['shippingfee'],2)."<br >" : "S/H: TBD<br >";	 
 		$emailbody3.= !empty($body['tax_exempt_id']) ? "Tax Exempt Number: ".$body['tax_exempt_id']."<br/>": '';
-		if($emailArray['type']=='Purchase Order') { 
+		if(isset($emailArray['type'])) { 
 			$emailbody3.="Tax: $".number_format($emailArray['taxRate']*($this->cart->total()),2)."<br >";
 			$emailbody3.="Total: $".$emailArray['newTotal']."<br ><br >";
 		}else {
