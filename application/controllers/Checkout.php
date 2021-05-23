@@ -416,8 +416,8 @@ class Checkout extends Public_Controller{
 				$this->setAndSaveOrderDetails($orderID, 'total', $newTotal);
 
 				$country = $this->input->post('scountry');
-
-				if($country!="United States"){
+                $comparingCountry = $this->input->post('payment_type')=="Credit Card" ? 'US' : 'United States';
+				if($country!=$comparingCountry){
 					$dataArray = array(
 						'orderId' => $orderID, 'cart' => $cart, 'type' => null, 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => null, 'newTotal' => null
 					);  
@@ -584,7 +584,7 @@ class Checkout extends Public_Controller{
 		$emailbody1 = "Dear ".$body['sattn'].",<br ><br >";
 		$emailbody2 = $this->getEmailBodyTwo($emailArray['orderId'], $emailArray['type']);
 		$emailbody3 = isset($emailArray['type']) ? 'Order Details:<br ><br >' : 'Quotation Request Details:<br ><br >';	
-		$emailbody3.= isset($body['po_num']) ? "PO Number: ".$body['po_num']."<br ><br >" :'';
+		$emailbody3.= isset($body['po_num']) && !empty($body['po_num']) ? "PO Number: ".$body['po_num']."<br ><br >" :'';
 		foreach($emailArray['cart'] as $prodid => $product) {
 			if($product != null) {
 				$shipping_method= $product['shippingmt'];
@@ -610,7 +610,7 @@ class Checkout extends Public_Controller{
 		}
 
 		if($shipping_method == "USPS") {
-			$emailbody3.= $body['scountry']=='United States' ? 'Free 2-5 Day USPS Shipping<br ><br >' : 'International Shipping<br ><br >';
+			$emailbody3.= $body['scountry']=='United States' || $body['scountry'] == 'US' ? 'Free 2-5 Day USPS Shipping<br ><br >' : 'International Shipping<br ><br >';
 		} else {
 			if ($body['fedex_accnt']) {
 				if ( preg_match("/^[0-9]{9}$/",$body['fedex_accnt']) ) {
@@ -619,7 +619,7 @@ class Checkout extends Public_Controller{
 					$emailbody3.="FedEx Acct #: ".$body['fedex_accnt']." Invalid, not counted for S&H fee calculation.<br >";
 				}
 			}
-			$emailbody3.= ($body['scountry']=='United States') ? "FedEx Delivery: ".$body['fedex_service']."<br ><br >" : "International Shipping <br><br>";
+			$emailbody3.= ($body['scountry']=='United States') || $body['scountry'] == 'US' ? "FedEx Delivery: ".$body['fedex_service']."<br ><br >" : "International Shipping <br><br>";
 		}
 
 		$billingAddress = $this->setBillingAddress($body);
@@ -634,7 +634,7 @@ class Checkout extends Public_Controller{
 	* Function to destroy cart 
 	*/
 	public function setBillingAddress($body=[]) {
-		$billingAddress="Bill to:<br ><br >".$body['battn']."<br >";
+		$billingAddress="Bill to:<br >".$body['battn']."<br >";
 		$billingAddress.=$body['bcompany']."<br >";
 		$billingAddress.=$body['baddr1']."<br >";
 		$billingAddress.=$body['baddr2']."<br >";
@@ -652,7 +652,7 @@ class Checkout extends Public_Controller{
 	*/
 	public function setShippingAddress($body = []) {
 		
-		$shippingAddress="Ship to:<br ><br >".$body['sattn']."<br >";
+		$shippingAddress="Ship to:<br >".$body['sattn']."<br >";
 		$shippingAddress.=$body['scompany']."<br >";
 		$shippingAddress.=$body['saddr1']."<br >";
 		$shippingAddress.=$body['saddr2']."<br >";
