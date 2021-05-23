@@ -30,7 +30,7 @@
     <div class="page-sidebar">
         <!-- START X-NAVIGATION -->
         <ul class="x-navigation">
-        <li class="xn-logo"> <a href="<?php echo base_url();?>administrator/dashboard/index"><?php echo $ProjectName; ?></a><a href="#" class="x-navigation-control"></a> </li>
+        <li class="xn-logo"> <a href="<?php echo base_url();?>"><?php echo $ProjectName; ?></a><a href="#" class="x-navigation-control"></a> </li>
         <li class="xn-profile"> <a href="#" class="profile-mini">
                 <img src="/assets/theme/assets/images/users/user.jpg" alt="image"/>
             </a>
@@ -67,13 +67,13 @@
 
         </ul>
         </li>
-        <li class="<?php if ($Active == 'Banner') { echo "active";} ?>"><a href="/admin/banner/index"><span class="fa fa-bold"></span><span class="xn-text">Manage Banner</span></a></li>
-          <li class="<?php if ($Active == 'MainCategoryDetails' || $Active == 'ManageCategory') { echo "active";} ?>"><a href="#"><span class="fa fa-th"></span><span class="xn-text">Main Category Details</span></a>
-            <ul>
-            <li class="<?php if ($Active == 'ManageCategory') { echo "active"; } ?>"><a href="/admin/category/index"><span class="fa fa-align-justify"></span> Manage Category</a></li>
+        <!--<li class="<?php if ($Active == 'Banner') { echo "active";} ?>"><a href="/admin/banner/index"><span class="fa fa-bold"></span><span class="xn-text">Manage Banner</span></a></li>-->
+        <!--  <li class="<?php if ($Active == 'MainCategoryDetails' || $Active == 'ManageCategory') { echo "active";} ?>"><a href="#"><span class="fa fa-th"></span><span class="xn-text">Main Category Details</span></a>-->
+        <!--    <ul>-->
+        <!--    <li class="<?php if ($Active == 'ManageCategory') { echo "active"; } ?>"><a href="/admin/category/index"><span class="fa fa-align-justify"></span> Manage Category</a></li>-->
         
-        </ul>
-          </li>
+        <!--</ul>-->
+        <!--  </li>-->
            <li class="<?php if ($Active == 'SEO') { echo "active";} ?>"><a href="/admin/seo/index"><span class="fa fa-bold"></span><span class="xn-text">SEO Management</span></a></li>
        
 </ul>
