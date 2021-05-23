@@ -358,12 +358,23 @@ class Checkout extends Public_Controller{
 			}else{
 				$personID = time();	
 			}
+			
 			$orderData = array(		
 				'account_id'=>$personID,
 				'orders_time'=>date('Y-m-d h:i:s',time()),
 				'ordering_method'=>'web',
-				'payment_method'=>'cc',
+				'payment_method'=>$this->input->post('payment_type'),
 				'orders_status'=>'processing',
+				'billing_name'=>$this->input->post('battn'),
+				'billing_co_name'=>$this->input->post('bcompany'),
+				'billing_address_1'=>$this->input->post('baddr1'),
+				'billing_address_2'=>$this->input->post('baddr2'),
+				'billing_city'=>$this->input->post('bcity'),
+				'billing_state'=>$this->input->post('bstate'),
+				'billing_zip'=>$this->input->post('bzip'),
+				'billing_country'=>$this->input->post('bcountry'),
+				'billing_tel'=>$this->input->post('bphone'),
+				'billing_fax'=>$this->input->post('bfax'),
 				'shipping_name'=>$this->input->post('sattn'),
 				'shipping_co_name'=>$this->input->post('scompany'),
 				'shipping_address_1'=>$this->input->post('saddr1'),
@@ -375,6 +386,8 @@ class Checkout extends Public_Controller{
 				'shipping_tel'=>$this->input->post('sphone'),
 				'shipping_email'=>$this->input->post('semail'),
 				'tax_exempt'=>$this->input->post('tax_exempt_id'),
+				'fedex_number' => $this->input->post('fedex_accnt'
+				'fedex_delivery' => $this->input->post('fedex_service')
 				'comment_'=>$this->input->post('cmnts'),
 				'mod_date'=>date('Y-m-d',time()),
 			);

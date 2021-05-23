@@ -113,7 +113,7 @@ class Store extends Admin_Controller{
 		$this->data['PageTitle'] = 'Order Management';
 		$this->data['Active'] = "store_order_management";
 		$order='orders_id';
-                $format ='asc';
+                $format ='desc';
                 $config['full_tag_open'] = '<div class="pagination"><ul class="pagination">';
                 $config['full_tag_close'] = '</ul></div><!--pagination-->';
                 

@@ -30,6 +30,8 @@
         $comment_ = $OD->comment_;
         $mod_date = $OD->mod_date;
         $Productname = $OD->name;
+        $fedex_acc = $OD->fedex_number;
+        $fedex_ser = $OD->fedex_delivery;
         $price = $OD->price;
         $catalog_num = $OD->catalog_num;
         if(isset($orders_time)){
@@ -85,9 +87,17 @@
             <label for="pcategory">shippingfee:</label>
               <?php echo isset($shippingfee)?'$ '.$shippingfee:'';?>
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="pcategory">tax:</label>
               <?php echo isset($tax)?$tax.'%':'';?>
+          </div>
+          <div class="form-group">
+            <label for="pcategory">Fedex Account Number:</label>
+              <?php echo isset($fedex_acc)?$fedex_acc:'';?>
+          </div>
+          <div class="form-group">
+            <label for="pcategory">Fedex Servuce:</label>
+              <?php echo isset($fedex_ser)?$fedex_acc:'';?>
           </div>
             <div class="form-group">
             <label for="pcategory">total:</label>
