@@ -125,7 +125,7 @@ $(function () {
         var ifrm = document.getElementById("iframeAuthorizeNet");
         var form = document.forms["formAuthorizeNetPopup"];
         $("#popupToken").val(authToken);
-        form.action = "https://test.authorize.net/payment/payment";
+        form.action = "http://test.authorize.net/payment/payment";
         ifrm.style.width = "442px";
         ifrm.style.height = "578px";
 
@@ -142,16 +142,18 @@ $(function () {
             // console.log(params)
             switch (params["action"]) {
                 case "successfulSave":
-                    window.location.href="/checkout/thanks"
+                    // window.location.href="/checkout/thanks"
                     break;
                 case "cancel":
                     AuthorizeNetPopup.closePopup();
                     break;
                 case "transactResponse":
                     var response = params["response"];
-                    console.log(response)
+                    updateInputValues(response)
                     AuthorizeNetPopup.closePopup();
-                    window.location.href="/checkout/thanks"
+                    var form = document.forms["regform"];
+                    console.log(form)
+                    // form.submit();
                     break;
                 case "resizeWindow":
                     var w = parseInt(params["width"]);
@@ -164,6 +166,25 @@ $(function () {
             }
         };
 
+
+    function updateInputValues(input) {
+        if(input) {
+            document.getElementsByName("sattn")[0].value=input.shipTo.firstName +input.shipTo.lastName
+            document.getElementsByName("saddr1")[0].value=input.shipTo.address
+            document.getElementsByName("saddr2")[0].value=''
+            document.getElementsByName("scity")[0].value=input.shipTo.city
+            document.getElementsByName("sstate")[0].value=input.shipTo.state
+            document.getElementsByName("szip")[0].value=input.shipTo.zip
+            document.getElementsByName("scountry")[0].value=input.shipTo.country
+            document.getElementsByName("baddr1")[0].value=input.billTo.address
+            document.getElementsByName("baddr2")[0].value=''
+            document.getElementsByName("bcity")[0].value=input.billTo.city
+            document.getElementsByName("bstate")[0].value=input.billTo.state
+            document.getElementsByName("bzip")[0].value=input.billTo.zip
+            document.getElementsByName("bcountry")[0].value=input.billTo.country
+            document.getElementsByName("bphone")[0].value=input.billTo.phoneNumber
+        }
+    }
 
 
     function centerPopup() {
