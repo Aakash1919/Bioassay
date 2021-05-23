@@ -149,6 +149,7 @@ $(function () {
                     break;
                 case "transactResponse":
                     var response = params["response"];
+                    console.log(response)
                     AuthorizeNetPopup.closePopup();
                     window.location.href="/checkout/thanks"
                     break;

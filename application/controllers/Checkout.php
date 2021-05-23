@@ -687,20 +687,6 @@ class Checkout extends Public_Controller{
 	public function thanks() {
 
 		$this->cart->destroy();
-		if(!empty($_SESSION['payflowresponse'])) {
-			// $response= $_SESSION['payflowresponse'];
-			// unset($_SESSION['payflowresponse']);
-		  
-			// $success = ($response['RESULT'] == 0);
-		  
-			// if($success) echo "<span style='font-family:sans-serif;font-weight:bold;'>Transaction approved! Thank you for your order.</span>";
-			// else echo "<span style='font-family:sans-serif;'>Transaction failed! Please try again with another payment method.</span>";
-		  
-			// echo "<pre>(server response follows)\n";
-			// print_r($response);
-			// echo "</pre>";
-			// exit(0);
-		  }
 		$this->data['active'] = "Cart";
 		$this->data['subview'] = "public/Cart/thanks";
 		$this->load->view('public/_layout_main',$this->data);
