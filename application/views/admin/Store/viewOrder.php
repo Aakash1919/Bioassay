@@ -96,8 +96,8 @@
               <?php echo isset($fedex_acc)?$fedex_acc:'';?>
           </div>
           <div class="form-group">
-            <label for="pcategory">Fedex Servuce:</label>
-              <?php echo isset($fedex_ser)?$fedex_acc:'';?>
+            <label for="pcategory">Fedex Service:</label>
+              <?php echo isset($fedex_ser)?$fedex_ser:'';?>
           </div>
             <div class="form-group">
             <label for="pcategory">total:</label>
