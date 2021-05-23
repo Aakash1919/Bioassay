@@ -125,7 +125,7 @@ $(function () {
         var ifrm = document.getElementById("iframeAuthorizeNet");
         var form = document.forms["formAuthorizeNetPopup"];
         $("#popupToken").val(authToken);
-        form.action = "http://test.authorize.net/payment/payment";
+        form.action = "https://test.authorize.net/payment/payment";
         ifrm.style.width = "442px";
         ifrm.style.height = "578px";
 
