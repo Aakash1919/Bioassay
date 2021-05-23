@@ -161,14 +161,14 @@ $(function () {
 
     function updateInputValues(input) {
         if(input) {
-            document.getElementsByName("sattn")[0].value=input.shipTo.firstName +input.shipTo.lastName
+            document.getElementsByName("sattn")[0].value=input.shipTo.firstName+' '+input.shipTo.lastName
             document.getElementsByName("saddr1")[0].value=input.shipTo.address
             document.getElementsByName("saddr2")[0].value=''
             document.getElementsByName("scity")[0].value=input.shipTo.city
             document.getElementsByName("sstate")[0].value=input.shipTo.state
             document.getElementsByName("szip")[0].value=input.shipTo.zip
             document.getElementsByName("scountry")[0].value=input.shipTo.country
-            document.getElementsByName("battn")[0].value=input.billTo.firstName +input.billTo.lastName
+            document.getElementsByName("battn")[0].value=input.billTo.firstName+' '+input.billTo.lastName
             document.getElementsByName("baddr1")[0].value=input.billTo.address
             document.getElementsByName("baddr2")[0].value=''
             document.getElementsByName("bcity")[0].value=input.billTo.city
