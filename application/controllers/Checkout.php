@@ -453,6 +453,7 @@ class Checkout extends Public_Controller{
 				if($this->input->post('payment_type')=="Credit Card"){
 					
 					$postData['shippingFee'] = $shippingfee;
+					$this->session->set_userdata('postArray', $postData);
 					$response  = $this->generateAuthorizeToken($finalprice, $cart, $postData);
 					echo json_encode(['order_id'=> $orderID, 'token'=>$response],JSON_UNESCAPED_SLASHES);
 					die;
@@ -543,11 +544,15 @@ class Checkout extends Public_Controller{
 			);  
 			$updateArray = array('payment_method'=> "CC" ,'orders_status' => 'completed');
 			$this->Order_Model->Save($dataArray['orderId'],$updateArray);
-			$email = $this->getEmailReceivers($postArray['semail']);
-			$emailtitle = $this->getEmailTitle();
-			$emailbody = $this->getEmailBody($dataArray, $postArray);
-			$header = $this->getEmailHeader();
-			mail($email,$emailtitle,$emailbody, $header);
+			
+			if($this->session->has_userdata('postArray')){
+				$postArray = $this->session->userdata('postArray');
+				$email = $this->getEmailReceivers($postArray['semail']);
+				$emailtitle = $this->getEmailTitle();
+				$emailbody = $this->getEmailBody($dataArray, $postArray);
+				$header = $this->getEmailHeader();
+				mail($email,$emailtitle,$emailbody, $header);		
+			}
 			echo json_encode(true);
 		}else {
 			echo json_encode(false);
