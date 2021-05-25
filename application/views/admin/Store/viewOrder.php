@@ -33,6 +33,7 @@
         $fedex_acc = $OD->fedex_number;
         $fedex_ser = $OD->fedex_delivery;
         $price = $OD->price;
+        $tax_Exempt = $OD->tax_exempt;
         $catalog_num = $OD->catalog_num;
         $po_num = $OD->po_num;
         if(isset($orders_time)){
@@ -78,18 +79,24 @@
           </div>
             <div class="form-group">
             <label for="pcategory">Price:</label>
-              <?php echo isset($price)?'$ '.$price:'';?>
+              <?php echo $this->Order_Model->getOrderExtraDetails($orders_id,'tag','po_num')?>
           </div>
             <div class="form-group">
-            <label for="pcategory">subtotal:</label>
+            <label for="pcategory">Subtotal:</label>
               <?php echo isset($subtotal)?'$ '.$subtotal:'';?>
           </div>
             <div class="form-group">
-            <label for="pcategory">shippingfee:</label>
+            <label for="pcategory">Shipping Fee:</label>
               <?php echo isset($shippingfee)?'$ '.$shippingfee:'';?>
           </div>
+          <?php if(isset($tax_Exempt) && !empty($tax_Exempt)) { ?>
+            <div class="form-group">
+              <label for="pcategory">Tax Exempt:</label>
+                <?php echo isset($tax_Exempt)?$tax_Exempt:'';?>
+            </div>
+          <?php } ?>
           <div class="form-group">
-            <label for="pcategory">tax:</label>
+            <label for="pcategory">Tax:</label>
               <?php echo isset($tax)?$tax.'%':'';?>
           </div>
           <div class="form-group">
@@ -101,7 +108,7 @@
               <?php echo isset($fedex_ser)?$fedex_ser:'';?>
           </div>
             <div class="form-group">
-            <label for="pcategory">total:</label>
+            <label for="pcategory">Total:</label>
               <?php echo isset($total)?'$ '.$total:'';?>
           </div>
           

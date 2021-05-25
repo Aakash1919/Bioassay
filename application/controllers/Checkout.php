@@ -240,12 +240,16 @@ class Checkout extends Public_Controller{
 
 			$this->session->set_userdata('discountamount',$discountamount);
 
+			
 			$this->data['tax'] = $tax;
 			$this->data['total'] = $total;
 			$this->data['active'] = isset($personID) ? "Checkout" : "Guest Checkout";
 			$this->data['captcha_site_key']=$this->data['capcha_site_id'];
 			$this->data['shippingFee'] = $shippingFee;
 			$this->data['countries'] = $this->getCountryName();
+			if(isset($personID)){
+				$this->data['userInfo'] =  $this->User_Model->GetAllUserDetailsByID($personID);
+			}
 			$this->data['hostedAccessPaymentPage'] = $this->load->view('public/Modals/hostedAccessPaymentPage', NULL, TRUE);
 			// $this->data['paypalHostedAccessPaymentPage'] = $this->load->view('public/Modals/paypalHostedAcceptPaymentPage', NULL, TRUE);
 			$this->data['subview'] = "public/Cart/billingQoutationProcess";
@@ -392,8 +396,8 @@ class Checkout extends Public_Controller{
 				'comment_'=>$this->input->post('cmnts'),
 				'mod_date'=>date('Y-m-d',time()),
 			);
+			
 			$orderID = $this->Order_Model->Save(null,$orderData);
-
 			if(!empty($orderID)){
 				$tramsactionData = array(
 					'orders_id'=>$orderID,
@@ -430,8 +434,8 @@ class Checkout extends Public_Controller{
 				$this->setAndSaveOrderDetails($orderID, 'total', $newTotal);
 
 				$country = $this->input->post('scountry');
-                $comparingCountry = $this->input->post('payment_type')=="Credit Card" ? 'US' : 'United States';
-				if($country!=$comparingCountry){
+                
+				if($country!="United States"){
 					$dataArray = array(
 						'orderId' => $orderID, 'cart' => $cart, 'type' => null, 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => null, 'newTotal' => null
 					);  
@@ -444,13 +448,14 @@ class Checkout extends Public_Controller{
 					$this->getPurchaseOrderCheckout($dataArray, $this->input->post(), false);
 				}
 				if($this->input->post('payment_type')=="Paypal"){
-					$this->getPaypalCheckout($orderID=null, $this->input->post());	
+					$this->getPaypalCheckout($orderID, $this->input->post());	
 				}
 				if($this->input->post('payment_type')=="Credit Card"){
-				    $dataArray = array(
-						'orderId' => $orderID, 'cart' => $cart, 'type' => 'Credit Card', 'finalPrice' => $finalprice, 'shippingfee' => $shippingfee, 'taxRate' => $taxrate, 'newTotal' => $newTotal
-					);  
-					$response  = $this->getAuthorizeResponse($dataArray, $this->input->post());
+					
+					$postData['shippingFee'] = $shippingfee;
+					$response  = $this->generateAuthorizeToken($finalprice, $cart, $postData);
+					echo json_encode(['order_id'=> $orderID, 'token'=>$response],JSON_UNESCAPED_SLASHES);
+					die;
 				}
 			}
 		}
@@ -524,21 +529,30 @@ class Checkout extends Public_Controller{
 	/*
 	* Function to set Hosted Access Payment Pages
 	*/
-	public function getAuthorizeResponse($dataArray = [], $postArray = []) {
-
-		$updateArray = array('payment_method'=> "CC");
-		$purchaseOrderDetails = array('orders_id'=>$dataArray['orderId'],'tag'=>'po_num','value'=>$postArray['po_num'],'mod_date'=>date('Y-m-d',time()));
-
-		$this->Order_Model->Save($dataArray['orderId'],$updateArray);
-		$this->OrderDetails_Model->Save(null,$purchaseOrderDetails);
-
-		$email = $this->getEmailReceivers($postArray['semail']);
-		$emailtitle = $this->getEmailTitle();
-		$emailbody = $this->getEmailBody($dataArray, $postArray);
-		$header = $this->getEmailHeader();
-		mail($email,$emailtitle,$emailbody, $header);
-
-		$this->getThanksResponse($postArray['semail']);
+	public function getAuthorizeResponse() {
+		$orderID = $this->input->post('order');
+		if(isset($orderID) && !empty($orderID)) {
+			$dataArray = array(
+				'orderId' => $orderID,
+				'cart' => $this->cart->contents(),
+				'type' => 'Credit Card',
+				'finalPrice' => $this->Transaction_Model->getPricebyOrderId($orderID),
+				'shippingfee' => $this->Order_Model->getOrderExtraDetails($orderID,'tag','shippingfee'),
+				'taxRate' => $this->Order_Model->getOrderExtraDetails($orderID,'tag','tax'),
+				'newTotal' => $this->Order_Model->getOrderExtraDetails($orderID,'tag','total')
+			);  
+			$updateArray = array('payment_method'=> "CC" ,'orders_status' => 'completed');
+			$this->Order_Model->Save($dataArray['orderId'],$updateArray);
+			$email = $this->getEmailReceivers($postArray['semail']);
+			$emailtitle = $this->getEmailTitle();
+			$emailbody = $this->getEmailBody($dataArray, $postArray);
+			$header = $this->getEmailHeader();
+			mail($email,$emailtitle,$emailbody, $header);
+			echo json_encode(true);
+		}else {
+			echo json_encode(false);
+		}
+		
 	}
 	/*
 	* Function to generate authorize token

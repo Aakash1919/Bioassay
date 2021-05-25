@@ -16,10 +16,6 @@ if(!empty($userInfo)){
     $zip=$g->zip;
     $country=$g->country;
     $Onmaillist=$g->on_email_list;
-    //$cctype = $g->cc_type;
-    //$ccname=$g->cc_name;
-    //$exp=$g->exp_mo.' '.$g->exp_yr;
-    //$cc_scv=$g->cc_scv_numb;
     $sname=$g->shipping_name;
     $scname=$g->shipping_co_name;
     $sadd1=$g->shipping_address_1;
@@ -55,7 +51,6 @@ if(!empty($pre)){
   $scountry=$_SESSION['PreviousInfo']['scountry'];
   $stel=$_SESSION['PreviousInfo']['sphone'];
   $semail=$_SESSION['PreviousInfo']['semail'];
- // $paymenttype =$_SESSION['PreviousInfo']['payment_type']; 
   $stax1 = $_SESSION['PreviousInfo']['sales_tax_exempt_num1'];
   
 }
@@ -672,16 +667,17 @@ if(!empty($pre)){
 					</div>
 					<div class="clear">
 					</div>
-					<div class="reg_left" id="taxExempt" style="display:none;">
+					<div class="reg_left">
 						<div class="reg_a">
-							<p>
-								If you are a tax exempt entity, please enter your exemption number here
+							<p id="poNumberid">
+								Tax Exempt ID
 							</p>
 						</div>
 						<div class="reg_b">
-							<input name="sales_tax_exempt_num1" class="tax_exempt" type="text" value="<?php echo isset($stax1)?$stax1:'';?>">
+							<input id="sales_tax_exempt_num1" type="text" name="sales_tax_exempt_num1" value="<?php echo isset($stax1)?$stax1:'';?>">
 						</div>
-					</div>
+					</div> 
+					
 					<div class="clear">
 					</div>
 					<div class="reg_left">

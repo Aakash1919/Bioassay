@@ -22,13 +22,45 @@ class Authentication_Model extends CI_Model{
         
         $transactionRequestType = new AnetAPI\TransactionRequestType();
         $transactionRequestType->setTransactionType("authCaptureTransaction");
+        $transactionRequestType->setBillTo(self::setBillingInfo($extraInfo));
+        $transactionRequestType->setShipTo(self::setShippingInfo($extraInfo));
         $transactionRequestType->setAmount($amount);
         $transactionRequestType->setTax($this->setTax(isset($extraInfo['tax']) ? $extraInfo['tax'] : 0 ));
-        $transactionRequestType->setTaxExempt(isset($extraInfo['taxExempt']) ? true : false );
+        $transactionRequestType->setTaxExempt(isset($extraInfo['tax_exempt_id']) ? true : false );
         $transactionRequestType->setShipping($this->setShipping(isset($extraInfo['shippingFee']) ? $extraInfo['shippingFee'] : 0 ));
         $transactionRequestType->setLineItems(self::getLineItems($items, isset($extraInfo) ? $extraInfo: []));
     
         return $transactionRequestType;
+    }
+
+    function setBillingInfo($extraInfo = null) {
+
+        $customerAddress = new AnetAPI\CustomerAddressType();
+        
+        $customerAddress->setFirstName(isset($extraInfo['battn']) && !empty($extraInfo['battn']) ? $extraInfo['battn'] : $extraInfo['sattn']);
+        $customerAddress->setCompany(isset($extraInfo['bcompany']) && !empty($extraInfo['bcompany']) ? $extraInfo['bcompany'] : $extraInfo['scompany']);
+        $customerAddress->setAddress(isset($extraInfo['baddr1']) && !empty($extraInfo['baddr1']) ? $extraInfo['baddr1'].' '.$extraInfo['baddr2'] :$extraInfo['saddr1'].' '.$extraInfo['saddr2']);
+        $customerAddress->setCity(isset($extraInfo['bcity']) && !empty($extraInfo['bcity']) ? $extraInfo['bcity'] :$extraInfo['scity']);
+        $customerAddress->setState(isset($extraInfo['bstate']) && !empty($extraInfo['bstate']) ? $extraInfo['bstate'] :$extraInfo['sstate']);
+        $customerAddress->setZip(isset($extraInfo['bzip']) && !empty($extraInfo['bzip']) ? $extraInfo['bzip'] :$extraInfo['szip']);
+        $customerAddress->setCountry(isset($extraInfo['bcountry']) && !empty($extraInfo['bcountry']) ? $extraInfo['bcountry'] : $extraInfo['scountry']);
+        
+        return $customerAddress;
+    }
+
+    function setShippingInfo($extraInfo = null) {
+
+        $customerShippingAddress = new AnetAPI\CustomerAddressType();
+
+        $customerShippingAddress->setFirstName(isset($extraInfo['sattn']) ? $extraInfo['sattn'] :'-');
+        $customerShippingAddress->setCompany(isset($extraInfo['scompany']) ? $extraInfo['scompany'] :"-");
+        $customerShippingAddress->setAddress(isset($extraInfo['saddr1']) ? $extraInfo['saddr1'].' '.$extraInfo['saddr2'] :"-");
+        $customerShippingAddress->setCity(isset($extraInfo['scity']) ? $extraInfo['scity'] :"-");
+        $customerShippingAddress->setState(isset($extraInfo['sstate']) ? $extraInfo['sstate'] :"-");
+        $customerShippingAddress->setZip(isset($extraInfo['szip']) ? $extraInfo['szip'] :"-");
+        $customerShippingAddress->setCountry(isset($extraInfo['scountry']) ? $extraInfo['scountry'] :"-");
+
+        return $customerShippingAddress;
     }
 
     function setTax( $amount = 0 ) {
@@ -85,7 +117,6 @@ class Authentication_Model extends CI_Model{
     }
 
     function getRequestforHAS($amount, $items, $extraInfo = []) {
-
         $refId = 'ref' . time();
         
         $iframeUrl = base_url().'checkout/iFrameCommunicator';
@@ -100,7 +131,8 @@ class Authentication_Model extends CI_Model{
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentOrderOptions", "{\"show\": false}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentReturnOptions", "{\"url\": \"$thanksUrl\", \"cancelUrl\": \"$cancelUrl\", \"showReceipt\": false}"));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentIFrameCommunicatorUrl", "{\"url\": \"$iframeUrl\"}"));
-        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentShippingAddressOptions", '{"show": true, "required": true}'));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentShippingAddressOptions", '{"show": false, "required": false}'));
+        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentBillingAddressOptions", '{"show": false, "required": false}'));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentVisaCheckoutOptions", '{"apiKey":"3F9eMpx9R","displayName":"Bioassay","message":"Bioassay Message"}'));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentCustomerOptions", '{"showEmail": true, "requiredEmail": true, "addPaymentProfile": true}'));
 

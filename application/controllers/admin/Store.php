@@ -113,39 +113,39 @@ class Store extends Admin_Controller{
 		$this->data['PageTitle'] = 'Order Management';
 		$this->data['Active'] = "store_order_management";
 		$order='orders_id';
-                $format ='desc';
-                $config['full_tag_open'] = '<div class="pagination"><ul class="pagination">';
-                $config['full_tag_close'] = '</ul></div><!--pagination-->';
-                
-                $config['first_link'] = '&laquo; First';
-                $config['first_tag_open'] = '<li class="prev page">';
-                $config['first_tag_close'] = '</li>';
-                
-                $config['last_link'] = 'Last &raquo;';
-                $config['last_tag_open'] = '<li class="next page">';
-                $config['last_tag_close'] = '</li>';
-                
-                $config['next_link'] = 'Next &rarr;';
-                $config['next_tag_open'] = '<li class="next page">';
-                $config['next_tag_close'] = '</li>';
-                
-                $config['prev_link'] = '&larr; Previous';
-                $config['prev_tag_open'] = '<li class="prev page">';
-                $config['prev_tag_close'] = '</li>';
-                
-                $config['cur_tag_open'] = '<li class="active"><a href="">';
-                $config['cur_tag_close'] = '</a></li>';
-                
-                $config['num_tag_open'] = '<li class="page">';
-                $config['num_tag_close'] = '</li>';
-                $config['base_url']= base_url()."admin/store/ordermanagement";
-                $config['total_rows'] = $this->Order_Model->Count();
-                $config['per_page'] = 10;
-                $config["uri_segment"] = 4;
-                $this->pagination->initialize($config);
-                $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-                $this->data['items'] = $this->Order_Model->Get($config["per_page"], $page,$order,$format);
-                $this->data["links"] = $this->pagination->create_links();	
+		$format ='desc';
+		$config['full_tag_open'] = '<div class="pagination"><ul class="pagination">';
+		$config['full_tag_close'] = '</ul></div><!--pagination-->';
+		
+		$config['first_link'] = '&laquo; First';
+		$config['first_tag_open'] = '<li class="prev page">';
+		$config['first_tag_close'] = '</li>';
+		
+		$config['last_link'] = 'Last &raquo;';
+		$config['last_tag_open'] = '<li class="next page">';
+		$config['last_tag_close'] = '</li>';
+		
+		$config['next_link'] = 'Next &rarr;';
+		$config['next_tag_open'] = '<li class="next page">';
+		$config['next_tag_close'] = '</li>';
+		
+		$config['prev_link'] = '&larr; Previous';
+		$config['prev_tag_open'] = '<li class="prev page">';
+		$config['prev_tag_close'] = '</li>';
+		
+		$config['cur_tag_open'] = '<li class="active"><a href="">';
+		$config['cur_tag_close'] = '</a></li>';
+		
+		$config['num_tag_open'] = '<li class="page">';
+		$config['num_tag_close'] = '</li>';
+		$config['base_url']= base_url()."admin/store/ordermanagement";
+		$config['total_rows'] = $this->Order_Model->Count();
+		$config['per_page'] = 10;
+		$config["uri_segment"] = 4;
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+		$this->data['items'] = $this->Order_Model->Get($config["per_page"], $page,$order,$format);
+		$this->data["links"] = $this->pagination->create_links();	
 		$this->data['subview'] = "admin/Store/ordermanagement";
 		$this->load->view('admin/_layout_main',$this->data);
 	}

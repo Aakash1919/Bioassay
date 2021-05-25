@@ -37,8 +37,10 @@ function clearall(quantity, id) {
 jQuery(document).on('change', "#paymenttype", function () {
     jQuery("#payment_type").val("");
     var payment_type = jQuery(this).val(); 
+    jQuery("#po_details").css('display', 'none');
     if (payment_type == "Purchase Order") {
         jQuery("#po_details").toggle();
+        jQuery("#po_column").css("display", "block");
         jQuery("#regform").attr("action", "/checkout/finalTransaction");
         jQuery("#bill_chkout_qtn").val("Submit Order");
         document.getElementById("bill_chkout_qtn").id = 'bill_submit_qtn'
@@ -48,14 +50,15 @@ jQuery(document).on('change', "#paymenttype", function () {
             document.getElementById("bill_submit_qtn").id = 'bill_chkout_qtn'
             document.getElementById("bill_chkout_qtn").type = 'button'
         }
-        jQuery("#po_details").css('display', 'none');
         if (payment_type == "Credit Card") {
+            jQuery("#po_details").toggle();
             jQuery("#wait").css("display", "block");
             jQuery("#bill_chkout_qtn").attr("disabled", true);
-            
+            jQuery("#po_column").css("display", "none");
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
+            
             jQuery("#regform").attr("action", "/checkout/finalTransaction");
             jQuery("#po_num").attr("required", false);
         }
@@ -68,21 +71,7 @@ jQuery(document).on('change', "#paymenttype", function () {
 $(document).on('click', '#bill_chkout_qtn', function () {
     var payment_type = jQuery("#payment_type").val();
     if (payment_type === 'Credit Card') {
-        var tax = $('#tax').val();
-            var shippingFee = $('#shippingFee').val();
-            var taxExempt = $('#tax_exempt_id').val() ? $('#tax_exempt_id').val() : 0;
-            var fedexAccount = $('#fedex_accnt').val();
-            var deliveryType = $('#fedex_service').val();
-            jQuery.get("/checkout/GetAuthToken", {taxExempt: taxExempt, tax: tax, shipping: shippingFee, fedex : fedexAccount, delivery: deliveryType}, function (data) {
-                jQuery("#po_num").attr("required", false);
-                var result = jQuery.parseJSON(data);
-                jQuery("input#authToken").val(result.AuthToken);
-                AuthorizeNetPopup.openPopup(result.AuthToken)
-                jQuery("#regform").attr("action", result.Url);
-            });
-
-        // var authToken = $("#authToken").val();
-        // AuthorizeNetPopup.openPopup(authToken)
+        submitForm("form#regform")
     }
     else if(payment_type === '') {
         // paypal Modal
@@ -140,12 +129,16 @@ $(function () {
                     AuthorizeNetPopup.closePopup();
                     break;
                 case "transactResponse":
-                    var response = params["response"];
-                    updateInputValues(JSON.parse(response))
                     AuthorizeNetPopup.closePopup();
-                    var form = document.forms["regform"];
-                    form.action = "/checkout/finalTransaction";
-                    form.submit();
+                    var order = jQuery("input#order").val()
+                    if(order) {
+                        $.post( "/checkout/getAuthorizeResponse",{order : order}, function( data ) {
+                            var jsonData = JSON.parse(data)
+                            if(jsonData==true) {
+                                location.reload('/checkout/thanks')
+                            }
+                        });
+                    }
                     break;
                 case "resizeWindow":
                     var w = parseInt(params["width"]);
@@ -157,27 +150,6 @@ $(function () {
                     break;
             }
         };
-
-
-    function updateInputValues(input) {
-        if(input) {
-            document.getElementsByName("sattn")[0].value=input.shipTo.firstName+' '+input.shipTo.lastName
-            document.getElementsByName("saddr1")[0].value=input.shipTo.address
-            document.getElementsByName("saddr2")[0].value=''
-            document.getElementsByName("scity")[0].value=input.shipTo.city
-            document.getElementsByName("sstate")[0].value=input.shipTo.state
-            document.getElementsByName("szip")[0].value=input.shipTo.zip
-            document.getElementsByName("scountry")[0].value=input.shipTo.country
-            document.getElementsByName("battn")[0].value=input.billTo.firstName+' '+input.billTo.lastName
-            document.getElementsByName("baddr1")[0].value=input.billTo.address
-            document.getElementsByName("baddr2")[0].value=''
-            document.getElementsByName("bcity")[0].value=input.billTo.city
-            document.getElementsByName("bstate")[0].value=input.billTo.state
-            document.getElementsByName("bzip")[0].value=input.billTo.zip
-            $('#bcountry').append("<option value='"+input.billTo.country+"' selected>"+input.billTo.country+"</option>"); 
-            document.getElementsByName("bphone")[0].value=input.billTo.phoneNumber
-        }
-    }
 
 
     function centerPopup() {
@@ -224,4 +196,19 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+function submitForm(form){
+    var url = $(form).attr("action");
+    var formData = {};
+    $(form).find("input[name]").each(function (index, node) {
+        formData[node.name] = node.value;
+    });
+    formData['bcountry'] = $('#bcountry').val();
+    $.post(url, formData).done(function (data) {
+       var jsonData = JSON.parse(data)
+        if(jsonData) {
+        jQuery("input#order").val(jsonData.order_id);
+        AuthorizeNetPopup.openPopup(jsonData.token)
+       }
+    });
 }

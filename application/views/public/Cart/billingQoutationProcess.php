@@ -81,6 +81,7 @@ if(!empty($personID)){
 </form>   
 <section class="content-area">
 	<form  method="post" name="regform" id="regform" action="<?php echo isset($authToken)?'https://test.authorize.net/payment/payment':'/checkout/finalTransaction'; ?>">
+		<input type="hidden" id="order" value="">
 		<input type="hidden" name="token" id="authToken" value="<?php echo isset($authToken)?$authToken:0; ?>">
 		<input type="hidden" name="fedex_accnt" id="fedex_accnt" value="<?php echo isset($fedex)?$fedex:'';?>">
 		<input type="hidden" name="fedex_service" id="fedex_service" value="<?php echo isset($fedexservice)?$fedexservice:'';?>">
@@ -96,10 +97,10 @@ if(!empty($personID)){
 		<input type="hidden" name="sphone" value="<?php echo isset($sphone)?$sphone:'';?>">
 		<input type="hidden" name="semail" value="<?php echo isset($semail)?$semail:'';?>">
 		<input type="hidden" name="cmnts" value="<?php echo isset($cmnts)?$cmnts:'';?>">
-		<input type="hidden" id="tax" value="<?php echo isset($tax)?number_format((float)$tax,2):'0.00'; ?>">
+		<input type="hidden" name="tax" value="<?php echo isset($tax)?number_format((float)$tax,2):'0.00'; ?>">
 		<input type="hidden" id="shippingFee" value="<?php echo isset($shippingFee)?number_format($shippingFee,2):'0.00';?> ">
 		<input type="hidden" name="payment_type" id="payment_type" value="<?php echo isset($payment_type)?$payment_type:'';?>">
-		<input type="hidden" id="sales_tax_exempt_num1" name="sales_tax_exempt_num1" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
+		<input type="hidden" id="tax_exempt_id" name="tax_exempt_id" value="<?php echo isset($sales_tax_exempt_num1)?$sales_tax_exempt_num1:'';?>">
 		<section class="content-right">
 			<article class="content-right-btm" style="margin-top:0px;">
 				<div class="new-products" style="margin-top:0px;">
@@ -482,7 +483,7 @@ if(!empty($personID)){
 					<div class="clear">
 					</div>
 					<div id ="po_details" style="display: none" >
-						<div class="reg_left"> 
+						<div class="reg_left" id="po_column"> 
 							<div class="reg_a">
 								<p>PO Number <span>* </span></p>
 							</div>
@@ -503,7 +504,7 @@ if(!empty($personID)){
 								<p>Attn <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="battn" id="battn" type="text" value="" required>
+								<input name="battn" id="battn" type="text" value="<?php echo isset($userInfo[0]->billing_name) ? $userInfo[0]->billing_name : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -512,7 +513,7 @@ if(!empty($personID)){
 								<p>Company Name <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="bcompany" id="bcompany" type="text" value="" required>
+								<input name="bcompany" id="bcompany" type="text" value="<?php echo isset($userInfo[0]->billing_co_name) ? $userInfo[0]->billing_co_name : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -521,16 +522,16 @@ if(!empty($personID)){
 								<p>Address 1 <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="baddr1" id="baddr1" type="text" value="" required>
+								<input name="baddr1" id="baddr1" type="text" value="<?php echo isset($userInfo[0]->billing_address_1) ? $userInfo[0]->billing_address_1 : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
 						<div class="reg_left"> 
 							<div class="reg_a">
-								<p>Address 2<span>* </span></p>
+								<p>Address 2</p>
 							</div>
 							<div class="reg_b">
-								<input name="baddr2" id="baddr2" type="text" value="">
+								<input name="baddr2" id="baddr2" type="text" value="<?php echo isset($userInfo[0]->billing_address_2) ? $userInfo[0]->billing_address_2 : '';?>">
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -539,7 +540,7 @@ if(!empty($personID)){
 								<p>City <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="bcity" id="bcity" type="text" value="" required>
+								<input name="bcity" id="bcity" type="text" value="<?php echo isset($userInfo[0]->billing_city) ? $userInfo[0]->billing_city : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -548,7 +549,7 @@ if(!empty($personID)){
 								<p>State <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="bstate" id="bstate" type="text" value="" required>
+								<input name="bstate" id="bstate" type="text" value="<?php echo isset($userInfo[0]->billing_state) ? $userInfo[0]->billing_state : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -557,7 +558,7 @@ if(!empty($personID)){
 								<p>Zip <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="bzip" id="bzip" type="text" value="" required>
+								<input name="bzip" id="bzip" type="text" value="<?php echo isset($userInfo[0]->billing_zip) ? $userInfo[0]->billing_zip : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -569,7 +570,10 @@ if(!empty($personID)){
 								<select name="bcountry" id="bcountry"  class="reg_b_jump" required>
 									<option value=""> --- Choose country --- </option>
 									<?php foreach ($countries as $k => $value) {
-												echo '<option value="'.$value.'">'.$value.'</option>';
+										
+												echo '<option value="'.$value.'"';
+												echo isset($userInfo[0]->billing_country) && $value == $userInfo[0]->billing_country ? ' selected' : '';
+												echo '>'.$value.'</option>';
 									}?>
 								</select>
 							</div>
@@ -580,16 +584,16 @@ if(!empty($personID)){
 								<p>Tel <span>* </span></p>
 							</div>
 							<div class="reg_b">
-								<input name="bphone" id="bphone" type="text" value="" required>
+								<input name="bphone" id="bphone" type="text" value="<?php echo isset($userInfo[0]->billing_tel) ? $userInfo[0]->billing_tel : '';?>" required>
 							</div>
 						</div>
 						<div class="clear"></div>
 						<div class="reg_left"> 
 							<div class="reg_a">
-								<p>Fax <span>* </span></p>
+								<p>Fax</p>
 							</div>
 							<div class="reg_b">
-								<input name="bfax" id="bfax" type="text" value="" >
+								<input name="bfax" id="bfax" type="text" value="<?php echo isset($userInfo[0]->billing_fax) ? $userInfo[0]->billing_fax : '';?>" >
 							</div>
 						</div>
 						<div class="clear"></div>
@@ -598,16 +602,7 @@ if(!empty($personID)){
 					
 					<div class="clear"> 
 					</div>
-					<div class="reg_left">
-						<div class="reg_a">
-							<p id="poNumberid">
-								Tax Exempt ID
-							</p>
-						</div>
-						<div class="reg_b">
-							<input id="tax_exempt_id" type="text" name="tax_exempt_id" value="">
-						</div>
-					</div> 
+					
 					<div class="clear">
 					</div>
 					</div>
