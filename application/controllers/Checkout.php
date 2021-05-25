@@ -416,7 +416,7 @@ class Checkout extends Public_Controller{
 							'mod_date'=>date('Y-m-d',time())
 						);
 						$this->OPLink_Model->Save(null,$opLinkData);
-						$this->setAndSaveOrderDetails($orderID, 'price_'.$value['id'], $value['price']);
+						$this->setAndSaveOrderDetails($orderID, $value['id'], $value['price']*$value['qty']);
 					}
 				}
 				$shippingfee =  !empty($fedex_acct_num) ? 0 : $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
