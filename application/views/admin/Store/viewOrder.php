@@ -1,5 +1,6 @@
   <?php
   if(isset($orderDetails) && !empty($orderDetails)){
+      $productArray = [];
       foreach ($orderDetails as $OD) {
         $orders_id = $OD->orders_id;
         $account_id = $OD->account_id;
@@ -35,6 +36,7 @@
         $price = $OD->price;
         $catalog_num = $OD->catalog_num;
         $po_num = $OD->po_num;
+        array_push($productArray, ['id'=> $OD->product_id, 'name' => $Productname,'catalog'=>  $catalog_num, 'price' => $price]);
         if(isset($orders_time)){
           $order_time = explode(' ', $orders_time); 
           $orderDate = $order_time[0];
@@ -68,18 +70,26 @@
             <label for="pcategory">Order Details:</label>
               <?php echo isset($orders_status)?$orders_status:'';?>
           </div>
-            <div class="form-group">
+          <?php foreach($productArray as $product => $value) { ?>
+          <div class="form-group">
             <label for="pcategory">Product name:</label>
-              <?php echo isset($Productname)?$Productname:'';?>
+              <?php echo isset($value['name'])?$value['name']:'';?>
           </div>
             <div class="form-group">
             <label for="pcategory">Catalog No:</label>
-              <?php echo isset($catalog_num)?$catalog_num:'';?>
+              <?php echo isset($value['catalog'])?$value['catalog']:'';?>
           </div>
-            <div class="form-group">
+          <?php $paid = $this->Order_Model->getOrderExtraDetails($orders_id,'tag',$value['id']);?>
+          <div class="form-group">
             <label for="pcategory">Price:</label>
-              <?php echo isset($price)?'$ '.$price:'';?>
+              <?php echo '$ '.$paid;?>
           </div>
+          <div class="form-group">
+            <label for="pcategory">Quantity:</label>
+              <?php echo round($paid/$value['price']);?>
+          </div>
+          <?php } ?>
+            
             <div class="form-group">
             <label for="pcategory">subtotal:</label>
               <?php echo isset($subtotal)?'$ '.$subtotal:'';?>

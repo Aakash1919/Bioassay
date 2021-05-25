@@ -16,7 +16,7 @@ class Order_Model extends Admin_Model{
 		$this->db->where('orders.orders_id',$id);
 		$this->db->join('op_link','op_link.orders_id=orders.orders_id');
 		$this->db->join('products','op_link.product_id=products.product_id');
-		$this->db->select('orders.*,products.name,products.price,products.catalog_num')->from($this->_table_name);
+		$this->db->select('orders.*,products.name,products.product_id,products.price,products.catalog_num')->from($this->_table_name);
 		return $this->db->get()->result();
 		}else{
 			return false;
