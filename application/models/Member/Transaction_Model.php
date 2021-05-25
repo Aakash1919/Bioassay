@@ -8,7 +8,7 @@ class Transaction_Model extends Members_Model{
 	}
 
 	public function getPricebyOrderId($orderId = null) {
-		$this->db->where('order_id', $orderId);
+		$this->db->where('orders_id', $orderId);
 		$this->db->select('total_price')->from($this->_table_name);
 		$result = $this->db->get()->results();
 		return isset($result[0]->total_price) ? $result[0]->total_price : false;

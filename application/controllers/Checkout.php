@@ -551,7 +551,8 @@ class Checkout extends Public_Controller{
 				$emailtitle = $this->getEmailTitle();
 				$emailbody = $this->getEmailBody($dataArray, $postArray);
 				$header = $this->getEmailHeader();
-				mail($email,$emailtitle,$emailbody, $header);		
+				mail($email,$emailtitle,$emailbody, $header);
+				$this->session->unset_userdata('postArray');	
 			}
 			echo json_encode(true);
 		}else {
