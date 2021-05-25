@@ -197,7 +197,7 @@ class Checkout extends Public_Controller{
 	* Function to get the billing qoutation page and setting the session data
 	*/
 	public function billingQuotationProcess() {
-
+  
 		if($this->input->post() || $_SESSION['PreviousInfo']) {
 			$personID = $this->session->userdata('person_id');
 			$PostData = $this->input->post();
@@ -546,7 +546,7 @@ class Checkout extends Public_Controller{
 			$this->Order_Model->Save($dataArray['orderId'],$updateArray);
 			
 			if($this->session->has_userdata('postArray')){
-				$postArray = $this->session->userdata('postArray');
+			   	$postArray = $this->session->userdata('postArray');
 				$email = $this->getEmailReceivers($postArray['semail']);
 				$emailtitle = $this->getEmailTitle();
 				$emailbody = $this->getEmailBody($dataArray, $postArray);
@@ -671,7 +671,7 @@ class Checkout extends Public_Controller{
 		$billingAddress="Bill to:<br >".$body['battn']."<br >";
 		$billingAddress.=$body['bcompany']."<br >";
 		$billingAddress.=$body['baddr1']."<br >";
-		$billingAddress.=$body['baddr2']."<br >";
+		$billingAddress.=isset($body['baddr2']) ? $body['baddr2']."<br >" : '';
 		$billingAddress.=$body['bcity'].", ";
 		$billingAddress.=$body['bstate']." ";
 		$billingAddress.=$body['bzip']."<br >";
@@ -689,7 +689,7 @@ class Checkout extends Public_Controller{
 		$shippingAddress="Ship to:<br >".$body['sattn']."<br >";
 		$shippingAddress.=$body['scompany']."<br >";
 		$shippingAddress.=$body['saddr1']."<br >";
-		$shippingAddress.=$body['saddr2']."<br >";
+		$shippingAddress.=isset($body['saddr2']) ? $body['saddr2']."<br >" : '';
 		$shippingAddress.=$body['scity'].", ";
 		$shippingAddress.=$body['sstate']." ";
 		$shippingAddress.=$body['szip']."<br >";

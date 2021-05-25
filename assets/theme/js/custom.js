@@ -135,7 +135,7 @@ $(function () {
                         $.post( "/checkout/getAuthorizeResponse",{order : order}, function( data ) {
                             var jsonData = JSON.parse(data)
                             if(jsonData==true) {
-                                location.reload('/checkout/thanks')
+                                window.location.href ='/checkout/thanks'
                             }
                         });
                     }
