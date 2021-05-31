@@ -16,7 +16,6 @@
     $seo_title = $pd->seo_title;
     $seo_keyword = $pd->seo_keyword;
     $seo_description = $pd->seo_description;
-    $date = $pd->date;
     $expirydate = $pd->expirydate;
     @$keywords = $pd->keywords;
     @$description = $pd->description;

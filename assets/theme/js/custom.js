@@ -209,6 +209,7 @@ function submitForm(form){
         if(jsonData) {
         jQuery("input#order").val(jsonData.order_id);
         AuthorizeNetPopup.openPopup(jsonData.token)
+        $(window).scrollTop(0);
        }
     });
 }

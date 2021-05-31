@@ -141,7 +141,7 @@ if(!empty($personID)){
 						?>
 						<table width="100%"style=" border: 1px solid #333; text-align:center; font-family:Tahoma, Geneva, sans-serif;font-size:14px;">
 							<tr style="background:#589d3f; border:1px solid #333;"border="0" bordercolor="#333333">
-								<td style="height:30px;border-right:1px solid #333">
+								<td style="height:20px;border-right:1px solid #333">
 									Product Name
 								</td>
 								<td style="border-right:1px solid #333;">
@@ -202,7 +202,7 @@ if(!empty($personID)){
 									} 
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Subtotal  
 									</td>
 									<td>
@@ -217,7 +217,7 @@ if(!empty($personID)){
 									{
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Shipping and Handling  
 									</td>
 									<td>
@@ -229,7 +229,7 @@ if(!empty($personID)){
 										{ 
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Discount  
 									</td>
 									<td>
@@ -242,7 +242,7 @@ if(!empty($personID)){
 										}
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Total  
 									</td>
 									<td>
@@ -255,7 +255,7 @@ if(!empty($personID)){
 									{
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Shipping and Handling  
 									</td>
 									<td>
@@ -265,7 +265,7 @@ if(!empty($personID)){
 									</td>
 								</tr>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Tax  
 									</td>
 									<td>
@@ -282,7 +282,7 @@ if(!empty($personID)){
 										{
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Discount  
 									</td>
 									<td>
@@ -295,7 +295,7 @@ if(!empty($personID)){
 										} 
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Total  
 									</td>
 									<td>
@@ -312,7 +312,7 @@ if(!empty($personID)){
 
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Shipping and Handling  
 									</td>
 									<td>
@@ -322,7 +322,7 @@ if(!empty($personID)){
 									</td>
 								</tr>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Tax  
 									</td>
 									<td>
@@ -339,7 +339,7 @@ if(!empty($personID)){
 										{
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Discount  
 									</td>
 									<td>
@@ -352,7 +352,7 @@ if(!empty($personID)){
 										} 
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Total  
 									</td>
 									<td>
@@ -367,7 +367,7 @@ if(!empty($personID)){
 									{
 								?>
 								<tr style="border-bottom:solid 1px #333;">
-									<td colspan="5" style="height:30px;text-align:right;border-right:1px solid #333;padding-right:8px;">
+									<td colspan="5" style="height:20px;text-align:right;border-right:1px solid #333;padding-right:8px;">
 										Note: Customer is responsible for customs clearance and any applicable taxes  
 									</td>
 									<td>
