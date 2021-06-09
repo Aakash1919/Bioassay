@@ -16,6 +16,7 @@
     $seo_title = $pd->seo_title;
     $seo_keyword = $pd->seo_keyword;
     $seo_description = $pd->seo_description;
+    $stockStatus = $pd->in_stock;
     $expirydate = $pd->expirydate;
     @$keywords = $pd->keywords;
     @$description = $pd->description;
@@ -215,7 +216,13 @@
             <label for="MetaDescription">Meta Description:</label>
              <input type="text" class="form-control" id="MetaDescription" placeholder="Enter Meta Description" name="MetaDescription" title="Meta Description" value="<?php echo isset($seo_description)?$seo_description:'';?>">
             </div>
-            
+            <div class="form-group">
+            <label for="in_stock">Stock Status</label>
+            <select type="text" class="form-control" id="in_stock"  name="in_stock" title="Parent Category">
+              <option value="y" <?php echo isset($stockStatus) && $stockStatus=='y' ? 'selected' : ''; ?>>In Stock</option>
+              <option value="n" <?php echo isset($stockStatus) && $stockStatus=='n' ? 'selected' : ''; ?>>Out Of Stock</option>
+            </select>
+          </div>
           </div>
             <div class="panel-footer">
           <a href="<?php echo base_url();?>admin/store/products" class="btn btn-info">Cancel</a>

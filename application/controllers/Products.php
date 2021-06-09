@@ -52,7 +52,7 @@ class Products extends Public_Controller{
         $config['prev_tag_open'] = '<span class="page-item">';
         $config['prev_tag_close'] = '</span>';
         $config['attributes'] = array('class' => 'page-link');
-        $config['cur_tag_open'] = '<span class="current"><a class="page-link" href="#">';
+        $config['cur_tag_open'] = '<span class="current"><a class="page-link" href="javascript:void(0)">';
         $config['cur_tag_close'] = '</a></span>';
         $config['num_tag_open'] = '<span class="page-item">';
         $config['num_tag_close'] = '</span>';
@@ -128,7 +128,7 @@ class Products extends Public_Controller{
             $config['prev_tag_open'] = '<span class="page-item">';
             $config['prev_tag_close'] = '</span>';
             $config['attributes'] = array('class' => 'page-link');
-            $config['cur_tag_open'] = '<span class="current"><a class="page-link" href="#">';
+            $config['cur_tag_open'] = '<span class="current"><a class="page-link" href="javascript:void(0)" >';
             $config['cur_tag_close'] = '</a></span>';
             
             $config['num_tag_open'] = '<span class="page-item">';

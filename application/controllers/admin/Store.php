@@ -189,14 +189,13 @@ class Store extends Admin_Controller{
 									'name_display'=>$this->input->post('pDisplayName'),
 									'price'=>$this->input->post('pPrice'),
 									'catalog_num'=>$this->input->post('catalog'),
-									'size'=>$this->input->post('pSize'),
 									'discountcode'=>$this->input->post('DiscountCode'),
 									'discountpercent'=>$this->input->post('DiscountPercent'),
 									'shipping_method'=>$this->input->post('sMethod'),
 									'seo_title'=>$this->input->post('MetaTitle'),
 									'seo_keyword'=>$this->input->post('MetaKeywords'),
 									'seo_description'=>$this->input->post('MetaDescription'),
-									'date'=>$this->input->post('date'),
+									'in_stock' => $this->input->post('in_stock'),
 									'expirydate'=>$this->input->post('eDate')
 								);
 				$productID = $this->Product_Model->Save($id,$productArray);
