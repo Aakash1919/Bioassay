@@ -526,6 +526,7 @@ class Checkout extends Public_Controller{
 		$this->session->set_userdata('baddr1', $data['baddr1']);
 		$this->session->set_userdata('baddr2', $data['baddr2']);
 		$this->session->set_userdata('bcity', $data['bcity']);
+		$this->session->set_userdata('bstate', $data['bstate']);
 		$this->session->set_userdata('bzip', $data['bzip']);
 		$this->session->set_userdata('bcountry', $data['bcountry']);
 		$this->session->set_userdata('bphone', $data['bphone']);
