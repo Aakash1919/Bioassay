@@ -586,11 +586,11 @@ class Express_checkout extends CI_Controller
 				$emailbody3.=$cart['shipping_state']." ";
 				$emailbody3.=$cart['shipping_zip']."<br >";
 				$emailbody3.=$cart['shipping_country_name']."<br >";
-				$emailbody3.=$cart['phone_number']." (tel)<br >";
+				$emailbody3.=$cart['phone_number']." (tel)<br ><br >";
 				$emailbody3.="Bill to:<br >".$_SESSION['battn']."<br >";
 				$emailbody3.=$_SESSION['bcompany']."<br >";
 				$emailbody3.=$_SESSION['baddr1']."<br >";
-				$emailbody3.=isset($_SESSION['baddr2']) ? $_SESSION['baddr2']."<br >" : '';
+				$emailbody3.=!empty($_SESSION['baddr2']) ? $_SESSION['baddr2']."<br >" : '';
 				$emailbody3.=$_SESSION['bcity'].", ";
 				$emailbody3.=$_SESSION['bstate']." ";
 				$emailbody3.=$_SESSION['bzip']."<br >";
