@@ -566,28 +566,38 @@ class Express_checkout extends CI_Controller
 				$emailbody3.="Subtotal:        $".$total."<br >";
 				$emailbody3.="S/H:             $".number_format($cart['shopping_cart']['shipping'],2)."<br >";      
 		 		
-				 $emailbody3.="Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
-				 $taxExemptId = $_SESSION['taxExemptId'];
-				 if(isset($taxExemptId)) {
-					 $emailbody3.="Tax Exemption Number:".$taxExemptId.'<br>';
-				 }
-				 
-				 $emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
-				 $fedexAccount = $_SESSION['fedex_account_number'];
-				 if(isset($fedexAccount) && !empty($fedexAccount)) {
-					 $emailbody3.="Fedex Account: ".$fedexAccount.'<br>';
-				 }
-				 $emailbody3.= isset($_SESSION['PreviousInfo']['scountry']) && $_SESSION['PreviousInfo']['scountry']=="United States" ? "FedEx Delivery: ".$_SESSION['PreviousInfo']['fedex_service']."<br >" : "International Shipping <br>";
-				 $emailbody3.=isset($_SESSION['PreviousInfo']['cmnts']) && !empty($_SESSION['PreviousInfo']['cmnts'])? "Notes: ".$_SESSION['PreviousInfo']['cmnts']."<br>": ''."<br >";
-				 $emailbody3.="<br />Ship to:<br >".$this->input->post('sattn')."<br >";
-		  		 $emailbody3.=$cart['shipping_name']."<br >";
-				 $emailbody3.=$cart['shipping_street']."<br >";
-				 $emailbody3.=$cart['shipping_city'].", ";
-				 $emailbody3.=$cart['shipping_state']." ";
-				 $emailbody3.=$cart['shipping_zip']."<br >";
-				 $emailbody3.=$cart['shipping_country_name']."<br >";
-				 $emailbody3.=$cart['phone_number']." (tel)<br >";
-
+				$emailbody3.="Tax:             $".number_format($cart['shopping_cart']['tax'],2)."<br >";
+				$taxExemptId = $_SESSION['taxExemptId'];
+				if(isset($taxExemptId)) {
+					$emailbody3.="Tax Exemption Number:".$taxExemptId.'<br>';
+				}
+				
+				$emailbody3.="Total: $".$cart['shopping_cart']['grand_total']."<br />";
+				$fedexAccount = $_SESSION['fedex_account_number'];
+				if(isset($fedexAccount) && !empty($fedexAccount)) {
+					$emailbody3.="Fedex Account: ".$fedexAccount.'<br>';
+				}
+				$emailbody3.= isset($_SESSION['PreviousInfo']['scountry']) && $_SESSION['PreviousInfo']['scountry']=="United States" ? "FedEx Delivery: ".$_SESSION['PreviousInfo']['fedex_service']."<br >" : "International Shipping <br>";
+				
+				$emailbody3.="<br />Ship to:<br >".$this->input->post('sattn')."<br >";
+				$emailbody3.=$cart['shipping_name']."<br >";
+				$emailbody3.=$cart['shipping_street']."<br >";
+				$emailbody3.=$cart['shipping_city'].", ";
+				$emailbody3.=$cart['shipping_state']." ";
+				$emailbody3.=$cart['shipping_zip']."<br >";
+				$emailbody3.=$cart['shipping_country_name']."<br >";
+				$emailbody3.=$cart['phone_number']." (tel)<br >";
+				$emailbody3="Bill to:<br >".$_SESSION['battn']."<br >";
+				$emailbody3.=$_SESSION['bcompany']."<br >";
+				$emailbody3.=$_SESSION['baddr1']."<br >";
+				$emailbody3.=isset($_SESSION['baddr2']) ? $_SESSION['baddr2']."<br >" : '';
+				$emailbody3.=$_SESSION['bcity'].", ";
+				$emailbody3.=$_SESSION['bstate']." ";
+				$emailbody3.=$_SESSION['bzip']."<br >";
+				$emailbody3.=$_SESSION['bcountry']."<br >";
+				$emailbody3.=$_SESSION['bphone']." (tel)<br >";
+				$emailbody3.=$_SESSION['bfax']." (fax)<br >";
+				$emailbody3.=isset($_SESSION['PreviousInfo']['cmnts']) && !empty($_SESSION['PreviousInfo']['cmnts'])? "Notes: ".$_SESSION['PreviousInfo']['cmnts']."<br>": ''."<br >";
 				$emailbody=$emailbody1.$emailbody2.$emailbody3;
 				$emailbody.="<br >Your PayPal Payment has been approved for order # ".$orderID.". We are processing your order and will ship it out soon.<br ><br >Thanks,<br >Your BioAssay Systems Team<br >";
 				$email = $cart['email']."," ;
@@ -599,6 +609,17 @@ class Express_checkout extends CI_Controller
 				$header.= "Content-type: text/html; charset=utf-8\r\n";
 				$status = mail($email,$emailtitle,$emailbody, $header);
 				unset($_SESSION['payEmail']);
+				unset($_SESSION['battn']);
+				unset($_SESSION['baddr1']);
+				unset($_SESSION['bcompany']);
+				unset($_SESSION['baddr2']);
+				unset($_SESSION['bcity']);
+				unset($_SESSION['bzip']);
+				unset($_SESSION['bstate']);
+				unset($_SESSION['bcountry']);
+				unset($_SESSION['bphone']);
+				unset($_SESSION['bfax']);
+
 			// }
 			
 

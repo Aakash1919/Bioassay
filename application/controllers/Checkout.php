@@ -521,6 +521,16 @@ class Checkout extends Public_Controller{
 		$this->session->set_userdata('po_num', $data['po_num']);
 		$this->session->set_userdata('fedex_account_number', $data['fedex_accnt']);
 		$this->session->set_userdata('payEmail', $data['semail']);
+		$this->session->set_userdata('battn', $data['battn']);
+		$this->session->set_userdata('bcompany', $data['bcompany']);
+		$this->session->set_userdata('baddr1', $data['baddr1']);
+		$this->session->set_userdata('baddr2', $data['baddr2']);
+		$this->session->set_userdata('bcity', $data['bcity']);
+		$this->session->set_userdata('bzip', $data['bzip']);
+		$this->session->set_userdata('bcountry', $data['bcountry']);
+		$this->session->set_userdata('bphone', $data['bphone']);
+		$this->session->set_userdata('bfax', $data['bfax']);
+		$this->session->set_userdata('payEmail', $data['semail']);
 		$this->session->set_userdata('taxExemptId', $data['tax_exempt_id']);
 
 		
@@ -622,7 +632,7 @@ class Checkout extends Public_Controller{
 		foreach($emailArray['cart'] as $prodid => $product) {
 			if($product != null) {
 				$shipping_method= $product['shippingmt'];
-				$emailbody3.="Product Name:".$product['name']."<br >Catalog No: ".$product['catalog']."<br >Shipping method: ".$product['shippingmt']."<br >Price: $". $product['price']."<br >QTY: ".$product['qty']." <br ><br >";
+				$emailbody3.="Product Name: ".$product['name']."<br >Catalog No: ".$product['catalog']."<br >Shipping method: ".$product['shippingmt']."<br >Price: $". $product['price']."<br >QTY: ".$product['qty']." <br ><br >";
 			}
 			$emailbody3.='<br>';
 		}

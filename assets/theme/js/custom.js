@@ -58,7 +58,8 @@ jQuery(document).on('change', "#paymenttype", function () {
             jQuery("#bill_chkout_qtn").attr("disabled", false);
             jQuery("#wait").css("display", "none");
         } else {
-            
+            jQuery("#po_details").toggle();
+            jQuery("#po_column").css("display", "none");
             jQuery("#regform").attr("action", "/checkout/finalTransaction");
             jQuery("#po_num").attr("required", false);
         }
