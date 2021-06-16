@@ -459,6 +459,7 @@ if(!empty($personID)){
 						<div class="reg_b">
 							<select name="payment_type" id="paymenttype" class="reg_b_jump" required >
 							<?php if(isset($scountry) && $scountry!='United States') { ?>
+								<option value="">Please Select Payment Method</option> 
 								<option value="Purchase Order">Send Qoutation Request</option> 
 							<?php }else { ?>
 								<?php if(!empty($uid)) { ?>								 
