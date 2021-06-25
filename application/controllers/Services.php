@@ -7,7 +7,7 @@ class Services extends Public_Controller{
 	}
 	
 	public function index(){
-			$id=1;
+		$id=1; 
 		$this->data['keywords'] = $this->Services_Model->GetProperty('seo_keyword',$id);
 		$this->data['description'] = $this->Services_Model->GetProperty('seo_description',$id);
 		$this->data['active'] = $this->Services_Model->GetProperty('seo_title',$id);

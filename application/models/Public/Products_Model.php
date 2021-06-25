@@ -48,7 +48,7 @@ class Products_Model extends Public_Model{
         return $this->db->get()->num_rows();
     }
 
-    public function GetbyParam($num,$start,$order,$format,$param){
+    public function GetbyParam($num,$start,$order,$format,$param="ASC"){
         $this->db->where("FIND_IN_SET($param,REPLACE(category,' ','')) > 0");
         $this->db->select()->from($this->_table_name)->limit($num,$start)->order_by($order,$format);
         return $this->db->get()->result();

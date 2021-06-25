@@ -45,6 +45,7 @@
 	</div>
 </article>
 </section>
+<?php $uriSegment = $this->uri->segment(3);?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		loadCart();
@@ -52,7 +53,7 @@
 	function loadCart(){
 		var Message = '<p style="text-align:center;padding:10px;">loading.. Please wait</p>';
 		jQuery("#productData").html(Message);
-		var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+		var url = "/products/getTable<?php echo isset($uriSegment) ? '/'.$this->uri->segment(3) : ''; ?><?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '?' ?><?php echo isset($_GET['caturl']) ? 'caturl='.$_GET['caturl'] : '' ?>";
 		jQuery.get( url, function( data ) {
 			jQuery("#productData").html(data);
 			});
@@ -60,19 +61,19 @@
 </script>
 <script>
 jQuery(document).on('click','#productName',function(){	
-	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	var url = "/products/getTable<?php echo isset($uriSegment) ? '/'.$this->uri->segment(3) : ''; ?><?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '?' ?><?php echo isset($_GET['caturl']) ? 'caturl='.$_GET['caturl'] : '' ?>";
 	jQuery.post( url,{'name':'name_display'}, function( data ) {
 	jQuery("#productData").html(data);
 	});
 });
 jQuery(document).on('click','#catalog_num',function(){	
-	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	var url = "/products/getTable<?php echo isset($uriSegment) ? '/'.$this->uri->segment(3) : ''; ?><?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '?' ?><?php echo isset($_GET['caturl']) ? 'caturl='.$_GET['caturl'] : '' ?>";
 	jQuery.post( url,{'name':'catalog_num'}, function( data ) {
 	jQuery("#productData").html(data);
 	});
 });
 jQuery(document).on('click','#price',function(){	
-	var url = "/products/getTable<?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '' ?>";
+	var url = "/products/getTable<?php echo isset($uriSegment) ? '/'.$this->uri->segment(3) : ''; ?><?php echo isset($_GET['q']) ? '?q='.$_GET['q'] : '?' ?><?php echo isset($_GET['caturl']) ? 'caturl='.$_GET['caturl'] : '' ?>";
 	jQuery.post( url,{'name':'price'}, function( data ) {
 	jQuery("#productData").html(data);
 	});

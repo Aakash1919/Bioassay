@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  *
  * TRUE means you'll be hitting PayPal's sandbox/test servers.  FALSE means you'll be hitting the live servers.
  */
-$config['Sandbox'] = TRUE;
+$config['Sandbox'] = FALSE;
 
 /**
  * PayPal API Version

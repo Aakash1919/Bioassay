@@ -8,8 +8,8 @@ class Public_Controller extends CI_Controller{
 		$this->load->model('Member/BSDetail_Model');
 		$this->load->library('encrypt');
 		// development site keys
-		$this->data['capcha_site_id'] = "6LdjPqUUAAAAAIRHkdsWonAKkwISiJrGwokC1hYM";
-		$this->data['capcha_site_key'] = "6LdjPqUUAAAAAM5hvSRscbKt-Q2_ULy-esvBQl-M";
+		$this->data['capcha_site_id'] = "6LfZd7IUAAAAAP3ZUjOODyzOVbLo05kTtSSl9jpM";
+		 $this->data['capcha_site_key'] = "6LfZd7IUAAAAAFbESekhA3Ub-TQIZtmxZeY68qOA";
 		// production site keys
 		//  $this->data['capcha_site_id'] = "6LfZd7IUAAAAAP3ZUjOODyzOVbLo05kTtSSl9jpM";
 		//  $this->data['capcha_site_key'] = "6LfZd7IUAAAAAFbESekhA3Ub-TQIZtmxZeY68qOA";
