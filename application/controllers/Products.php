@@ -144,13 +144,14 @@ class Products extends Public_Controller
         $config['num_tag_open'] = '<span class="page-item">';
         $config['num_tag_close'] = '</span>';
         $config['base_url'] = base_url() . "products/search";
+        $config['per_page'] = 20;
         if ($this->input->get('caturl')) {
             $config['total_rows'] = $this->Products_Model->pCount($cat);
         }else {
             $this->data['items'] = ($param != '') ? $this->Products_Model->GetbyParamProduct($config["per_page"], $page, $order, $format, $param) : $this->Products_Model->Get($config["per_page"], $page, $order, $format);
         }
         $config['total_rows'] = ($param != '') ? $this->Products_Model->productCount($param) : $this->Products_Model->Count();
-        $config['per_page'] = 20;
+        
         $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
