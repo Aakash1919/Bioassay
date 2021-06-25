@@ -145,6 +145,7 @@ class Products extends Public_Controller
         $config['num_tag_close'] = '</span>';
         $config['base_url'] = base_url() . "products/search";
         $config['per_page'] = 20;
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         if ($this->input->get('caturl')) {
             $config['total_rows'] = $this->Products_Model->pCount($cat);
         }else {
@@ -154,7 +155,6 @@ class Products extends Public_Controller
         
         $config["uri_segment"] = 3;
         $this->pagination->initialize($config);
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         if ($this->input->get('caturl')) {
             $this->data['items'] = $this->Products_Model->GetbyParam($config["per_page"], $page, $order, $format, $cat);
         }else {
