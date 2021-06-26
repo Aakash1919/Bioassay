@@ -16,7 +16,7 @@ BioAssay Systems (BAS) offers two methods for quantifying the solubility of drug
 plate solubility testing and shake flask solubility testing. This information page details the Filter Plate
 Method. 
  
-<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dFilter Plate Solubility Service';void 0">Inquire</a> &mid; <a href="/uploads/datasheet/Solubility.Service.Filter.Plate.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
+<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dFilter Plate Solubility Service';void 0">Inquire</a> &mid; <a href="/datasheet/Solubility.Service.Filter.Plate.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
 
 <span class="textbold_orange">Method</span><br />
 In MultiScreen filter plate, the compound is mixed with a solvent of customer's choice. The plate is

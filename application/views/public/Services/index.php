@@ -5,16 +5,12 @@
 			<div class="new-products-title">
 				<h1>
 					<span>
-						Services Overview
+						Services Overview: Why BioAssay Systems Services?
 					</span>
 				</h1>
 			</div>
 			<div class="new-products-list">
 				<div style="padding: 15px;">
-					<h1>
-						Why BioAssay Systems Services?
-					</h1>
-					<br>
 					<div class="new-products">
 						<span class="textbold_orange">
 							Our Services
@@ -43,11 +39,13 @@
 									Lead Discovery Services
 								</a>
 							</li>
+							<!--
 							<li>
 								<a href="/services/multiplex-assay-services.html">
 									Multiplex Assay Services
 								</a>
 							</li>
+							-->
 						</uL>
 						<br />
 						<span class="textbold_orange">
@@ -139,26 +137,47 @@
 						Please <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dService Request';void 0">contact us by email</a>, or call us at <a href="tel:+15107829988,2">1-510-782-9988 x 2</a> to discuss details and feasibility of any potential service projects.
 						<br />
 						<br />
-						Our services are also available through Science Exchange and Scientist.com. See our storefronts below.
+
+						<span class="textbold_orange">
+							Select Publications by BioAssay Systems' Scientists
+						</span>
 						<br />
+						Rommel Mallaria, Elissa Swearingenb, Wei Liu, Arnold Ow, Stephen W. Young and Shu-Gui Huang* (2003) “A Generic High-
+						throughput Screening Assay for Kinases: Protein Kinase A as an Example”. J. Biomol. Screen. 8: 198-204.
+						<br /><br />
+						Catherine A. Hong, Elissa Swearingen, Rommel Mallari, Xiong Gao, Zhaodan Cao, Anne North, Stephen W. Young and 
+						Shu-Gui Huang* (2003) “Development of A High-Throughput Time-Resolved Fluorescence Resonance Energy Transfer Assay for 
+						TRAF6 Ubiquitin Polymerization”. Assay and Drug Development Technologies 1: 175-180.
+						<br /><br />
+						Shu-Gui Huang* (2002) “Development of A High-throughput Screening Assay for Mitochondrial Membrane Potential in Living 
+						Cells”. J. Biomol. Screen. 7: 383-389.
+						<br /><br />
+						Ellyn Farrelly, M. Catherine Amaral, Lisa Marshall and Shu-Gui Huang* (2001) A high-throughput assay for mitochondrial 
+						membrane potential in permeabilized yeast cells. Analytical  Biochemistry 293(2):269-276.
+						<br /><br />
+						Tony Smith, John Chan, Donna Oksenberg, Roman Urfer, Dave Wexler, Arnie Ow, Liping Gao, Alanna McAlorum, and Shu-Gui Huang* (2004). 
+						A High-Throughput Turbidometric Assay for Screening Inhibitors of Protein Disulfide Isomerase Activity. J. Biomol. Screen. 9(7): 614-620.
+						<br /><br />
+						David S. Wexler, Liping Gao, Francisco Anderson, Arnold Ow, Laszlo Nadasdi, Alanna McAlorum, Roman Urfer, and Shu-Gui Huang* (2005).
+						"Linking Solubility and Permeability Assays for Maximum Throughput and Reproducibility". J. Biomol. Screen. 10(4): 383-390.
+						<br /><br />
+						Shu-Gui Huang (2005) "Progress from HTS to HTL: Current Strategies in Drug Lead Discovery" Review article in Trends in 
+						Pharmaceutical Research 1: 5-10. 
+						<br /><br />
+						David S. Wexler, Shu-Gui Huang, Roman Urfer (2004). "Replumbing the Pipeline: A small, biopharmaceutical company's strategy
+						 for integrating lead optimization and ADMET screening". Current Drug Discovery, May 2004: 35-38. 
+						<br /><br />
+						Songzhu An, Gene Cutler, Jack Jiagang Zhao, Shu-Gui Huang, Hui Tian, Wanbo Li, Lingming Liang, Mike Rich, Amy Bakleh, 
+						Juan Du, Jin-Long Chen and Kang Dai (2001) Identification and Characterization of a melanin-concentrating hormone receptor.
+					        Proc. Natl. Acad. Sci. 98: 7576-7581.
+						<br /><br />
+						Shu-Gui Huang, Donna Oksenberg, Roman Urfer (2005). "High-throughput Turbidometric Assay for Screening Inhibitors of Protein 
+						Disulfide Isomerase Activity". US 6,977,142.
 						<br />
-						<div class="clear">
-						</div>
-						<div style="width: 100%;">
-							<div style="width: 50%; text-align: center; float: left;">
-								<a href="https://www.scienceexchange.com/labs/bioassay-systems/" target="_blank"><img src="/images/scienceexchange-full.png" height="100px" alt="Science Exchange"></a> 
-							</div>
-							<div style="width: 50%; text-align: center; float: left;">
-								<a href="https://app.scientist.com/domain_switcher?redirect=/providers/d935e2de-1754-4c66-ad61-8c52fc0b49c8" target="_blank"><img src="/images/scientist-full.png" height="100px" alt="Scientist"></a>
-							</div>
-						</div>
-						<div class="clear">
-						</div>
 						<br />
 						<span class="textbold_orange">
 							Hear What Our Customers Say About Our Services
 						</span>
-						<br />
 						<br />
 						<i>Anh-Dung Le, CEO DermaTec LLC</i>
 						<br />
@@ -193,6 +212,25 @@
 						sensitive assay for determining the amount of polymer remaining in tissue. It was a pleasure to work with Bob and his team, 
 						they are very thorough, they understand the science very well and they always deliver on time and at the right price. I would 
 						highly recommend anyone using BioAssay Systems services in the future."
+						<br />
+						<br />
+						<span class="textbold_orange">Our services are also available through Science Exchange and Scientist.com</span>. See our storefronts below.
+						<br />
+						<br />
+						<div class="clear">
+						</div>
+						<div style="width: 100%;">
+							<div style="width: 50%; text-align: center; float: left;">
+								<a href="https://www.scienceexchange.com/labs/bioassay-systems/" target="_blank"><img src="/images/scienceexchange-full.png" height="100px" alt="Science Exchange"></a> 
+							</div>
+							<div style="width: 50%; text-align: center; float: left;">
+								<a href="https://app.scientist.com/domain_switcher?redirect=/providers/d935e2de-1754-4c66-ad61-8c52fc0b49c8" target="_blank"><img src="/images/scientist-full.png" height="100px" alt="Scientist"></a>
+							</div>
+						</div>
+						<div class="clear">
+						</div>
+						<br />
+						<br />
 					</div>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ Due to the membrane barriers most drugs must pass through to reach their target,
 <br />
 One of the Permeability tests BioAssay Systems offers is the Parallel Artificial Membrane Permeability Assay (PAMPA). This test measures passive diffusion of compounds and is ideal for early stage drug development because it is fast and low cost relative to other cell-based permeability assays. 
  
-<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dPAMPA Permeability Service';void 0">Inquire</a> &mid; <a href="/uploads/datasheet/Permeability.Service.PAMPA.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
+<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dPAMPA Permeability Service';void 0">Inquire</a> &mid; <a href="/datasheet/Permeability.Service.PAMPA.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
 
 <span class="textbold_orange">Method</span><br />
 A membrane mimicking solution and full permeability control solution are loaded on to separate well membranes of a PAMPA donor plate. The donor plate is then loaded with the desired concentration of test compound in a buffer of customer's choice. The receiver plate is loaded with either the same buffer or another of the customer’s choice. The donor plate is gently placed into the receiver plate and incubated for a set duration at ambient temperature (or desired temperature).

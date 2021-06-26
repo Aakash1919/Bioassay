@@ -19,7 +19,7 @@ IC50 for a known tyrosine phosphatase inhibitor, Na<sub>3</sub>VO<sub>4</sub> wa
 the maximum DMSO concentration to be 15 v% and the Km to be 0.7 ± 0.04 mM.  For the truncated PTP1b, we determined the maximum 
 DMSO concentration to be 7.5 v% and the Km to be 1.3 ± 0.1 mM. Using 0.7 mM pNPP, we observed an IC50 = 19.3 ± 1.1 mM for 
 Na<sub>3</sub>VO<sub>4</sub> for the full length PTP1b.  Using 1 mM pNPP, we observed an IC50 = 54.5 ± 1.1 mM for Na<sub>3</sub>VO<sub>4</sub> for the truncated PTP1b. 
-<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dPTP1B Inhibitor Screening Service';void 0">Inquire</a> &mid; <a href="/uploads/datasheet/PTP1B.Inhibitor.Screening.Service.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
+<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dPTP1B Inhibitor Screening Service';void 0">Inquire</a> &mid; <a href="/datasheet/PTP1B.Inhibitor.Screening.Service.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
 
 <span class="textbold_orange">Results</span><br />
 <i>PTP1b Titrations</i><br />
