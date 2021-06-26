@@ -64,7 +64,7 @@
 	<li><a href="/services/assay-customization.html">Assay Customization</a></li>
 	<li><a href="/services/assay-design-and-development.html">Assay Design and Development</a></li>
 	<li><a href="/services/lead-discovery-services.html">Lead Discovery Services</a></li>
-	<li><a href="/services/multiplex-assay-services.html">Multiplex Assay Services</a></li>
+	<!-- <li><a href="/services/multiplex-assay-services.html">Multiplex Assay Services</a></li> -->
 </ul>
 <ul id="ddsubmenu3" class="ddsubmenustyle">
 	<li><a href="/support.html" >Technical Support</a></li>
