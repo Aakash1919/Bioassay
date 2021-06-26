@@ -16,7 +16,7 @@ Using our <a href="/NFKB-Phosphorylation-Assay-Kit" target="_blank">EnzyFluo&tra
 &mid; 
 <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dNFκB Phosphorylation Status Screening Service';void 0">Inquire</a>
 &mid; 
-<a href="/uploads/datasheet/NFKB.Phosphorylation.Status.Screening.Service.pdf" target="_blank">Download pdf</a> 
+<a href="/datasheet/NFKB.Phosphorylation.Status.Screening.Service.pdf" target="_blank">Download pdf</a> 
 &mid;
 <br /><br />
 

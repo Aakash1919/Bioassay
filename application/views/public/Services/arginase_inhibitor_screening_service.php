@@ -14,7 +14,7 @@ In order to test the suitability of BioAssay Systems Arginase Assay for screenin
 initial experiments to determine the Km of L-arginine for a purified human arginase and the IC50 for a known arginase 
 inhibitor, ABH.  We measured a K<sub>m</sub> of 3.4 ± 0.2 mM.  Using 3 mM L-arginine, we observed an IC50 = 0.14 ± 0.1 &micro;M for ABH.  
 We also verified that 2 v% DMSO will not affect the assay. 
-<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dArginase Inhibitor Screening Service';void 0">Inquire</a> &mid; <a href="/uploads/datasheet/Arginase.Inhibitor.Screening.Service.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
+<br /><br />&mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dArginase Inhibitor Screening Service';void 0">Inquire</a> &mid; <a href="/datasheet/Arginase.Inhibitor.Screening.Service.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
 
 <span class="textbold_orange">Results</span><br />
 <i>K<sub>m</sub> of L-Arginine</i><br />

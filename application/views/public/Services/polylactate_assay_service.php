@@ -16,7 +16,7 @@ monomers followed by D-lactate determination using a highly sensitive and specif
 is naturally prevalent in animal tissue (D-lactate is typically present at only nM levels in mammals which is below the 
 detection limit of the current assay); therefore, any D-lactate measured in a sample is solely derived from the polymer 
 present in the sample. &mid; <a href="javascript:location='mailto:\u0073\u0065\u0072\u0076\u0069\u0063\u0065\u0040\u0062\u0069\u006f\u0061\u0073\u0073\u0061\u0079\u0073\u0079\u0073\u002e\u0063\u006f\u006d\u003f\u0073\u0075\u0062\u006a\u0065\u0063\u0074\u003dBiopolymer Analytical Service';void 0">Inquire</a> &mid; 
-<a href="/uploads/datasheet/biopolymerflyer.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
+<a href="/datasheet/biopolymerflyer.pdf" target="_blank">Download pdf</a> &mid;<br /><br />
 
 
 <span class="textbold_orange">Key Features of the Assay</span><br />

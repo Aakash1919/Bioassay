@@ -21,8 +21,8 @@ BioAssay Systems has developed a range of assays for evaluating drug candidates 
 
 <ul style="width: 721px;">
    <li><span class="textbold_orange">Solubility Screening</span>
-		<br />- Filter Plate Solubility Details: <a href=/services/filter-plate-solubility-service>html</a>&nbsp; &mid; &nbsp; <a href="/uploads/datasheet/Solubility.Service.Filter.Plate.pdf" target="_blank">pdf.</a>
-		<br />- Shake Flask Solubility Details: <a href=/services/shake-flask-solubility-service>html</a>&nbsp; &mid; &nbsp; <a href="/uploads/datasheet/Solubility.Service.Shake.Flask.pdf" target="_blank">pdf.</a> </p><br /></li>
+		<br />- Filter Plate Solubility Details: <a href=/services/filter-plate-solubility-service>html</a>&nbsp; &mid; &nbsp; <a href="/datasheet/Solubility.Service.Filter.Plate.pdf" target="_blank">pdf.</a>
+		<br />- Shake Flask Solubility Details: <a href=/services/shake-flask-solubility-service>html</a>&nbsp; &mid; &nbsp; <a href="/datasheet/Solubility.Service.Shake.Flask.pdf" target="_blank">pdf.</a> </p><br /></li>
     </uL>
 
 </div>
@@ -32,7 +32,7 @@ BioAssay Systems has developed a range of assays for evaluating drug candidates 
 
 <ul style="width: 721px;">
    <li><span class="textbold_orange">Permeability Screening</span>
-		<br />- PAMPA Permeability Details: <a href="/services/pampa-permeability-service">html</a>&nbsp; &mid; &nbsp; <a href="/uploads/datasheet/Permeability.Service.PAMPA.pdf" target="_blank">pdf.</a></p><br /></li>
+		<br />- PAMPA Permeability Details: <a href="/services/pampa-permeability-service">html</a>&nbsp; &mid; &nbsp; <a href="/datasheet/Permeability.Service.PAMPA.pdf" target="_blank">pdf.</a></p><br /></li>
    </uL>
 
 </div>
@@ -62,7 +62,7 @@ BioAssay Systems has developed a range of assays for evaluating drug candidates 
 
 <ul style="width: 721px;">
    <li><span class="textbold_orange">Cell Viability Screening</span>
-		<br />- In Vitro Cell Viability Details: <a href="/services/in-vitro-cell-viability-service">html</a>&nbsp; &mid; &nbsp; <a href="/uploads/datasheet/Toxicity.Service.Cell.Viability.pdf" target="_blank">pdf.</a></p><br /></li>
+		<br />- In Vitro Cell Viability Details: <a href="/services/in-vitro-cell-viability-service">html</a>&nbsp; &mid; &nbsp; <a href="/datasheet/Toxicity.Service.Cell.Viability.pdf" target="_blank">pdf.</a></p><br /></li>
    </uL>
 
 </div>

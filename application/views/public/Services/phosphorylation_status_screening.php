@@ -67,11 +67,11 @@ Specialized for lead discovery, BioAssay Systems has developed a range of assays
 
 <ul style="width: 721px;">
    <li><span class="textbold_orange">ERK Phosphorylation Status</span>. The mitogen-activated protein kinase (MAPK/ERK) pathway plays a key role in cell proliferation, differentiation and migration. Stimulation by mitogens eventually leads to phosphorylation of ERK1 (T202/Y204) and ERK2 (T185/Y187). The MAPK/ERK cascade presents many interesting drug targets for the development of cancer therapies. 
-		<br />Assay details: <a href="/services/erk-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/uploads/datasheet/ERK.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
+		<br />Assay details: <a href="/services/erk-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/datasheet/ERK.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
 	<li><span class="textbold_orange">AMPK Phosphorylation Status</span>. The 5-AMP-activated protein kinase (AMPK) is a key sensor of intracellular energy balance. AMPK is activated in response to an increase in the AMP/ATP ratio, which can be caused by a number of factors such as muscle contraction, starvation, or hypoxia.	AMPK is activated by phosphorylation on Thr-172 within the catalytic domain. AMP binding results in a 2 to 5-fold increase in AMPK activity compared to the basal level. 
-		<br />Assay details: <a href="/services/ampk-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/uploads/datasheet/AMPK.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
+		<br />Assay details: <a href="/services/ampk-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/datasheet/AMPK.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
 	<li><span class="textbold_orange">NF&kappa;B Phosphorylation Status</span>. Nuclear factor-kappa B (NF&kappa;B) is a transcription factor that plays a central role in many physiological processes (e.g. inflammation, tumorigenesis, and apoptosis). NF&kappa;B is activated by a wide variety of stimuli, including inflammatory cytokines such as TNF-&alpha;. Phosphorylation of p65/RelA at Ser-536 results in decreased nuclear export and enhanced p65/RelA-dependent transcription.
-		<br />Assay details: <a href="/services/nfkb-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/uploads/datasheet/NFKB.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
+		<br />Assay details: <a href="/services/nfkb-phosphorylation-status-service">html</a>&nbsp; &mid; &nbsp;  <a href="/datasheet/NFKB.Phosphorylation.Status.Screening.Service.pdf" target="_blank">pdf.</a> </p></li><br />
 </uL>
 
 </div>
