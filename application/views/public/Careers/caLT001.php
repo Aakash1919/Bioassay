@@ -13,7 +13,7 @@
 					<a href="/careers.html">Back to Career Center</a>
 					<br>
 					<br>
-					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences industry. We pride ourselves in serving our customers world-wide. We currently have the following position open.
+					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences and drug discovery industries. We pride ourselves in serving our customers world-wide. We currently have the following position open.
 					<br />
 					<br />
 
@@ -30,15 +30,15 @@
 					<br />
 
 					<span class="textbold_orange">
-						Overview:
+						Overview
 					</span>
-
+					<br />
 					We are currently looking for an enthusiastic, entry-level technician to join our manufacturing team. The position will involve the manufacturing and packaging of bulk products, labeling the bottles and tubes, and packaging finished products for shipment. Prior experiences are preferred but not essential, as training will be provided. 
 					<br />
 					<br />
 					
 					<span class="textbold_orange">
-						Preferred Qualifications:
+						Preferred Qualifications
 					</span>
 					<br />
 					<ul>
@@ -63,7 +63,7 @@
 					<br>
 
 					<span class="textbold_orange">
-						Position Benefits:
+						Position Benefits
 						</span>
 					<ul>
 						<li>

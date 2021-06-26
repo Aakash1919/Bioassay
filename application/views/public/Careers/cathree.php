@@ -13,7 +13,7 @@
 					<a href="/careers.html">Back to Career Center</a>
 					<br>
 					<br>
-					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems develops, manufactures and markets innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences industry. We pride ourselves in serving our customers world-wide. We currently have the following job opportunity open. 
+					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems develops, manufactures and markets innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences and drug discovery industries. We pride ourselves in serving our customers world-wide. We currently have the following job opportunity open. 
 					<!--
 					<p>&nbsp;</p>
 
@@ -36,7 +36,7 @@
 					<br />
 
 					<span class="textbold_orange">
-						Overview:
+						Overview
 					</span>
 					<br>
 					We are currently looking for an enthusiastic candidate to join our marketing team. 
@@ -47,7 +47,7 @@
 					<br />
 
 					<span class="textbold_orange">
-						Required Qualifications:
+						Required Qualifications
 					</span>
 					<br />
 					<ul>
@@ -70,7 +70,7 @@
 					<br>
 					<br>
 					<span class="textbold_orange">
-						Preferred Qualifications:
+						Preferred Qualifications
 					</span>
 					<br />
 					<ul>
@@ -87,11 +87,9 @@
 							Experience in iOS/Android and mobile app development
 						</li>						
 					</ul>
-					<p>
-						&nbsp;
-					</p>
+					<br />
 					<span class="textbold_orange">
-						Position Benefits:
+						Position Benefits
 						</span>
 					<ul>
 						<li>

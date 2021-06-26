@@ -13,7 +13,7 @@
 					<a href="/careers.html">Back to Career Center</a>
 					<br>
 					<br>
-					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences industry. We pride ourselves in serving our customers world-wide. We currently have the following position open.
+					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences and drug discovery industries. We pride ourselves in serving our customers world-wide. We currently have the following position open.
 					<!--
 					<p>
 						&nbsp;
@@ -36,20 +36,18 @@
 					<br />
 					<br />
 					<span class="textbold_orange">
-						Overview:
+						Overview
 					</span>
 					<br>
 					We are currently looking for an enthusiastic research associate to join our manufacturing team. This position will entail preparing reagents for our assay kits, QCing, and packaging the finished products. This candidate may also join part time in our R&D team. 
 					<br>
 					<br>
 					<span class="textbold_orange">
-						Required Qualifications:
+						Required Qualifications
 					</span>
 					<br />
 					<ul>
-						<li>
-							A college degree in chemistry, biochemistry or biology
-						</li>
+
 						<li>
 							Independent and self-motivated. Initiates completion of tasks and activities without needing supervision
 						</li>
@@ -66,12 +64,12 @@
 					<br>
 					<br>
 					<span class="textbold_orange">
-						Preferred Qualifications:
+						Preferred Qualifications
 					</span>
 					<br />
 					<ul>
 						<li>
-							1-2 years of relevant laboratory experience
+							A college degree in chemistry, biochemistry or biology and 1-2 years of relevant laboratory experience
 						</li>
 						<li>
 							Experience preparing buffers, solutions, and reagents in bulk
@@ -83,7 +81,7 @@
 					<br>
 					<br>
 					<span class="textbold_orange">
-						Position Benefits:
+						Position Benefits
 						</span>
 					<ul>
 						<li>

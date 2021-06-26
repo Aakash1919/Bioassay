@@ -13,7 +13,7 @@
 					<a href="/careers.html">Back to Career Center</a>
 					<br>
 					<br>
-					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences industry. We pride ourselves in serving our customers world-wide. We currently have the following position open.
+					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems has developed, manufactured, and marketed innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences and drug discovery industries. We pride ourselves in serving our customers world-wide. We currently have the following position open.
 					<!--
 					<p>
 						&nbsp;
@@ -38,11 +38,9 @@
 					<br />
 
 					<span class="textbold_orange">
-						Overview:
+						Overview
 					</span>
-					<p>
-						&nbsp;
-					</p>
+					<br />
 					We currently have an exciting opportunity for an enthusiastic research associate to join our growing R&D team. This position will play an important role in increasing our already extensive catalog of biochemical colorimetric, fluorescent, and luminescent 96-well and 384-well plate assay kits. In addition, this role will assist our analytical services department in establishing additional techniques to expand our service capabilities. This candidate may also be involved in providing technical support to customers.
 					<br />
 					<br />
@@ -51,7 +49,7 @@
 					<br>
 					
 					<span class="textbold_orange">
-						Preferred Qualifications:
+						Preferred Qualifications
 					</span>
 					<br />
 					<ul>
@@ -73,7 +71,7 @@
 					<br>
 
 					<span class="textbold_orange">
-						Preferred Qualifications:
+						Preferred Qualifications
 					</span>
 					<br />
 					<ul>
@@ -90,11 +88,9 @@
 							Some experience with or knowledge of mammalian cell culture
 						</li>
 					</ul>
-					<p>
-						&nbsp;
-					</p>
+					<br />
 					<span class="textbold_orange">
-						Position Benefits:
+						Position Benefits
 						</span>
 					<ul>
 						<li>
@@ -116,9 +112,7 @@
 							Opportunities for faster than average promotions
 						</li>
 					</ul>
-					<p>
-						&nbsp;
-					</p>
+					<br />
 
 					<p>
 						<i>Principals only. No phone calls or inquiries</i>. Please indicate the Job title you are applying for. Only 

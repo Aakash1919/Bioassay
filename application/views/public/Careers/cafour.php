@@ -13,7 +13,7 @@
 					<a href="/careers.html">Back to Career Center</a>
 					<br>
 					<br>
-					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems develops, manufactures and markets innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences industry. We pride ourselves in serving our customers world-wide. We currently have the following positions open.
+					<i>BioAssay Systems</i> is a biotechnology company located in San Francisco Bay Area. Since 2003, BioAssay Systems develops, manufactures and markets innovative and high-quality assay solutions to satisfy the increasing demands of the life sciences and drug discovery industries. We pride ourselves in serving our customers world-wide. We currently have the following positions open.
 					<!--
 					<p>
 						&nbsp;
@@ -39,11 +39,9 @@
 					<br />
 
 					<span class="textbold_orange">
-						Overview:
+						Overview
 					</span>
-					<p>
-						&nbsp;
-					</p>
+					<br />
 					The Sales Associate will be responsible for processing orders, preparing shipping documents, and keeping detailed records. 
 					The individual will have to communicate with our customers by phone, fax and e-mail. 
 					The position will also involve packaging products for shipment. 
@@ -51,7 +49,7 @@
 					<br />
 
 					<span class="textbold_orange">
-						Required Qualifications:
+						Required Qualifications
 					</span>
 					<br />
 					<ul>
@@ -81,11 +79,8 @@
 						</li>
 					</ul>
 									
-					<p>
-						&nbsp;
-					</p>
 					<span class="textbold_orange">
-						Position Benefits:
+						Position Benefits
 						</span>
 					<ul>
 						<li>

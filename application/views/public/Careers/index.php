@@ -18,27 +18,28 @@
 					<span class="textbold_orange">
 						Current Open Positions:
 					</span>
+					<br />
 
-					<br>
+					<a href="/careers/career-PM001.html">
+						Analytical Services Project Manager
+					</a>
+					<br />
+
 					<a href="/careers/career-LT001.html">
 						Laboratory Technician
 					</a>
-					<br />
 					<br />
 					<a href="/careers/career-AD-RA.html">
 						Research Associate - Assay Development
 					</a>
 					<br />
-					<br />
 					<a href="/careers/career-Manu-RA.html">
 						Research Associate - Manufacturing
 					</a>
 					<br />
-					<br />
 					<a href="/careers/career-website-specialist.html">
 						Website/Marketing Specialist
 					</a>
-					<br />
 					<br />
 					<a href="/careers/career-sales-associate.html">
 						Sales Associate
@@ -50,7 +51,7 @@
 						About Us
 					</span>
 					<br />
-					BioAssay Systems develops and markets innovative and high-throughput assay solutions to satisfy the ever increasing demands of the life sciences industry. BioAssay Systems offers assay kits that are simple, convenient to use and superior in performance. With our assay kits, researchers need little-to-no time for assay optimization. We specialize in biochemical and cell-based assays for both routine laboratory tests and for high-throughput drug discovery applications with a focus on safe, nonradioactive assay formats such as absorbance, fluorescence and luminescence detection techniques.
+					BioAssay Systems develops and markets innovative and high-throughput assay solutions to satisfy the ever increasing demands of the life sciences and drug discovery industries. BioAssay Systems offers assay kits that are simple, convenient to use and superior in performance. With our assay kits, researchers need little-to-no time for assay optimization. We specialize in biochemical and cell-based assays for both routine laboratory tests and for high-throughput drug discovery applications with a focus on safe, nonradioactive assay formats such as absorbance, fluorescence and luminescence detection techniques.
 					<br />
 					<br />
 					Since the 1990s, the wide spread application of robotics has revolutionized how modern drug discovery and clinical diagnostics are conducted. Automated systems have greatly increased the throughput while freeing up researchers from repetitive tasks. Clinical laboratories can now test thousands of samples per day and drug discovery companies can screen chemical libraries consisting of millions of individual compounds in a matter of days. With automated or semi-automated equipment being increasingly implemented in academic and industrial laboratories, there is growing demand for reliable assays that are simple, convenient, and can be readily adapted to run in a high-throughput fashion.
