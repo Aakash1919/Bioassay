@@ -7,7 +7,7 @@ class Services extends Public_Controller{
 	}
 	
 	public function index(){
-		$id=1; 
+			$id=1;
 		$this->data['keywords'] = $this->Services_Model->GetProperty('seo_keyword',$id);
 		$this->data['description'] = $this->Services_Model->GetProperty('seo_description',$id);
 		$this->data['active'] = $this->Services_Model->GetProperty('seo_title',$id);
@@ -49,6 +49,8 @@ class Services extends Public_Controller{
 		$this->data['subview'] = 'public/Services/'.$this->Services_Model->GetProperty('content',$id);
 		$this->load->view('public/_layout_main',$this->data);
 	}
+
+	/*
 	public function multiplex_assay_services(){
 			$id=6;
 		$this->data['keywords'] = $this->Services_Model->GetProperty('seo_keyword',$id);
@@ -56,7 +58,8 @@ class Services extends Public_Controller{
 		$this->data['active'] = $this->Services_Model->GetProperty('seo_title',$id);
 		$this->data['subview'] = 'public/Services/'.$this->Services_Model->GetProperty('content',$id);
 		$this->load->view('public/_layout_main',$this->data);
-	}	
+	}
+	*/
 	public function acetylcholinesterase_inhibitor_screening_service(){
 			$id=7;
 		$this->data['keywords'] = $this->Services_Model->GetProperty('seo_keyword',$id);
@@ -187,4 +190,13 @@ class Services extends Public_Controller{
 		$this->data['subview'] = 'public/Services/'.$this->Services_Model->GetProperty('content',$id);
 		$this->load->view('public/_layout_main',$this->data);
 	}  
+
+	public function kinase_inhibitor_screening(){
+			$id=23;
+		$this->data['keywords'] = $this->Services_Model->GetProperty('seo_keyword',$id);
+		$this->data['description'] = $this->Services_Model->GetProperty('seo_description',$id);
+		$this->data['active'] = $this->Services_Model->GetProperty('seo_title',$id);
+		$this->data['subview'] = 'public/Services/'.$this->Services_Model->GetProperty('content',$id);
+		$this->load->view('public/_layout_main',$this->data);
+	}
 }
