@@ -117,7 +117,7 @@ class Products extends Public_Controller
             $cat = $this->Cat_Model->getCatid($key);
             $this->data['category'] = $this->Cat_Model->getCategory($key);
         }
-        $order = get_cookie('order') ? 'name_display' : '';
+        $order = get_cookie('order') ? 'name_display' : 'name_display';
         $format = get_cookie('format') ? 'ASC' : '';
         $config['full_tag_open'] = '<div class="pagination" style="align:center;float:right;"><span>';
         $config['full_tag_close'] = '</span></div>';
