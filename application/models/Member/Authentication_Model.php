@@ -141,7 +141,7 @@ class Authentication_Model extends CI_Model{
     function getAnAcceptPaymentPage($amount, $items, $extraInfo = [])
     {
         $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items, $extraInfo));
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
+        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();
         } else {
