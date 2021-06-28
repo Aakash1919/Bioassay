@@ -121,35 +121,34 @@ $(function () {
 
     AuthorizeNetPopup.onReceiveCommunication = function (querystr) {
             var params = parseQueryString(querystr);
-            console.log(params)
-            // switch (params["action"]) {
-            //     case "successfulSave":
-            //         // window.location.href="/checkout/thanks"
-            //         break;
-            //     case "cancel":
-            //         AuthorizeNetPopup.closePopup();
-            //         break;
-            //     case "transactResponse":
-            //         AuthorizeNetPopup.closePopup();
-            //         var order = jQuery("input#order").val()
-            //         if(order) {
-            //             $.post( "/checkout/getAuthorizeResponse",{order : order}, function( data ) {
-            //                 var jsonData = JSON.parse(data)
-            //                 if(jsonData==true) {
-            //                     window.location.href ='/checkout/thanks'
-            //                 }
-            //             });
-            //         }
-            //         break;
-            //     case "resizeWindow":
-            //         var w = parseInt(params["width"]);
-            //         var h = parseInt(params["height"]);
-            //         var ifrm = document.getElementById("iframeAuthorizeNet");
-            //         ifrm.style.width = w.toString() + "px";
-            //         ifrm.style.height = h.toString() + "px";
-            //         centerPopup();
-            //         break;
-            // }
+            switch (params["action"]) {
+                case "successfulSave":
+                    // window.location.href="/checkout/thanks"
+                    break;
+                case "cancel":
+                    AuthorizeNetPopup.closePopup();
+                    break;
+                case "transactResponse":
+                    AuthorizeNetPopup.closePopup();
+                    var order = jQuery("input#order").val()
+                    if(order) {
+                        $.post( "/checkout/getAuthorizeResponse",{order : order}, function( data ) {
+                            var jsonData = JSON.parse(data)
+                            if(jsonData==true) {
+                                window.location.href ='/checkout/thanks'
+                            }
+                        });
+                    }
+                    break;
+                case "resizeWindow":
+                    var w = parseInt(params["width"]);
+                    var h = parseInt(params["height"]);
+                    var ifrm = document.getElementById("iframeAuthorizeNet");
+                    ifrm.style.width = w.toString() + "px";
+                    ifrm.style.height = h.toString() + "px";
+                    centerPopup();
+                    break;
+            }
         };
 
 
