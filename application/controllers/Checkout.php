@@ -219,7 +219,7 @@ class Checkout extends Public_Controller{
 			
 			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'), $this->cart->contents());
 			
-			$shippingFee = !empty($fedex_acct_num) ? 0 : (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
+			$shippingFee =  (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 
 			if($discountamount !== 0){
 				$newTaxTotal = $taxrate*($this->cart->total()-$discountamount);
@@ -419,7 +419,7 @@ class Checkout extends Public_Controller{
 						$this->setAndSaveOrderDetails($orderID, $value['id'], $value['price']*$value['qty']);
 					}
 				}
-				$shippingfee =  !empty($fedex_acct_num) ? 0 : $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
+				$shippingfee =  $this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 				$taxrate = $this->getTaxRate($this->input->post('szip'), $this->input->post('sstate'), $this->input->post('tax_exempt_id'));
 				$newTotal = $this->cart->total()+($this->cart->total() * $taxrate)+$shippingfee;
 				$newTotal = number_format((float)$newTotal, 2, '.', '');
