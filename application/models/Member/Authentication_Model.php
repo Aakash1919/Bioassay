@@ -135,13 +135,13 @@ class Authentication_Model extends CI_Model{
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentBillingAddressOptions", '{"show": false, "required": false}'));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentVisaCheckoutOptions", '{"apiKey":"3F9eMpx9R","displayName":"Bioassay","message":"Bioassay Message"}'));
         $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentCustomerOptions", '{"showEmail": true, "requiredEmail": true, "addPaymentProfile": true}'));
-        $request->addToHostedPaymentSettings(self::getSetting("hostedPaymentPaymentOptions", '{"cardCodeRequired": false, "showCreditCard": true, "showBankAccount": true, "customerProfileId": true}'));
+
         return $request;    
     }
     function getAnAcceptPaymentPage($amount, $items, $extraInfo = [])
     {
         $controller = new AnetController\GetHostedPaymentPageController(self::getRequestforHAS($amount, $items, $extraInfo));
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
         if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
             return $response->getToken();
         } else {
