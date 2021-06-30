@@ -454,8 +454,7 @@ class Checkout extends Public_Controller{
 					
 					$postData['shippingFee'] = $shippingfee;
 					$this->session->set_userdata('postArray', $postData);
-					$totalAmount = $finalprice + $shippingfee;
-					$response  = $this->generateAuthorizeToken($totalAmount, $cart, $postData);
+					$response  = $this->generateAuthorizeToken($newTotal, $cart, $postData);
 					echo json_encode(['order_id'=> $orderID, 'token'=>$response],JSON_UNESCAPED_SLASHES);
 					die;
 				}
