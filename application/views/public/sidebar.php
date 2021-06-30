@@ -164,13 +164,13 @@
 						</a>
 					</li>
 				</ul>
-				<ul>
+				<!--<ul>
 					<li>
 						<a href="/services/multiplex-assay-services.html">
 							Multiplex Assay Services
 						</a>
 					</li>
-				</ul>
+				</ul>-->
 			</div>
 		</div>
 

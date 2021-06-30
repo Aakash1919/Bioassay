@@ -20,10 +20,10 @@
 					</span>
 					<br />
 
-					<a href="/careers/career-PM001.html">
+					<!--<a href="/careers/career-PM001.html">
 						Analytical Services Project Manager
 					</a>
-					<br />
+					<br />-->
 
 					<a href="/careers/career-LT001.html">
 						Laboratory Technician
