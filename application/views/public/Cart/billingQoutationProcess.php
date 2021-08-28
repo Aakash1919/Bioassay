@@ -35,7 +35,6 @@ $personID = $this->session->userdata('person_id');
 if(!empty($PreviousInfo)){
     $fedex = $PreviousInfo['fedex_accnt'];
     $fedexservice = $PreviousInfo['fedex_service'];
-    //$po_num = $PreviousInfo['po_num'];
     $sattn= $PreviousInfo['sattn'];
     $scompany= $PreviousInfo['scompany'];
     $sddr1= $PreviousInfo['saddr1'];
@@ -47,7 +46,6 @@ if(!empty($PreviousInfo)){
     $sphone= $PreviousInfo['sphone'];
     $semail= $PreviousInfo['semail'];
     $cmnts= $PreviousInfo['cmnts'];
-   // $payment_type = $PreviousInfo['payment_type'];
     $sales_tax_exempt_num1 = $PreviousInfo['sales_tax_exempt_num1'];
 }
 $cart=$this->cart->contents();
@@ -389,11 +387,15 @@ if(!empty($personID)){
 								Promotion Code: 
 							</p>
 						</div>
-						<?php $promotionCode = $this->session->userdata('PromotionCode'); ?>
-						<div class="reg_cf1">
-							<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($promotionCode)?$promotionCode:'';?>">
-							<input class="button" type="button" id="discode_" value="Submit" onClick="dis_check(this.value,this.id)" name="disn">
-						</div>
+						<?php $promotionCode = $this->session->userdata('PromotionCode'); 
+							$promotionCode = isset($promotionCode) ? $promotionCode : array();
+						?>
+						<?php $mostRecentPromotionCode = end($promotionCode); 
+						?>
+							<div class="reg_cf1">
+								<input name="discount" id="discode" type="text" style="text-align:center;width:150px" class="mycart_titleii" OnFocus="clearall(this.value,this.id);"  value="<?php echo isset($mostRecentPromotionCode)?$mostRecentPromotionCode:'';?>">
+								<input class="button" type="button" id="discode_" value="Submit" onClick="dis_check(this.value,this.id)" name="disn">
+							</div>
 						<div class="reg_left">
 						<div class="reg_a">
 						</div>
@@ -407,16 +409,15 @@ if(!empty($personID)){
 									echo "<p style='margin-top:10px;'> <b>Invalid Code for ".$this->Products_Model->getname($d['Product_Id'])."</b></p>";
 									}
 									if($status == 'true'){
-								  $codedate = $d['Data'][0]->expirydate;
-								  if(empty($codedate)){
-										$codedate = date('Y-m-d',time());
-									}
-									$expd = strtotime($codedate);
-									$dtoday = time();
-									
-									if( $dtoday > $expd ){
-										echo "<p> Code Expired for ".$this->Products_Model->getname($d['Product_Id'])."</p>";
-									}
+									$codedate = $d['Data'][0]->expirydate;
+										if(empty($codedate)){
+											$codedate = date('Y-m-d',time());
+										}
+										$expd = strtotime($codedate);
+										$dtoday = time();
+										if( $dtoday > $expd ){
+											echo "<p> Code Expired for ".$this->Products_Model->getname($d['Product_Id'])."</p>";
+										}
 									}
 								}
 								
@@ -428,26 +429,17 @@ if(!empty($personID)){
 						</div>
 					</div>
 					<!-- Aakash Started here -->
-					<?php 
-						if(isset($promotionCode))
-						{
-					?>
-
-					<div class="reg_left">
-						<div class="reg_a">
-						</div>
-						<div class="reg_b">
-							<p>
-								<b>Promotio Code Applied:&nbsp;<?php echo @$promotionCode;?> <a href="/checkout/removeDiscountCode">Remove</a></b>
-							</p>
-						</div>
-					</div>
-					<div class="clear">
-					</div>
-					<br />
-					<?php
-						} 
-					?>
+					<?php  if(isset($promotionCode))  { ?>
+						<?php foreach ($promotionCode as $prokey => $proValue) { ?>
+							<div class="reg_left">
+								<div class="reg_a"></div>
+								<div class="reg_b">
+									<p><b>Promotion Code Applied:&nbsp;<?php echo $proValue;?> <a href="/checkout/removeDiscountCode/<?= $proValue; ?>">Remove</a></b></p>
+								</div>
+							</div>
+							<div class="clear"></div><br />
+						<?php } ?>
+					<?php }  ?>
 					<div>
 
 					<div class="reg_left">

@@ -111,30 +111,28 @@ class Products_Model extends Public_Model{
 	}
 	public function GetDiscountedPrice($discountcod,$cart)
 	{	
-		$flag=0;
-		$msg="valid";
-		$discountdata = array();
-		$today = date('Y-m-d',time());
-		$this->db->where('discountcode',$discountcod);
-		$this->db->select('product_id')->from($this->_table_name);
-		$rows = $this->db->get()->num_rows();
-		if($rows>0)
-		{
-			foreach($cart as $product => $value) {
-				$product_id = $value['id'];				
-					$this->db->where('discountcode',$discountcod);
-					$this->db->where('product_id',$product_id);
-					$this->db->select('discountcode,expirydate,product_id,discountpercent')->from($this->_table_name);
-					$result = $this->db->get()->result();
-					if(!empty($result)){
-						$status = 'true';
-					}else{
-						$status = 'false';
+			$discountdata = array();
+			$this->db->where_in('discountcode',$discountcod);
+			$this->db->select('product_id')->from($this->_table_name);
+			$rows = $this->db->get()->num_rows();
+			if($rows>0)
+			{
+				foreach($cart as $product => $value) {
+					foreach($discountcod as $key => $discountValue) {
+						$product_id = $value['id'];				
+						$this->db->where('discountcode',$discountValue);
+						$this->db->where('product_id',$product_id);
+						$this->db->select('discountcode,expirydate,product_id,discountpercent')->from($this->_table_name);
+						$result = $this->db->get()->result();
+						if(!empty($result)){
+							$status = 'true';
+							$discountdata[] = array('Product_Id'=>$product_id,'code'=>$discountValue, 'Status'=>$status,'Data'=>$result);
+						}
 					}
-					$discountdata[] = array('Product_Id'=>$product_id,'Status'=>$status,'Data'=>$result);
-			}  
-			return $discountdata;
-		}
+				}  
+			}
+		
+		return $discountdata;
 	}
 	public function GetFAQ($id){
 		$this->db->where('products.product_id',$id);
