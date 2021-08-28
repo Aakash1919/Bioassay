@@ -107,7 +107,7 @@ $(function () {
         var ifrm = document.getElementById("iframeAuthorizeNet");
         var form = document.forms["formAuthorizeNetPopup"];
         $("#popupToken").val(authToken);
-        form.action = "https://accept.authorize.net/payment/payment";
+        form.action = "https://test.authorize.net/payment/payment";
         ifrm.style.width = "442px";
         ifrm.style.height = "578px";
 
@@ -121,7 +121,6 @@ $(function () {
 
     AuthorizeNetPopup.onReceiveCommunication = function (querystr) {
             var params = parseQueryString(querystr);
-            // console.log(params)
             switch (params["action"]) {
                 case "successfulSave":
                     // window.location.href="/checkout/thanks"

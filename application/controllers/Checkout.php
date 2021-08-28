@@ -230,7 +230,7 @@ class Checkout extends Public_Controller
 			}
 
 			$discountamount = $this->getDiscountAmount($this->session->userdata('discount_data'), $this->cart->contents());
-
+			
 			$shippingFee =  (float)$this->get_shipping_fee($fedex_acct_num, $fedex_service, $cart);
 
 			if ($discountamount !== 0) {
@@ -809,7 +809,7 @@ class Checkout extends Public_Controller
 			$extraInfo['discountAmount'] = $_SESSION['discountamount'];
 			$totalAmount = $totalAmount - $_SESSION['discountamount'];
 		}
-		$this->data['authToken'] = self::generateAuthorizeToken($totalAmount, $this->cart->contents(), $extraInfo);
+		$this->data['authToken'] = $this->generateAuthorizeToken($totalAmount, $this->cart->contents(), $extraInfo);
 		$data = array('AuthToken' => $this->data['authToken'], 'Url' => 'https://test.authorize.net/payment/payment');
 
 		echo json_encode($data, JSON_UNESCAPED_SLASHES);
